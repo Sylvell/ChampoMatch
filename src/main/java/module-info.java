@@ -2,7 +2,6 @@ module com.example.champomatch {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
-
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
@@ -10,6 +9,7 @@ module com.example.champomatch {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.desktop;
 
     opens com.example.champomatch to javafx.fxml;
     exports com.example.champomatch;

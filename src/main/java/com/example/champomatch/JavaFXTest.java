@@ -2,6 +2,8 @@ package com.example.champomatch;
 
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -106,7 +108,6 @@ public class JavaFXTest extends Application {
         saveButton.setOnMouseClicked(event -> {
             // Get project directory
             String projectDir = System.getProperty("user.dir");
-            System.out.println(projectDir);
             // Create a file object to save to timestamped file
             File file = new File(projectDir + "/src/main/resources/com/example/champomatch/images/"+System.currentTimeMillis()+".png");
 
@@ -149,6 +150,7 @@ public class JavaFXTest extends Application {
         // Set the title of the stage and show the scene
         primaryStage.setTitle("Draw with Mouse Example");
         primaryStage.show();
+
     }
 
     public static void main(String[] args) {
