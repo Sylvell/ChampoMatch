@@ -92,25 +92,24 @@ public class JavaFXTest extends Application {
             gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         });
 
+        // Create a "Save" button to save the canvas as an image
+        Button saveButton = new Button("Save");
+
 
         // Create a pane to hold the canvas and buttons
-        Pane root = new Pane(canvas, colorButtonBox, whiteButton);
+        Pane root = new Pane(canvas, colorButtonBox, whiteButton,saveButton);
         colorButtonBox.setLayoutY(canvas.getHeight() + 10);
         whiteButton.setLayoutY(canvas.getHeight() + 50);
 
 
-        // Create a "Save" button
-        Button saveButton = new Button("Save");
-
         // Add an event handler to the "Save" button to handle mouse click events
         saveButton.setOnMouseClicked(event -> {
-            // Open a file chooser dialog to choose the file to save to
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Save Drawing");
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
-            File file = fileChooser.showSaveDialog(primaryStage);
+            // Get project directory
+            String projectDir = System.getProperty("user.dir");
+            System.out.println(projectDir);
+            // Create a file object to save to timestamped file
+            File file = new File(projectDir + "/src/main/resources/com/example/champomatch/images/"+System.currentTimeMillis()+".png");
 
-            if (file != null) {
                 // Create a writable image from the canvas
                 WritableImage writableImage = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
                 canvas.snapshot(null, writableImage);
@@ -121,7 +120,7 @@ public class JavaFXTest extends Application {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
+
         });
 
 
