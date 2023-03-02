@@ -8,6 +8,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -67,6 +68,17 @@ public class JavaFXTest extends Application {
         //loop from enum colors
         for (Colors c : Colors.values()) {
             Button button = new Button(c.name().toLowerCase());
+            //use button style to make it a circle and background color
+            button.setStyle(
+                    "-fx-background-radius: 5em; " +
+                            "-fx-min-width: 30px; " +
+                            "-fx-min-height: 30px; " +
+                            "-fx-max-width: 30px; " +
+                            "-fx-max-height: 30px;" +
+                            "-fx-background-color: " + c.name()+ ";"
+            );
+
+            //add event handler to change the stroke color
             button.setOnAction(event -> {
                 strokeColor = c.getColor();
                 gc.setStroke(strokeColor);
