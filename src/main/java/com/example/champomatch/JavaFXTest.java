@@ -36,8 +36,8 @@ public class JavaFXTest extends Application {
         GREEN(Color.GREEN),
         BLUE(Color.BLUE),
         INDIGO(Color.INDIGO),
-        VIOLET(Color.VIOLET);
-
+        VIOLET(Color.VIOLET),
+        WHITE(Color.WHITE);
 
         private Color color;
 
@@ -74,8 +74,8 @@ public class JavaFXTest extends Application {
             colorButtonBox.getChildren().add(button);
         }
 
-        // Create a "White" button to erase the drawing
-        Button whiteButton = new Button("White");
+        // Create a ERASE button to clear the canvas
+        Button whiteButton = new Button("Erase");
         whiteButton.setOnAction(event -> {
             gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         });
