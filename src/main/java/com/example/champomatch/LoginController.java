@@ -1,14 +1,20 @@
 package com.example.champomatch;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class LoginController {
@@ -48,8 +54,15 @@ public class LoginController {
         boolean flag = jdbcDao.validate(emailId, password);
 
         if (!flag) {
+
             infoBox("Please enter correct Email and Password", null, "Failed");
         } else {
+            Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            try {
+                stageTheEventSourceNodeBelongs.setScene(new Scene(FXMLLoader.load(getClass().getResource("scenebuilder.fxml"))));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             infoBox("Login Successful!", null, "Failed");
         }
     }
