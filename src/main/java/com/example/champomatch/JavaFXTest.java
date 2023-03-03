@@ -19,9 +19,19 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-        // Create a pane to hold the canvas
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+// Create a pane to hold the canvas
 
 public class JavaFXTest extends Application {
 
@@ -153,7 +163,21 @@ public class JavaFXTest extends Application {
 
     }
 
-    public static void main(String[] args) {
+    //function to download image from url
+    public static void downloadImage(String url, String fileName) throws IOException {
+        URL imageUrl = new URL(url);
+        BufferedImage saveImage = ImageIO.read(imageUrl);
+        File outputfile = new File(System.getProperty("user.dir") + "/src/main/resources/com/example/champomatch/images/"+fileName);
+        ImageIO.write(saveImage, "png", outputfile);
+    }
+
+
+
+
+
+
+    public static void main(String[] args) throws IOException {
         launch(args);
+
     }
 }

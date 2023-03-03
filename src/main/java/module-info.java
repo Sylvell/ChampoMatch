@@ -10,6 +10,7 @@ module com.example.champomatch {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.desktop;
+    requires org.json;
 
     opens com.example.champomatch to javafx.fxml;
     exports com.example.champomatch;
