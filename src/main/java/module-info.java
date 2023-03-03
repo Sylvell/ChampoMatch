@@ -11,6 +11,7 @@ module com.example.champomatch {
     requires com.almasb.fxgl.all;
     requires java.desktop;
     requires org.json;
+    requires java.sql;
 
     opens com.example.champomatch to javafx.fxml;
     exports com.example.champomatch;

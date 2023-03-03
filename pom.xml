@@ -109,7 +109,7 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.oracle</groupId>
+            <groupId>org.openjfx</groupId>
             <artifactId>javafx.swing</artifactId>
             <version>19</version>
             <scope>system</scope>

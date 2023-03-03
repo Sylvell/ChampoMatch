@@ -10,9 +10,9 @@ import java.sql.SQLException;
 public class JdbcDao {
 
     // Replace below database url, username and password with your actual database credentials
-    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/javafx_registration?useSSL=false";
-    private static final String DATABASE_USERNAME = "root";
-    private static final String DATABASE_PASSWORD = "root";
+    private static final String DATABASE_URL = "jdbc:mysql://montou.o2switch.net:3306/hdyx5526_ChampoMatch";
+    private static final String DATABASE_USERNAME = "hdyx5526_ChampoMatch";
+    private static final String DATABASE_PASSWORD = "ChampoMatch";
     private static final String SELECT_QUERY = "SELECT * FROM registration WHERE email_id = ? and password = ?";
 
     public boolean validate(String emailId, String password) throws SQLException {
