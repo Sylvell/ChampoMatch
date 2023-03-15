@@ -22,7 +22,7 @@ enum Hobbies {
         Cooking,
         }
 
-public class Person {
+public class Single {
     String name;
     int age;
     Gender gender;
@@ -35,8 +35,8 @@ public class Person {
     int distance;
     int minimunAge;
     int maximunAge;
-    ArrayList<Person> liked;
-    ArrayList<Person> unliked;
+    ArrayList<Single> liked;
+    ArrayList<Single> unliked;
     ArrayList<Hobbies> Hobbies;
     
 }
