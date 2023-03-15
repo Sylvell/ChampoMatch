@@ -150,12 +150,12 @@
             <scope>runtime</scope>
             <version>1.13.1</version>
         </dependency>
-        <dependency>
+       <!-- <dependency>
             <groupId>ai.djl.pytorch</groupId>
             <artifactId>pytorch-jni</artifactId>
             <version>1.13.1-0.21.0</version>
             <scope>runtime</scope>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>com.eljavatar</groupId>
             <artifactId>SwingUtils</artifactId>
