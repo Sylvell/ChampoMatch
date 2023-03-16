@@ -23,6 +23,7 @@ enum Hobbies {
         }
 
 public class Single {
+    int id;
     String name;
     int age;
     Gender gender;
@@ -37,6 +38,9 @@ public class Single {
     int maximunAge;
     ArrayList<Single> liked;
     ArrayList<Single> unliked;
-    ArrayList<Hobbies> Hobbies;
+    ArrayList<Single> candidates;
+    ArrayList<Hobbies> hobbies;
     boolean isAlone;
+
 }
+
