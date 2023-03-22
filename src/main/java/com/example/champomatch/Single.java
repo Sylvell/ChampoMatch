@@ -1,5 +1,4 @@
 package com.example.champomatch;
-
 import java.util.ArrayList;
 
 enum Gender {
@@ -23,7 +22,7 @@ enum Hobbies {
         }
 
 public class Single {
-    int id;
+    public Integer id;
     String name;
     int age;
     Gender gender;
@@ -41,6 +40,4 @@ public class Single {
     ArrayList<Single> candidates;
     ArrayList<Hobbies> hobbies;
     boolean isAlone;
-
 }
-

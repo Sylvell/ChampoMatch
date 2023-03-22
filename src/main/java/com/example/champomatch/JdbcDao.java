@@ -43,7 +43,7 @@ public class JdbcDao {
     }
 
     public static void printSQLException(SQLException ex) {
-        for (Throwable e: ex) {
+        for (Throwable e : ex) {
             if (e instanceof SQLException) {
                 e.printStackTrace(System.err);
                 System.err.println("SQLState: " + ((SQLException) e).getSQLState());
@@ -57,4 +57,32 @@ public class JdbcDao {
             }
         }
     }
+
+    // function to execute an sql select and return fetch result in an array
+
+    public static String select(String sql) {
+        try {
+            Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                String result = resultSet.getString("email_id");
+                return result;
+            } else {
+                return "Error: No results found";
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "Error: " + e.getMessage();
+        }
+    }
+
+
+
+    //String name = resultSet.getString("email_id");
+
+
 }
+
