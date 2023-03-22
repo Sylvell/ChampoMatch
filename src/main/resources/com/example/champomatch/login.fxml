@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.champomatch.LoginController">   <children>
+      <ImageView fitHeight="1080.0" fitWidth="1620.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/Champolove_connexion.jpg" />
+         </image>
+      </ImageView>
+      <HBox layoutX="643.0" layoutY="106.0" prefHeight="160.0" prefWidth="413.0">
+         <children>
+            <ImageView fitHeight="135.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Crown_left-removebg-preview.png" />
+               </image>
+               <HBox.margin>
+                  <Insets right="-40.0" />
+               </HBox.margin>
+            </ImageView>
+            <Label text="ChampoMatch" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Constantia Bold Italic" size="38.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="33.0" />
+               </HBox.margin>
+            </Label>
+            <ImageView fitHeight="135.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/crown_right-removebg-preview.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="-40.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+      <VBox layoutX="410.0" layoutY="323.0" prefHeight="435.0" prefWidth="800.0">
+         <children>
+            <Label prefHeight="63.0" prefWidth="209.0" text="Connexion" textFill="#f7f255">
+               <font>
+                  <Font name="Consolas Bold Italic" size="36.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="300.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Nom d'utilisateur :" textFill="WHITE">
+               <font>
+                  <Font name="HoloLens MDL2 Assets" size="18.0" />
+               </font>
+            </Label>
+            <!-- Add Email Text Field -->
+            <TextField fx:id="emailIdField" prefHeight="40">
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Consolas" size="18.0" />
+               </font>
+            </TextField>
+            <!-- Add Password Label -->
+            <Label text="Password : " textFill="WHITE">
+               <font>
+                  <Font name="HoloLens MDL2 Assets" size="18.0" />
+               </font>
+            </Label>
+            <!-- Add Password Field -->
+            <PasswordField fx:id="passwordField" prefHeight="40">
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </PasswordField>
+            <!-- Add Submit Button -->
+            <Button fx:id="submitButton" defaultButton="true" onAction="#login" prefHeight="40" prefWidth="100" text="Submit">
+               <VBox.margin>
+                  <Insets left="360.0" top="50.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</Pane>
