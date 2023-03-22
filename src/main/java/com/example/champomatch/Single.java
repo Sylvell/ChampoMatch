@@ -38,5 +38,5 @@ public class Single {
     ArrayList<Single> liked;
     ArrayList<Single> unliked;
     ArrayList<Hobbies> Hobbies;
-    
+    boolean isAlone;
 }
