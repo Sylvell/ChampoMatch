@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Circle fx:id="pp" fill="WHITE" layoutX="122.0" layoutY="114.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="369.0" layoutX="251.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="336.0" />
+      <GridPane alignment="CENTER" layoutX="266.0" layoutY="26.0" prefHeight="115.0" prefWidth="313.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="name" alignment="CENTER" prefHeight="30.0" prefWidth="150.0" text="Name" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="158.0" text="Age" GridPane.columnIndex="1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="preferedGender" alignment="CENTER" prefHeight="17.0" prefWidth="156.0" text="PreferedGender" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="gender" alignment="CENTER" prefHeight="30.0" prefWidth="157.0" text="Gender" GridPane.rowIndex="2">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="localisation" alignment="CENTER" prefHeight="30.0" prefWidth="155.0" text="Localisation" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <Label fx:id="bio" alignment="CENTER" layoutX="14.0" layoutY="229.0" prefHeight="154.0" prefWidth="216.0" text="Bio" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ListView fx:id="hobbies" layoutX="259.0" layoutY="199.0" prefHeight="165.0" prefWidth="320.0" />
+      <Text layoutX="266.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hobbies :" wrappingWidth="100.13671875">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
