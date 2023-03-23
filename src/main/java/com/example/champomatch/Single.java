@@ -1,17 +1,12 @@
 package com.example.champomatch;
+
 import java.util.ArrayList;
 
 enum Gender {
     Male,
-    female,
-    NonBinary,
+    Female,
     Other
   }
-enum Status {
-    Online,
-    Offline,
-    Hide,
-    }
 
 enum Hobbies {
         Sport,
@@ -31,7 +26,6 @@ public class Single {
     String bio;
     String localisation;
     ArrayList<Images> images = new ArrayList<Images>();
-    Status status;
     int distance;
     int minimunAge;
     int maximunAge;
@@ -44,7 +38,7 @@ public class Single {
     // Constructor
 
 
-    public Single(String name, int age, Gender gender, String pp, Gender preferedGender, String bio, String localisation, Status status, int distance, int minimunAge, int maximunAge) {
+    public Single(String name, int age, Gender gender, String pp, Gender preferedGender, String bio, String localisation, int distance, int minimunAge, int maximunAge) {
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -52,7 +46,6 @@ public class Single {
         this.preferedGender = preferedGender;
         this.bio = bio;
         this.localisation = localisation;
-        this.status = status;
         this.distance = distance;
         this.minimunAge = minimunAge;
         this.maximunAge = maximunAge;
@@ -96,5 +89,97 @@ public class Single {
 
     public void setHobbies(ArrayList<Hobbies> hobbies) {
         this.hobbies = hobbies;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public String getPp() {
+        return pp;
+    }
+
+    public void setPp(String pp) {
+        this.pp = pp;
+    }
+
+    public Gender getPreferedGender() {
+        return preferedGender;
+    }
+
+    public void setPreferedGender(Gender preferedGender) {
+        this.preferedGender = preferedGender;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getLocalisation() {
+        return localisation;
+    }
+
+    public void setLocalisation(String localisation) {
+        this.localisation = localisation;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
+
+    public int getMinimunAge() {
+        return minimunAge;
+    }
+
+    public void setMinimunAge(int minimunAge) {
+        this.minimunAge = minimunAge;
+    }
+
+    public int getMaximunAge() {
+        return maximunAge;
+    }
+
+    public void setMaximunAge(int maximunAge) {
+        this.maximunAge = maximunAge;
+    }
+
+    public boolean isAlone() {
+        return isAlone;
+    }
+
+    public void setAlone(boolean alone) {
+        isAlone = alone;
     }
 }

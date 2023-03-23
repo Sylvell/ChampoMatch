@@ -12,7 +12,7 @@ module com.example.champomatch {
     requires java.desktop;
     requires org.json;
     requires java.sql;
-    requires org.junit.jupiter.api;
+    requires junit;
 
     opens com.example.champomatch to javafx.fxml;
     exports com.example.champomatch;
