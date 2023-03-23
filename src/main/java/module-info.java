@@ -13,6 +13,7 @@ module com.example.champomatch {
     requires org.json;
     requires java.sql;
     requires junit;
+    requires com.fasterxml.jackson.databind;
 
     opens com.example.champomatch to javafx.fxml;
     exports com.example.champomatch;
