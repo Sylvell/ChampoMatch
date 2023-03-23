@@ -1,5 +1,4 @@
 package com.example.champomatch;
-
 import java.util.ArrayList;
 
 enum Gender {
