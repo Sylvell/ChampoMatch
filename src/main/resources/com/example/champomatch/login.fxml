@@ -56,7 +56,7 @@
                   <Insets left="300.0" />
                </VBox.margin>
             </Label>
-            <Label text="Nom d'utilisateur :" textFill="WHITE">
+            <Label text="Enter your username :" textFill="WHITE">
                <font>
                   <Font name="HoloLens MDL2 Assets" size="18.0" />
                </font>
@@ -71,7 +71,7 @@
                </font>
             </TextField>
             <!-- Add Password Label -->
-            <Label text="Password : " textFill="WHITE">
+            <Label text="Enter your password :" textFill="WHITE">
                <font>
                   <Font name="HoloLens MDL2 Assets" size="18.0" />
                </font>
@@ -90,8 +90,16 @@
                <VBox.margin>
                   <Insets left="360.0" top="50.0" />
                </VBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
             </Button>
          </children>
       </VBox>
+      <Label layoutX="346.0" layoutY="75.0" prefHeight="383.0" prefWidth="979.0" text="&quot;ChampoMatch, l'agence matrimoniale qui fait battre votre cœur&quot;." textFill="#f5f5f5">
+         <font>
+            <Font name="Gabriola" size="45.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
