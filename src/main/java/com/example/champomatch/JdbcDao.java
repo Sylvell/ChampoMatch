@@ -80,7 +80,6 @@ public class JdbcDao {
     }
 
 
-
     //String name = resultSet.getString("email_id");
 
 
