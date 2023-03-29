@@ -19,7 +19,7 @@ enum Hobbies {
 public class Single {
     public Integer id = null;
     String name;
-    String prenom;
+    String firstname;
     int age;
     int height;
     Gender gender;
@@ -40,9 +40,9 @@ public class Single {
     // Constructor
 
 
-    public Single(String name, String prenom, int age, int height, Gender gender, String pp, Gender preferedGender, String bio, String localisation, int distance, int minimunAge, int maximunAge) {
+    public Single(String name, String firstname, int age, int height, Gender gender, String pp, Gender preferedGender, String bio, String localisation, int distance, int minimunAge, int maximunAge) {
         this.name = name;
-        this.prenom = prenom;
+        this.firstname = firstname;
         this.age = age;
         this.height = height;
         this.gender = gender;
@@ -54,10 +54,10 @@ public class Single {
         this.minimunAge = minimunAge;
         this.maximunAge = maximunAge;
     }
-    public Single(int id,String name, String prenom, int age, int height, Gender gender, String pp, Gender preferedGender, String bio, String localisation, int distance, int minimunAge, int maximunAge) {
+    public Single(int id,String name, String firstname, int age, int height, Gender gender, String pp, Gender preferedGender, String bio, String localisation, int distance, int minimunAge, int maximunAge,boolean isAlone) {
         this.id=id;
         this.name = name;
-        this.prenom = prenom;
+        this.firstname = firstname;
         this.age = age;
         this.height = height;
         this.gender = gender;
@@ -68,6 +68,7 @@ public class Single {
         this.distance = distance;
         this.minimunAge = minimunAge;
         this.maximunAge = maximunAge;
+        this.isAlone=isAlone;
     }
 
     public ArrayList<Images> getImages() {
