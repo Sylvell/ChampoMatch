@@ -21,6 +21,7 @@ public class Single {
     String name;
     String prenom;
     int age;
+    int height;
     Gender gender;
     String pp;
     Gender preferedGender;
@@ -39,10 +40,11 @@ public class Single {
     // Constructor
 
 
-    public Single(String name, String prenom, int age, Gender gender, String pp, Gender preferedGender, String bio, String localisation, int distance, int minimunAge, int maximunAge) {
+    public Single(String name, String prenom, int age, int height, Gender gender, String pp, Gender preferedGender, String bio, String localisation, int distance, int minimunAge, int maximunAge) {
         this.name = name;
         this.prenom = prenom;
         this.age = age;
+        this.height = height;
         this.gender = gender;
         this.pp = pp;
         this.preferedGender = preferedGender;
@@ -188,15 +190,15 @@ public class Single {
     public void generateSingle() {
         downloadImage Image = new downloadImage();
 
-        new Single("Martin", "Léa", 22, Gender.Female, Image.get(24, 20, "female"), Gender.Male, "Je suis une jeune étudiante passionnée par les réseaux sociaux et l'influence qu'ils ont sur la société.", "Paris", 10, 18, 30);
-        new Single("Dubois", "Pierre", 35, Gender.Male, Image.get(37, 33, "male"), Gender.Female, "Je suis un ingénieur logiciel talentueux passionné par la programmation et les nouvelles technologies.", "Lyon", 20, 25, 40);
-        new Single("Garcia", "Sophie", 28, Gender.Female, Image.get(30, 26, "female"), Gender.Male, "Je suis une infirmière passionnée par la médecine et qui souhaite devenir médecin un jour.", "Marseille", 15, 20, 35);
-        new Single("Roux", "Alexandre", 42, Gender.Male, Image.get(44, 42, "male"), Gender.Female, "Je suis un enseignant de mathématiques passionné par les mathématiques et j'aime partager mon savoir avec mes élèves.", "Toulouse", 25, 30, 45);
-        new Single("Moreau", "Laura", 27, Gender.Female, Image.get(29, 25, "female"), Gender.Female, "Je suis une avocate passionnée par la défense des droits des femmes et des minorités.", "Lille", 10, 25, 40);
-        new Single("Mercier", "Maxime", 33, Gender.Male, Image.get(35, 31, "male"), Gender.Male, "Je suis un designer passionné par la création d'interfaces utilisateur intuitives et esthétiques.", "Bordeaux", 30, 20, 35);
-        new Single("Dupont", "Charlotte", 24, Gender.Female, Image.get(26, 26, "female"), Gender.Female, "'Je suis une étudiante en journalisme passionnée par l'actualité et les nouvelles tendances de la société.'", "Nantes", 25, 18, 30);
-        new Single("Lefebvre", "Lucas", 29, Gender.Male, Image.get(31, 27, "male"), Gender.Male, "Je suis un développeur web passionné par la création de sites web dynamiques et performants.", "Strasbourg", 20, 25, 40);
-        new Single("Bergeron", "Emma", 31, Gender.Female, Image.get(33, 29, "female"), Gender.Male, "Je suis une éducatrice spécialisée passionnée par l'accompagnement des personnes en situation de handicap.", "Montpellier", 15, 25, 40);
-        new Single("Girard", "Antoine", 38, Gender.Male, Image.get(40, 36, "male"), Gender.Female, "Je suis un entrepreneur passionné par la création et le développement d'entreprises innovantes.", "Nice", 25, 30, 45);
+        new Single("Martin", "Léa", 22, 165,Gender.Female, Image.get(24, 20, "female"), Gender.Male, "Je suis une jeune étudiante passionnée par les réseaux sociaux et l'influence qu'ils ont sur la société.", "Paris", 10, 18, 30);
+        new Single("Dubois", "Pierre", 35, 189,Gender.Male, Image.get(37, 33, "male"), Gender.Female, "Je suis un ingénieur logiciel talentueux passionné par la programmation et les nouvelles technologies.", "Lyon", 20, 25, 40);
+        new Single("Garcia", "Sophie", 28,169 ,Gender.Female, Image.get(30, 26, "female"), Gender.Male, "Je suis une infirmière passionnée par la médecine et qui souhaite devenir médecin un jour.", "Marseille", 15, 20, 35);
+        new Single("Roux", "Alexandre", 42, 165,Gender.Male, Image.get(44, 42, "male"), Gender.Female, "Je suis un enseignant de mathématiques passionné par les mathématiques et j'aime partager mon savoir avec mes élèves.", "Toulouse", 25, 30, 45);
+        new Single("Moreau", "Laura", 27, 171,Gender.Female, Image.get(29, 25, "female"), Gender.Female, "Je suis une avocate passionnée par la défense des droits des femmes et des minorités.", "Lille", 10, 25, 40);
+        new Single("Mercier", "Maxime", 33,175 ,Gender.Male, Image.get(35, 31, "male"), Gender.Male, "Je suis un designer passionné par la création d'interfaces utilisateur intuitives et esthétiques.", "Bordeaux", 30, 20, 35);
+        new Single("Dupont", "Charlotte", 24, 168,Gender.Female, Image.get(26, 26, "female"), Gender.Female, "'Je suis une étudiante en journalisme passionnée par l'actualité et les nouvelles tendances de la société.'", "Nantes", 25, 18, 30);
+        new Single("Lefebvre", "Lucas", 29, 198,Gender.Male, Image.get(31, 27, "male"), Gender.Male, "Je suis un développeur web passionné par la création de sites web dynamiques et performants.", "Strasbourg", 20, 25, 40);
+        new Single("Bergeron", "Emma", 31, 163,Gender.Female, Image.get(33, 29, "female"), Gender.Male, "Je suis une éducatrice spécialisée passionnée par l'accompagnement des personnes en situation de handicap.", "Montpellier", 15, 25, 40);
+        new Single("Girard", "Antoine", 38,177 ,Gender.Male, Image.get(40, 36, "male"), Gender.Female, "Je suis un entrepreneur passionné par la création et le développement d'entreprises innovantes.", "Nice", 25, 30, 45);
     }
 }
