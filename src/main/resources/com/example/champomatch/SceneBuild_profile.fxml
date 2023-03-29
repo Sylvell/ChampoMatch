@@ -11,7 +11,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Circle fx:id="pp" fill="WHITE" layoutX="122.0" layoutY="114.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
@@ -48,6 +47,11 @@
                </font>
             </Label>
             <Label fx:id="localisation" alignment="CENTER" prefHeight="30.0" prefWidth="155.0" text="Localisation" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="63.0" prefWidth="166.0" text="Taille" GridPane.rowIndex="1">
                <font>
                   <Font size="20.0" />
                </font>
