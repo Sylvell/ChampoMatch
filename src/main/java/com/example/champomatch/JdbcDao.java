@@ -1,11 +1,8 @@
 package com.example.champomatch;
 
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class JdbcDao {
 
@@ -57,30 +54,64 @@ public class JdbcDao {
             }
         }
     }
+    // function that convert a String to a Gender enum
+    static Gender string_to_gender(String s){
+
+        switch (s){
+
+            case "female":
+                return Gender.Female;
+
+            case "male":
+                return Gender.Male;
+
+            case "other":
+                return Gender.Other;
+
+
+        }
+        return null;
+    }
+
 
     // function to execute an sql select and return fetch result in an array
 
-    public static String select(String sql) {
+    public static ArrayList<Single> select_single(String sql) {
         try {
             Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM single, images WHERE single.pp_id = images.single_id)");
 
-            if (resultSet.next()) {
-                String result = resultSet.getString("email_id");
-                return result;
-            } else {
-                return "Error: No results found";
+            ArrayList<Single> singles_list = new ArrayList<Single>();
+            while (resultSet.next()) {
+                Single person = new Single(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("firstname"),
+                        resultSet.getInt("age"),
+                        resultSet.getInt("height"),
+                        string_to_gender(resultSet.getString("gender")),
+                        resultSet.getString("url"),
+                        string_to_gender(resultSet.getString("prefered_gender")),
+                        resultSet.getString("bio"),
+                        resultSet.getString("localisation"),
+                        resultSet.getInt("distance"),
+                        resultSet.getInt("minimun_age"),
+                        resultSet.getInt("maximun_age"),
+                        resultSet.getBoolean("isAlone"));
+
+
+                singles_list.add(person);
             }
 
+            return singles_list;
         } catch (SQLException e) {
             e.printStackTrace();
-            return "Error: " + e.getMessage();
+            return null;
         }
     }
 
 
-    //String name = resultSet.getString("email_id");
 
 
 }
