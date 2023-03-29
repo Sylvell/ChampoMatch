@@ -7,7 +7,7 @@ public class GenderTest {
     @Test
     public void testSingleConstructor() {
         // Create a Single object with test values
-        Single single = new Single("John", 30, Gender.Male, "profile.jpg", Gender.Female, "Hi, I'm John!", "New York", 50, 25, 40);
+        Single single = new Single("MacKinsey","John", 30,185, Gender.Male, "profile.jpg", Gender.Female, "Hi, I'm John!", "New York", 50, 25, 40);
 
         // Assert that the object was created with the expected values
         assertEquals("John", single.getName());
