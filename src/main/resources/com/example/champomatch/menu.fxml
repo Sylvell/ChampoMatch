@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField layoutX="259.0" prefHeight="43.0" prefWidth="342.0" promptText="Type a name">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></TextField>
+      <MenuButton layoutX="259.0" layoutY="41.0" mnemonicParsing="false" text="Sexe">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Homme">
+               <graphic>
+                  <CheckBox mnemonicParsing="false" />
+               </graphic>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" text="Femme">
+               <graphic>
+                  <CheckBox mnemonicParsing="false" />
+               </graphic>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" text="Non binaire">
+               <graphic>
+                  <CheckBox mnemonicParsing="false" />
+               </graphic>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" text="Autres">
+               <graphic>
+                  <CheckBox mnemonicParsing="false" />
+               </graphic>
+            </MenuItem>
+         </items>
+      </MenuButton>
+      <MenuButton layoutX="315.0" layoutY="41.0" mnemonicParsing="false" text="Age">
+         <items>
+            <MenuItem mnemonicParsing="false" text="18 - 24 ans">
+               <graphic>
+                  <CheckBox mnemonicParsing="false" />
+               </graphic>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" text="25 - 32 ans">
+               <graphic>
+                  <CheckBox mnemonicParsing="false" />
+               </graphic>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" text="33 - 42 ans">
+               <graphic>
+                  <CheckBox mnemonicParsing="false" />
+               </graphic>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" text="42 - 50 ans">
+               <graphic>
+                  <CheckBox mnemonicParsing="false" />
+               </graphic>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" text="+ 50 ans">
+               <graphic>
+                  <CheckBox mnemonicParsing="false" />
+               </graphic>
+            </MenuItem>
+         </items>
+      </MenuButton>
+      <MenuButton layoutX="368.0" layoutY="41.0" mnemonicParsing="false" text="Taille">
+         <items>
+            <MenuItem mnemonicParsing="false" text="moins de 1m50">
+               <graphic>
+                  <CheckBox mnemonicParsing="false" />
+               </graphic>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" text="1m50 - 1m60">
+               <graphic>
+                  <CheckBox mnemonicParsing="false" />
+               </graphic>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" text="1m60 - 1m70">
+               <graphic>
+                  <CheckBox mnemonicParsing="false" />
+               </graphic>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" text="1m70 - 1m80">
+               <graphic>
+                  <CheckBox mnemonicParsing="false" />
+               </graphic>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" text="plus de 1m80">
+               <graphic>
+                  <CheckBox mnemonicParsing="false" />
+               </graphic>
+            </MenuItem>
+         </items>
+      </MenuButton>
+      <ListView layoutX="259.0" layoutY="66.0" prefHeight="313.0" prefWidth="342.0" />
+      <GridPane gridLinesVisible="true" layoutY="66.0" prefHeight="114.0" prefWidth="258.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Chinois" />
+            <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="128.0" text="Rebeu" GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" prefHeight="72.0" prefWidth="132.0" text="Metisse" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="137.0" text="C'est au pif" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" prefHeight="71.0" prefWidth="131.0" text="je sais pas" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="131.0" text="MILF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <HBox prefHeight="67.0" prefWidth="205.0">
+         <children>
+            <ImageView fitHeight="70.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/PP_fun.jpg" />
+               </image>
+            </ImageView>
+            <Label prefHeight="66.0" prefWidth="87.0" text="Connected as" textFill="#29a400">
+               <font>
+                  <Font name="Consolas" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <ListView editable="true" layoutY="180.0" prefHeight="199.0" prefWidth="258.0" />
+   </children>
+</Pane>
