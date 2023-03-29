@@ -54,6 +54,21 @@ public class Single {
         this.minimunAge = minimunAge;
         this.maximunAge = maximunAge;
     }
+    public Single(int id,String name, String prenom, int age, int height, Gender gender, String pp, Gender preferedGender, String bio, String localisation, int distance, int minimunAge, int maximunAge) {
+        this.id=id;
+        this.name = name;
+        this.prenom = prenom;
+        this.age = age;
+        this.height = height;
+        this.gender = gender;
+        this.pp = pp;
+        this.preferedGender = preferedGender;
+        this.bio = bio;
+        this.localisation = localisation;
+        this.distance = distance;
+        this.minimunAge = minimunAge;
+        this.maximunAge = maximunAge;
+    }
 
     public ArrayList<Images> getImages() {
         return images;
