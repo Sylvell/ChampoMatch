@@ -59,9 +59,9 @@ public class downloadImage {
         }
     }
 
-    public void get(){
+    public String get(int maxAge ,int minAge , String sexe){
         // Parse the JSON data
-        JSONObject json = new JSONObject(getJsonFromUrl("https://fakeface.rest/face/json?minimum_age=18"));
+        JSONObject json = new JSONObject(getJsonFromUrl("https://fakeface.rest/face/json?minimum_age=" + minAge + "&maximum_age=" + maxAge + "&gender=" + sexe));
 
         // Extract data from the JSON object
         String name = json.getString("filename");
@@ -70,15 +70,14 @@ public class downloadImage {
         System.out.println("Name: " + name);
         System.out.println("Age: " + age);
         System.out.println("Image url: " + imaage_url);
-
+        return imaage_url;
     }
 
 
     // main method
     public static void main(String[] args) {
        downloadImage image =  new downloadImage();
-       image.get();
+       image.get(30,25  ,"male");
     }
-
 
 }
