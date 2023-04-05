@@ -1,5 +1,6 @@
 package com.example.champomatch;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 enum Gender {
@@ -15,7 +16,11 @@ enum Hobbies {
     Plage,
     Cooking,
 }
-
+enum Status {
+    Single,
+    Married,
+    Divorced,
+}
 public class Single {
     public Integer id = null;
     String name;
@@ -36,7 +41,7 @@ public class Single {
     ArrayList<Single> candidates = new ArrayList<Single>();
     ArrayList<Hobbies> hobbies = new ArrayList<Hobbies>();
     boolean isAlone = true;
-
+    Status status = Status.Single;
     // Constructor
 
 
@@ -71,48 +76,12 @@ public class Single {
         this.isAlone=isAlone;
     }
 
-    public ArrayList<Images> getImages() {
-        return images;
-    }
-
-    public void setImages(ArrayList<Images> images) {
-        this.images = images;
-    }
-
-    public ArrayList<Single> getLiked() {
-        return liked;
-    }
-
-    public void setLiked(ArrayList<Single> liked) {
-        this.liked = liked;
-    }
-
-    public ArrayList<Single> getUnliked() {
-        return unliked;
-    }
-
-    public void setUnliked(ArrayList<Single> unliked) {
-        this.unliked = unliked;
-    }
-
-    public ArrayList<Single> getCandidates() {
-        return candidates;
-    }
-
-    public void setCandidates(ArrayList<Single> candidates) {
-        this.candidates = candidates;
-    }
-
-    public ArrayList<Hobbies> getHobbies() {
-        return hobbies;
-    }
-
-    public void setHobbies(ArrayList<Hobbies> hobbies) {
-        this.hobbies = hobbies;
-    }
-
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -123,6 +92,14 @@ public class Single {
         this.name = name;
     }
 
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
     public int getAge() {
         return age;
     }
@@ -131,8 +108,16 @@ public class Single {
         this.age = age;
     }
 
-    public Gender getGender() {
-        return gender;
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public String getGender() {
+        return gender.toString();
     }
 
     public void setGender(Gender gender) {
@@ -171,6 +156,14 @@ public class Single {
         this.localisation = localisation;
     }
 
+    public ArrayList<Images> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<Images> images) {
+        this.images = images;
+    }
+
     public int getDistance() {
         return distance;
     }
@@ -195,6 +188,38 @@ public class Single {
         this.maximunAge = maximunAge;
     }
 
+    public ArrayList<Single> getLiked() {
+        return liked;
+    }
+
+    public void setLiked(ArrayList<Single> liked) {
+        this.liked = liked;
+    }
+
+    public ArrayList<Single> getUnliked() {
+        return unliked;
+    }
+
+    public void setUnliked(ArrayList<Single> unliked) {
+        this.unliked = unliked;
+    }
+
+    public ArrayList<Single> getCandidates() {
+        return candidates;
+    }
+
+    public void setCandidates(ArrayList<Single> candidates) {
+        this.candidates = candidates;
+    }
+
+    public ArrayList<Hobbies> getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(ArrayList<Hobbies> hobbies) {
+        this.hobbies = hobbies;
+    }
+
     public boolean isAlone() {
         return isAlone;
     }
@@ -203,18 +228,18 @@ public class Single {
         isAlone = alone;
     }
 
-    public void generateSingle() {
-        downloadImage Image = new downloadImage();
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+    public void addHobby(Hobbies hobby) {
+        hobbies.add(hobby);
+    }
+public String getStatus() {
+        return status.toString();
+    }
 
-        new Single("Martin", "Léa", 22, 165,Gender.Female, Image.get(24, 20, "female"), Gender.Male, "Je suis une jeune étudiante passionnée par les réseaux sociaux et l'influence qu'ils ont sur la société.", "Paris", 10, 18, 30);
-        new Single("Dubois", "Pierre", 35, 189,Gender.Male, Image.get(37, 33, "male"), Gender.Female, "Je suis un ingénieur logiciel talentueux passionné par la programmation et les nouvelles technologies.", "Lyon", 20, 25, 40);
-        new Single("Garcia", "Sophie", 28,169 ,Gender.Female, Image.get(30, 26, "female"), Gender.Male, "Je suis une infirmière passionnée par la médecine et qui souhaite devenir médecin un jour.", "Marseille", 15, 20, 35);
-        new Single("Roux", "Alexandre", 42, 165,Gender.Male, Image.get(44, 42, "male"), Gender.Female, "Je suis un enseignant de mathématiques passionné par les mathématiques et j'aime partager mon savoir avec mes élèves.", "Toulouse", 25, 30, 45);
-        new Single("Moreau", "Laura", 27, 171,Gender.Female, Image.get(29, 25, "female"), Gender.Female, "Je suis une avocate passionnée par la défense des droits des femmes et des minorités.", "Lille", 10, 25, 40);
-        new Single("Mercier", "Maxime", 33,175 ,Gender.Male, Image.get(35, 31, "male"), Gender.Male, "Je suis un designer passionné par la création d'interfaces utilisateur intuitives et esthétiques.", "Bordeaux", 30, 20, 35);
-        new Single("Dupont", "Charlotte", 24, 168,Gender.Female, Image.get(26, 26, "female"), Gender.Female, "'Je suis une étudiante en journalisme passionnée par l'actualité et les nouvelles tendances de la société.'", "Nantes", 25, 18, 30);
-        new Single("Lefebvre", "Lucas", 29, 198,Gender.Male, Image.get(31, 27, "male"), Gender.Male, "Je suis un développeur web passionné par la création de sites web dynamiques et performants.", "Strasbourg", 20, 25, 40);
-        new Single("Bergeron", "Emma", 31, 163,Gender.Female, Image.get(33, 29, "female"), Gender.Male, "Je suis une éducatrice spécialisée passionnée par l'accompagnement des personnes en situation de handicap.", "Montpellier", 15, 25, 40);
-        new Single("Girard", "Antoine", 38,177 ,Gender.Male, Image.get(40, 36, "male"), Gender.Female, "Je suis un entrepreneur passionné par la création et le développement d'entreprises innovantes.", "Nice", 25, 30, 45);
+    public void ExportToDb() throws SQLException {
+        JdbcDao dao = new JdbcDao();
+        dao.ExportSingle(this);
     }
 }
