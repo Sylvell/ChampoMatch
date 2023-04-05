@@ -59,11 +59,15 @@ public class LoginController {
         } else {
             Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
             try {
-                stageTheEventSourceNodeBelongs.setScene(new Scene(FXMLLoader.load(getClass().getResource("scenebuilder.fxml"))));
+                stageTheEventSourceNodeBelongs.setScene(new Scene(FXMLLoader.load(getClass().getResource("menu.fxml"))));
+                // afficher la scene au milieu de l'écran
+                stageTheEventSourceNodeBelongs.centerOnScreen();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            infoBox("Login Successful!", null, "Failed");
+            infoBox("Login Successful!", null, "Sucess");
+
+
         }
     }
 
