@@ -76,6 +76,10 @@ public class Single {
         this.isAlone=isAlone;
     }
 
+    public Single(int id){
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }
