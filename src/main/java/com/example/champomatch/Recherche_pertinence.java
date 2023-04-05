@@ -1,22 +1,60 @@
 package com.example.champomatch;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Recherche_pertinence {
 
+    public static HashMap<Hobbies, ArrayList<Integer>> dico_hobbies = new HashMap<Hobbies, ArrayList<Integer>>();
+    public static HashMap<Gender, ArrayList<Integer>> dico_genders = new HashMap<Gender, ArrayList<Integer>>();
 
+    public static ArrayList<Single> single_list = JdbcDao.select_single();
+
+    public static void fill_dico_hobbies() {
+        for (Single single : single_list) {
+            for (Hobbies hobby : single.getHobbies()) {
+                if (!dico_hobbies.containsKey(hobby)) {
+                    dico_hobbies.put(hobby, new ArrayList<Integer>());
+                }
+                dico_hobbies.get(hobby).add(single.getId());
+            }
+        }
+
+    }
+
+    public static void fill_dico_genders() {
+
+        for (Single single : single_list) {
+            Gender gender = single.getGender();
+            if (!dico_genders.containsKey(gender)) {
+                dico_genders.put(gender, new ArrayList<Integer>());
+            }
+            dico_genders.get(gender).add(single.getId());
+        }
+
+
+
+    }
 
 
 
 
     public static void main(String[] args) {
-        //System.out.println(JdbcDao.select("SELECT * FROM registration"));
 
+        fill_dico_hobbies();
+        fill_dico_genders();
+        System.out.println(dico_hobbies.get(Hobbies.Sport));
+        System.out.println(dico_genders.get(Gender.Female));
+        System.out.println(JdbcDao.select_single());
     }
 
-    public void sql_to_single() {
-        //String sql = JdbcDao.select("SELECT * FROM registration");
-        //String[] sql_split = sql.split(" ");
-        //Single single = new Single(sql_split[0], sql_split[1], sql_split[2], sql_split[3], sql_split[4], sql_split[5], sql_split[6], sql_split[7], sql_split[8], sql_split[9]);
-    }
+
+
+
+
+
+
+
 
 
 

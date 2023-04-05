@@ -76,11 +76,11 @@ public class JdbcDao {
 
     // function to execute an sql select and return fetch result in an array
 
-    public static ArrayList<Single> select_single(String sql) {
+    public static ArrayList<Single> select_single() {
         try {
             Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM single, images WHERE single.pp_id = images.single_id)");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM single, images WHERE single.pp_id = images.single_id");
+            ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM single, images WHERE single.pp_id = images.single_id");
 
             ArrayList<Single> singles_list = new ArrayList<Single>();
             while (resultSet.next()) {
