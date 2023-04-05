@@ -73,14 +73,34 @@ public class JdbcDao {
         return null;
     }
 
+    // function to get Hobbies with sql select
+    public static void  select_hobbies() {
+        try {
+            Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM hobbies");
+            ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM hobbies");
 
-    // function to execute an sql select and return fetch result in an array
+
+            while (resultSet.next()) {
+
+
+                Single celib = new Single(resultSet.getInt("single_id"));
+                celib.addHobby(Hobbies.valueOf(resultSet.getString("name")));
+
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+        // function to execute an sql select and return fetch result in an array
 
     public static ArrayList<Single> select_single() {
         try {
             Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM single, images WHERE single.pp_id = images.single_id");
-            ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM single, images WHERE single.pp_id = images.single_id");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM single, images, hobbies WHERE single.pp_id = images.single_id");
+            ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM single, images, hobbies WHERE single.pp_id = images.single_id");
 
             ArrayList<Single> singles_list = new ArrayList<Single>();
             while (resultSet.next()) {
@@ -110,9 +130,42 @@ public class JdbcDao {
             return null;
         }
     }
+    // create a new single in the database
 
+    public  void ExportSingle(Single single) throws SQLException {
+        Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        // insert hobbies
+        for (Hobbies hobby: single.getHobbies()) {
+            String sql = "INSERT INTO hobbies (single_id, hobby) VALUES (single.getID(), hobby.toString())";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeUpdate(sql);
+        }
 
+        // insert images
+        for (Images image: single.getImages()) {
+            String sql = "INSERT INTO images (single_id, url) VALUES (single.getID(), image.getUrl())";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeUpdate(sql);
+        }
 
+        // insert unliked
+        for (Single unlike: single.getUnliked()) {
+            String sql = "INSERT INTO unlike (single_id, unlike_id) VALUES (single.getID(), unlike.getID())";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeUpdate(sql);
+        }
+
+        // insert liked
+        for (Single like: single.getLiked()) {
+            String sql = "INSERT INTO like (single_id, like_id) VALUES (single.getID(), like.getID())";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeUpdate(sql);
+        }
+
+        // insert single
+        String sql = "INSERT INTO single (id,name,firstname,age,height,gender,bio,localisation,status,distance,minimun_age,maximun_age,is_alone) VALUES (single.getId(), single.getName(), single.getFirstname(), single.getAge(), single.getHeight(), single.getGender(), single.getBio(), single.getLocalisation(), single.getStatus(), single.getDistance(), single.getMinimun_age(), single.getMaximun_age(), single.isAlone())";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.executeUpdate(sql);
+    }
 
 }
-
