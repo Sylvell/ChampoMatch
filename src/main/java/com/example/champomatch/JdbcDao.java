@@ -73,14 +73,34 @@ public class JdbcDao {
         return null;
     }
 
+    // function to get Hobbies with sql select
+    public static void  select_hobbies() {
+        try {
+            Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM hobbies");
+            ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM hobbies");
 
-    // function to execute an sql select and return fetch result in an array
+
+            while (resultSet.next()) {
+
+
+                Single celib = new Single(resultSet.getInt("single_id"));
+                celib.addHobby(Hobbies.valueOf(resultSet.getString("name")));
+
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+        // function to execute an sql select and return fetch result in an array
 
     public static ArrayList<Single> select_single() {
         try {
             Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM single, images WHERE single.pp_id = images.single_id");
-            ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM single, images WHERE single.pp_id = images.single_id");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM single, images, hobbies WHERE single.pp_id = images.single_id");
+            ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM single, images, hobbies WHERE single.pp_id = images.single_id");
 
             ArrayList<Single> singles_list = new ArrayList<Single>();
             while (resultSet.next()) {

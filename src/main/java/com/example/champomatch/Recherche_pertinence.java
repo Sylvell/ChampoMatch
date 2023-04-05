@@ -10,6 +10,7 @@ public class Recherche_pertinence {
 
     public static ArrayList<Single> single_list = JdbcDao.select_single();
 
+
     public static void fill_dico_hobbies() {
         for (Single single : single_list) {
             for (Hobbies hobby : single.getHobbies()) {
@@ -25,7 +26,7 @@ public class Recherche_pertinence {
     public static void fill_dico_genders() {
 
         for (Single single : single_list) {
-            Gender gender = single.getGender();
+            Gender gender = Gender.valueOf(single.getGender());
             if (!dico_genders.containsKey(gender)) {
                 dico_genders.put(gender, new ArrayList<Integer>());
             }
