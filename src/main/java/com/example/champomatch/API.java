@@ -11,8 +11,8 @@ import java.net.URL;
 
 
 public class API {
-    public Coordinates  getCityCoordinates(String city) throws IOException {
-
+    public Coordinates  getCityCoordinates(String city) {
+        try{
         String url = "https://api.api-ninjas.com/v1/city?name=" + city + "&country=FR";
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -36,10 +36,14 @@ public class API {
             //Parse the response
             JSONObject json = new JSONObject(response.toString().replace("[", "").replace("]", ""));
             return new Coordinates(json.getFloat("latitude"), json.getFloat("longitude"));
+        }}
+        catch(Exception e){
+            return null;
         }
         return null;
     }
     public static double distance(Coordinates city1, Coordinates city2) {
+        try{
         double lat1 = city1.Latitude();
         double lon1 = city1.Longitude();
         double lat2 = city2.Latitude();
@@ -54,8 +58,11 @@ public class API {
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         double distance = R * c; // Distance in km
         return distance;
+        }catch(Exception e){
+            return -1;
+        }
     }
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         API api = new API();
         Coordinates city1 = api.getCityCoordinates("Paris");
         Coordinates city2 = api.getCityCoordinates("Albi");

@@ -1,5 +1,6 @@
 package com.example.champomatch;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -35,8 +36,16 @@ public class Matching {
         }
 
         double distanceScore = 0.0;
-        if (Single2.distance <= Single1.distance) {
+
+        // Calculate the distance between the two users using API Coordinates
+        API api = new API();
+        double distance = api.distance( api.getCityCoordinates(Single1.getLocalisation()), api.getCityCoordinates(Single2.getLocalisation()));
+        if (distance <= Single1.distance && distance <= Single2.distance) {
             distanceScore = 1.0;
+        } else {
+            double distanceDiff = distance - Single1.distance;
+            double distanceRange = 1000 - Single1.distance;
+            distanceScore = Math.max(0, (distanceRange - distanceDiff) / distanceRange);
         }
 
         // Add up the weighted scores for each criterion based on user's importance weighting
