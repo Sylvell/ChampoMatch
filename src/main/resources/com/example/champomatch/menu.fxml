@@ -18,7 +18,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField layoutX="259.0" prefHeight="43.0" prefWidth="342.0" promptText="Type a name">
+         <TextField layoutX="259.0" prefHeight="43.0" prefWidth="342.0" promptText="Type a name">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></TextField>
