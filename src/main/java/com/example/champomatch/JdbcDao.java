@@ -110,9 +110,42 @@ public class JdbcDao {
             return null;
         }
     }
+    // create a new single in the database
 
+    public  void ExportSingle(Single single) throws SQLException {
+        Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        // insert hobbies
+        for (Hobbies hobby: single.getHobbies()) {
+            String sql = "INSERT INTO hobbies (single_id, hobby) VALUES (single.getID(), hobby.toString())";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeUpdate(sql);
+        }
 
+        // insert images
+        for (Images image: single.getImages()) {
+            String sql = "INSERT INTO images (single_id, url) VALUES (single.getID(), image.getUrl())";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeUpdate(sql);
+        }
 
+        // insert unliked
+        for (Single unlike: single.getUnliked()) {
+            String sql = "INSERT INTO unlike (single_id, unlike_id) VALUES (single.getID(), unlike.getID())";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeUpdate(sql);
+        }
+
+        // insert liked
+        for (Single like: single.getLiked()) {
+            String sql = "INSERT INTO like (single_id, like_id) VALUES (single.getID(), like.getID())";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeUpdate(sql);
+        }
+
+        // insert single
+        String sql = "INSERT INTO single (id,name,firstname,age,height,gender,bio,localisation,status,distance,minimun_age,maximun_age,is_alone) VALUES (single.getId(), single.getName(), single.getFirstname(), single.getAge(), single.getHeight(), single.getGender(), single.getBio(), single.getLocalisation(), single.getStatus(), single.getDistance(), single.getMinimun_age(), single.getMaximun_age(), single.isAlone())";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.executeUpdate(sql);
+    }
 
 }
-
