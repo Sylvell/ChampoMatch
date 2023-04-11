@@ -1,13 +1,15 @@
 package com.example.champomatch;
 
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.sql.*;
 import java.util.ArrayList;
 
 public class JdbcDao {
 
     // Replace below database url, username and password with your actual database credentials
-    private static final String DATABASE_URL = "jdbc:mysql://montou.o2switch.net:3306/hdyx5526_ChampoMatch?serverTimezone=Europe/London";
+    private static final String DATABASE_URL = "jdbc:mysql://montou.o2switch.net:3306/hdyx5526_ChampoMatch?serverTimezone=Europe/London&characterEncoding=UTF-8";
     private static final String DATABASE_USERNAME = "hdyx5526_ChampoMatch";
     private static final String DATABASE_PASSWORD = "ChampoMatch";
     private static final String SELECT_QUERY = "SELECT * FROM registration WHERE email_id = ? and password = ?";
@@ -134,38 +136,72 @@ public class JdbcDao {
 
     public  void ExportSingle(Single single) throws SQLException {
         Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        // insert single
+        String sql = "INSERT INTO single (name,firstname,age,height,gender,preferred_gender,bio,localisation,status,distance,minimum_age,maximum_age) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, single.getName());
+        preparedStatement.setString(2, single.getFirstname());
+        preparedStatement.setInt(3, single.getAge());
+        preparedStatement.setInt(4, single.getHeight());
+        preparedStatement.setString(5, single.getGender());
+        preparedStatement.setString(6, single.getPreferredGender());
+        // escape single quote
+        String bio = single.getBio().replaceAll("'", " ");
+        preparedStatement.setString(7, bio);
+        preparedStatement.setString(8, single.getLocalisation());
+        preparedStatement.setString(9, single.getStatus());
+        preparedStatement.setInt(10, single.getDistance());
+        preparedStatement.setInt(11, single.getMinimunAge());
+        preparedStatement.setInt(12, single.getMaximunAge());
+        //System.out.println(preparedStatement.toString());
+        preparedStatement.executeUpdate();
+
+        // get the id of the single
+        sql = "SELECT id FROM single WHERE name = ? AND firstname = ?";
+        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, single.getName());
+        preparedStatement.setString(2, single.getFirstname());
+        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        single.setId(resultSet.getInt("id"));
+
+
         // insert hobbies
         for (Hobbies hobby: single.getHobbies()) {
-            String sql = "INSERT INTO hobbies (single_id, hobby) VALUES (single.getID(), hobby.toString())";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.executeUpdate(sql);
+             sql = "INSERT INTO hobbies  VALUES (Default,?, ?)";
+             preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, single.getId());
+            preparedStatement.setString(2, hobby.toString());
+            preparedStatement.executeUpdate();
         }
 
         // insert images
         for (Images image: single.getImages()) {
-            String sql = "INSERT INTO images (single_id, url) VALUES (single.getID(), image.getUrl())";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.executeUpdate(sql);
+             sql = "INSERT INTO images  VALUES (Default,?, ?)";
+             preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, single.getId());
+            preparedStatement.setString(2, image.getUrl());
+            preparedStatement.executeUpdate();
         }
 
         // insert unliked
         for (Single unlike: single.getUnliked()) {
-            String sql = "INSERT INTO unlike (single_id, unlike_id) VALUES (single.getID(), unlike.getID())";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.executeUpdate(sql);
+             sql = "INSERT INTO unlike  VALUES (Default,?, ?)";
+             preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, single.getId());
+            preparedStatement.setInt(2, unlike.getId());
+            preparedStatement.executeUpdate();
         }
 
         // insert liked
         for (Single like: single.getLiked()) {
-            String sql = "INSERT INTO like (single_id, like_id) VALUES (single.getID(), like.getID())";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.executeUpdate(sql);
+             sql = "INSERT INTO like VALUES (Default,?, ?)";
+             preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, single.getId());
+            preparedStatement.setInt(2, like.getId());
+            preparedStatement.executeUpdate();
         }
 
-        // insert single
-        String sql = "INSERT INTO single (id,name,firstname,age,height,gender,bio,localisation,status,distance,minimun_age,maximun_age,is_alone) VALUES (single.getId(), single.getName(), single.getFirstname(), single.getAge(), single.getHeight(), single.getGender(), single.getBio(), single.getLocalisation(), single.getStatus(), single.getDistance(), single.getMinimun_age(), single.getMaximun_age(), single.isAlone())";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.executeUpdate(sql);
     }
 
 }

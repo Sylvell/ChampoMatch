@@ -14,7 +14,7 @@ module com.example.champomatch {
     requires java.sql;
     requires junit;
     requires com.fasterxml.jackson.databind;
-
+    requires org.apache.commons.lang3;
     opens com.example.champomatch to javafx.fxml;
     exports com.example.champomatch;
 }

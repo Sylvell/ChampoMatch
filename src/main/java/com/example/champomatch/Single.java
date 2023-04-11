@@ -1,5 +1,6 @@
 package com.example.champomatch;
 
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -53,7 +54,9 @@ public class Single {
         this.gender = gender;
         this.pp = pp;
         this.preferedGender = preferedGender;
-        this.bio = bio;
+        // encoding bio to utf-8
+        byte[] raw = bio.getBytes(StandardCharsets.UTF_8);
+        this.bio = new String(raw, StandardCharsets.UTF_8);
         this.localisation = localisation;
         this.distance = distance;
         this.minimunAge = minimunAge;
@@ -68,7 +71,10 @@ public class Single {
         this.gender = gender;
         this.pp = pp;
         this.preferedGender = preferedGender;
-        this.bio = bio;
+        // encoding bio to utf-8
+        byte[] raw = bio.getBytes(StandardCharsets.UTF_8);
+        this.bio = new String(raw, StandardCharsets.UTF_8);
+
         this.localisation = localisation;
         this.distance = distance;
         this.minimunAge = minimunAge;
@@ -241,9 +247,37 @@ public class Single {
 public String getStatus() {
         return status.toString();
     }
-
+    public String getPreferredGender() {
+        return preferedGender.toString();
+    }
     public void ExportToDb() throws SQLException {
         JdbcDao dao = new JdbcDao();
         dao.ExportSingle(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Single{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", age=" + age +
+                ", height=" + height +
+                ", gender=" + gender +
+                ", pp='" + pp + '\'' +
+                ", preferedGender=" + preferedGender +
+                ", bio='" + bio + '\'' +
+                ", localisation='" + localisation + '\'' +
+                ", images=" + images +
+                ", distance=" + distance +
+                ", minimunAge=" + minimunAge +
+                ", maximunAge=" + maximunAge +
+                ", liked=" + liked +
+                ", unliked=" + unliked +
+                ", candidates=" + candidates +
+                ", hobbies=" + hobbies +
+                ", isAlone=" + isAlone +
+                ", status=" + status +
+                '}';
     }
 }

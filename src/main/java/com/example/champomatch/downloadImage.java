@@ -37,7 +37,7 @@ public class downloadImage {
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
         return null;
 
@@ -61,7 +61,11 @@ public class downloadImage {
 
     public String get(int maxAge ,int minAge , String sexe){
         // Parse the JSON data
-        JSONObject json = new JSONObject(getJsonFromUrl("https://fakeface.rest/face/json?minimum_age=" + minAge + "&maximum_age=" + maxAge + "&gender=" + sexe));
+        String jsonString = getJsonFromUrl("https://fakeface.rest/face/json?minimum_age=" + minAge + "&maximum_age=" + maxAge + "&gender=" + sexe);
+        if (jsonString == null) {
+            return null;
+        }
+        JSONObject json = new JSONObject(jsonString);
 
         // Extract data from the JSON object
         String name = json.getString("filename");
