@@ -59,11 +59,10 @@ public class LoginController {
         } else {
             Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
             try {
-                stageTheEventSourceNodeBelongs.setScene(new Scene(FXMLLoader.load(getClass().getResource("loadingScreen.fxml")), 582 , 597));
+                stageTheEventSourceNodeBelongs.setScene(new Scene(FXMLLoader.load(getClass().getResource("loadingScreen.fxml")), 582 , 591));
                 stageTheEventSourceNodeBelongs.centerOnScreen();
-                //delai de 2 secondes
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

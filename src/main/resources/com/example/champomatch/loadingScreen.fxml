@@ -23,5 +23,10 @@
             <Font name="System Bold" size="26.0" />
          </font>
       </Label>
+      <ImageView fitHeight="123.0" fitWidth="211.0" layoutX="230.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/Loading.gif" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
