@@ -59,9 +59,18 @@ public class LoginController {
         } else {
             Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
             try {
-                stageTheEventSourceNodeBelongs.setScene(new Scene(FXMLLoader.load(getClass().getResource("menu.fxml"))));
-                // afficher la scene au milieu de l'écran
+                stageTheEventSourceNodeBelongs.setScene(new Scene(FXMLLoader.load(getClass().getResource("loadingScreen.fxml")), 582 , 597));
                 stageTheEventSourceNodeBelongs.centerOnScreen();
+                //delai de 2 secondes
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                stageTheEventSourceNodeBelongs.close();
+                stageTheEventSourceNodeBelongs.setScene(new Scene(FXMLLoader.load(getClass().getResource("menu.fxml"))));
+                stageTheEventSourceNodeBelongs.centerOnScreen();
+                stageTheEventSourceNodeBelongs.show();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
