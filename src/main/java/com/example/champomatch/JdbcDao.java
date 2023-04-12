@@ -61,13 +61,13 @@ public class JdbcDao {
 
         switch (s){
 
-            case "female":
+            case "Female":
                 return Gender.Female;
 
-            case "male":
+            case "Male":
                 return Gender.Male;
 
-            case "other":
+            case "Other":
                 return Gender.Other;
 
 
