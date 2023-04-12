@@ -2,6 +2,8 @@ package com.example.champomatch;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Recherche_pertinence {
 
@@ -115,8 +117,39 @@ public class Recherche_pertinence {
             }
         }
     }
+    public static Set<Integer> recherche_pert(Gender gender, String age_range, String height_range) {
 
+        Set<Integer> result = new HashSet<Integer>();
 
+        /* ArrayList<Integer> hobby_ids = new ArrayList<Integer>();
+        for (Hobbies hobby : hobbies) {
+            if (dico_hobbies.containsKey(hobby)) {
+                hobby_ids.addAll(dico_hobbies.get(hobby));
+            }
+        } */
+
+        Set<Integer> gender_ids = new HashSet<Integer>();
+        if (dico_genders.containsKey(gender)) {
+            gender_ids.addAll(dico_genders.get(gender));
+        }
+
+        Set<Integer> age_ids = new HashSet<Integer>();
+        if (dico_age.containsKey(age_range)) {
+            age_ids.addAll(dico_age.get(age_range));
+        }
+
+        Set<Integer> height_ids = new HashSet<Integer>();
+        if (dico_height.containsKey(height_range)) {
+            height_ids.addAll(dico_height.get(height_range));
+        }
+
+        //result.addAll(hobby_ids);
+        result.addAll(gender_ids);
+        result.retainAll(age_ids);
+        result.retainAll(height_ids);
+
+        return result;
+    }
 
 
 
@@ -127,25 +160,16 @@ public class Recherche_pertinence {
         fill_dico_genders();
         fill_dico_age();
         fill_dico_height();
-        System.out.println(dico_age.get("25-32"));
-        System.out.println(dico_height.get("170-180"));
-        System.out.println(dico_genders.get(Gender.Male));
-        System.out.println(JdbcDao.select_single());
+        //ArrayList<Hobbies> hobbies = new ArrayList<Hobbies>();
+        //hobbies.add(Hobbies.Cooking);
+        Gender gender = Gender.Female;
+        String age_range = "18-24";
+        String height_range = "160-170";
+        Set<Integer> result = recherche_pert(gender, age_range, height_range);
+        System.out.println(result);
+        //System.out.println(JdbcDao.select_single());
+
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
