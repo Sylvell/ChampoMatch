@@ -17,7 +17,12 @@ public class Login extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         stage.setTitle("User Login");
         stage.setScene(new Scene(root, 1550, 850));
+        stage.centerOnScreen();
         stage.show();
+
+        // send the stage to the controller
+        LoginController.stage=stage;
+
     }
 
     public static void main(String[] args) {

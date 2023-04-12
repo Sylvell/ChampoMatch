@@ -3,6 +3,7 @@ package com.example.champomatch;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,8 +17,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javafx.util.Duration;
+import org.controlsfx.control.action.Action;
 
 public class LoginController {
+
+    public static Stage stage;
 
     @FXML
     private TextField emailIdField;
@@ -57,19 +62,19 @@ public class LoginController {
 
             infoBox("Please enter correct Email and Password", null, "Failed");
         } else {
-            Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
             try {
-                stageTheEventSourceNodeBelongs.setScene(new Scene(FXMLLoader.load(getClass().getResource("loadingScreen.fxml")), 582 , 591));
-                stageTheEventSourceNodeBelongs.centerOnScreen();
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                stageTheEventSourceNodeBelongs.close();
-                stageTheEventSourceNodeBelongs.setScene(new Scene(FXMLLoader.load(getClass().getResource("menu.fxml"))));
-                stageTheEventSourceNodeBelongs.centerOnScreen();
-                stageTheEventSourceNodeBelongs.show();
+
+                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("loadingScreen.fxml")), 582 , 591));
+                stage.centerOnScreen();
+                PauseTransition delay = new PauseTransition(Duration.seconds(3));
+                delay.setOnFinished(Actionevent -> stage.close() );
+                delay.play();
+                //affiche la fenetre pendant 3 secondes sans thread.sleep
+                stage.show();
+                stage.close();
+                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("menu.fxml"))));
+                stage.centerOnScreen();
+                stage.show();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
