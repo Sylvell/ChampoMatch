@@ -17,7 +17,7 @@ public class menuController {
 
     @FXML
     private MenuButton hobbies ;
-
+/*
     @FXML
     public void initialize() {
         hobbies.setOnAction(event -> {
@@ -29,5 +29,5 @@ public class menuController {
                 System.out.println("Selected item: " + selectedItem.getText());
             }
         });
-    }
+    }*/
 }
