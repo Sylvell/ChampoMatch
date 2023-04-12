@@ -101,8 +101,8 @@ public class JdbcDao {
     public static ArrayList<Single> select_single() {
         try {
             Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM single, images, hobbies WHERE single.pp_id = images.single_id");
-            ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM single, images, hobbies WHERE single.pp_id = images.single_id");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM single");
+            ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM single");
 
             ArrayList<Single> singles_list = new ArrayList<Single>();
             while (resultSet.next()) {
@@ -113,14 +113,14 @@ public class JdbcDao {
                         resultSet.getInt("age"),
                         resultSet.getInt("height"),
                         string_to_gender(resultSet.getString("gender")),
-                        resultSet.getString("url"),
-                        string_to_gender(resultSet.getString("prefered_gender")),
+                        resultSet.getString("pp_id"),
+                        string_to_gender(resultSet.getString("preferred_gender")),
                         resultSet.getString("bio"),
                         resultSet.getString("localisation"),
                         resultSet.getInt("distance"),
-                        resultSet.getInt("minimun_age"),
-                        resultSet.getInt("maximun_age"),
-                        resultSet.getBoolean("isAlone"));
+                        resultSet.getInt("minimum_age"),
+                        resultSet.getInt("maximum_age"),
+                        resultSet.getBoolean("is_alone"));
 
 
                 singles_list.add(person);
@@ -136,9 +136,40 @@ public class JdbcDao {
 
     public  void ExportSingle(Single single) throws SQLException {
         Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
-        // insert single
-        String sql = "INSERT INTO single (name,firstname,age,height,gender,preferred_gender,bio,localisation,status,distance,minimum_age,maximum_age) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
+        // check if the single already exist
+        String sql = "SELECT * FROM single WHERE name=? and firstname=?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, single.getName());
+        preparedStatement.setString(2, single.getFirstname());
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            // store the id of the select
+            int id = resultSet.getInt("id");
+            // update single in the db
+            sql = "UPDATE single set name=?,firstname=?,age=?,height=?,gender=?,preferred_gender=?,bio=?,localisation=?,status=?,distance=?,minimum_age=?,maximum_age=? WHERE id=?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, single.getName());
+            preparedStatement.setString(2, single.getFirstname());
+            preparedStatement.setInt(3, single.getAge());
+            preparedStatement.setInt(4, single.getHeight());
+            preparedStatement.setString(5, single.getGender());
+            preparedStatement.setString(6, single.getPreferredGender());
+            // escape single quote
+            String bio = single.getBio().replaceAll("'", " ");
+            preparedStatement.setString(7, bio);
+            preparedStatement.setString(8, single.getLocalisation());
+            preparedStatement.setString(9, single.getStatus());
+            preparedStatement.setInt(10, single.getDistance());
+            preparedStatement.setInt(11, single.getMinimunAge());
+            preparedStatement.setInt(12, single.getMaximunAge());
+            preparedStatement.setInt(13, id);
+            preparedStatement.executeUpdate();
+            return;
+        }
+
+        // insert single
+         sql = "INSERT INTO single (name,firstname,age,height,gender,preferred_gender,bio,localisation,status,distance,minimum_age,maximum_age) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
+         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, single.getName());
         preparedStatement.setString(2, single.getFirstname());
         preparedStatement.setInt(3, single.getAge());
@@ -161,7 +192,7 @@ public class JdbcDao {
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, single.getName());
         preparedStatement.setString(2, single.getFirstname());
-        ResultSet resultSet = preparedStatement.executeQuery();
+         resultSet = preparedStatement.executeQuery();
         resultSet.next();
         single.setId(resultSet.getInt("id"));
 
