@@ -10,6 +10,9 @@ public class Recherche_pertinence {
 
     public static HashMap<String, ArrayList<Integer>> dico_age = new HashMap<String, ArrayList<Integer>>();
 
+    // dico to store the id of singles with a height in the right range
+    public static HashMap<String, ArrayList<Integer>> dico_height = new HashMap<String, ArrayList<Integer>>();
+
     public static ArrayList<Single> single_list = JdbcDao.select_single();
 
 
@@ -81,6 +84,40 @@ public class Recherche_pertinence {
         }
     }
 
+    public static void fill_dico_height() {
+        for (Single single : single_list) {
+            int height = single.getHeight();
+            if (height < 150) {
+                if (!dico_height.containsKey("150-")) {
+                    dico_height.put("150-", new ArrayList<Integer>());
+                }
+                dico_height.get("150-").add(single.getId());
+            } else if (height >= 150 && height < 160) {
+                if (!dico_height.containsKey("150-160")) {
+                    dico_height.put("150-160", new ArrayList<Integer>());
+                }
+                dico_height.get("150-160").add(single.getId());
+            } else if (height >= 160 && height < 170) {
+                if (!dico_height.containsKey("160-170")) {
+                    dico_height.put("160-170", new ArrayList<Integer>());
+                }
+                dico_height.get("160-170").add(single.getId());
+            } else if (height >= 170 && height < 180) {
+                if (!dico_height.containsKey("170-180")) {
+                    dico_height.put("170-180", new ArrayList<Integer>());
+                }
+                dico_height.get("170-180").add(single.getId());
+            } else if (height >= 180) {
+                if (!dico_height.containsKey("180+")) {
+                    dico_height.put("180+", new ArrayList<Integer>());
+                }
+                dico_height.get("180+").add(single.getId());
+            }
+        }
+    }
+
+
+
 
 
 
@@ -89,8 +126,10 @@ public class Recherche_pertinence {
         fill_dico_hobbies();
         fill_dico_genders();
         fill_dico_age();
-        System.out.println(dico_age.get("18-24"));
-        System.out.println(dico_genders.get(Gender.Female));
+        fill_dico_height();
+        System.out.println(dico_age.get("25-32"));
+        System.out.println(dico_height.get("170-180"));
+        System.out.println(dico_genders.get(Gender.Male));
         System.out.println(JdbcDao.select_single());
     }
 
