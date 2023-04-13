@@ -14,7 +14,7 @@ cursor = db.cursor()
 # Connect to FTP server using TLS port 21
 host = 'ftp.hdyx5526.odns.fr'
 port = 21
-usr = 'ChampoMatch@hdyx5526.odns.fr'
+usr = 'ChampoMatch@champomatch.hdyx5526.odns.fr'
 pwd = 'ChampoMatch'
 ftp = FTP_TLS()
 ftp.connect(host, port)
