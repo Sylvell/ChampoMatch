@@ -119,7 +119,7 @@
             <Button fx:id="bp1" mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Employé" />
             <Button fx:id="bp2" mnemonicParsing="false" prefHeight="66.0" prefWidth="128.0" text="Mails" GridPane.columnIndex="1" />
             <Button fx:id="bp3" mnemonicParsing="false" prefHeight="72.0" prefWidth="132.0" text="Clients" GridPane.rowIndex="1" />
-            <Button fx:id="bp4" mnemonicParsing="false" prefHeight="70.0" prefWidth="137.0" text="Profil" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="bp4" onAction="#profil" mnemonicParsing="false" prefHeight="70.0" prefWidth="137.0" text="Profil" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Button fx:id="bp5" mnemonicParsing="false" prefHeight="71.0" prefWidth="131.0" text="Ajout client" GridPane.rowIndex="2" />
             <Button fx:id="bp6" mnemonicParsing="false" prefHeight="80.0" prefWidth="131.0" text="Rendez-vous" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>

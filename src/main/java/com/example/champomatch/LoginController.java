@@ -76,9 +76,6 @@ public class LoginController {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            infoBox("Login Successful!", null, "Sucess");
-
-
         }
     }
 
