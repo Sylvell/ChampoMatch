@@ -63,15 +63,6 @@ public class LoginController {
             infoBox("Please enter correct Email and Password", null, "Failed");
         } else {
             try {
-
-                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("loadingScreen.fxml")), 582 , 591));
-                stage.centerOnScreen();
-                PauseTransition delay = new PauseTransition(Duration.seconds(3));
-                delay.setOnFinished(Actionevent -> stage.close() );
-                delay.play();
-                //affiche la fenetre pendant 3 secondes sans thread.sleep
-                stage.show();
-                stage.close();
                 stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("menu.fxml"))));
                 stage.centerOnScreen();
                 stage.show();
