@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,12 +14,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane cache="true" fx:controller="com.example.champomatch.profileController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="22.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="154.0" fitWidth="155.0" layoutX="52.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/unknown.png" />
+            <Image url="@images/PP_fun.jpg" />
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="369.0" layoutX="251.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="336.0" />
@@ -32,11 +33,6 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="name" alignment="CENTER" prefHeight="30.0" prefWidth="150.0" text="Name" textAlignment="CENTER">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
             <Label alignment="CENTER" prefHeight="30.0" prefWidth="158.0" text="Age" GridPane.columnIndex="1">
                <font>
                   <Font size="20.0" />
@@ -57,23 +53,49 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="63.0" prefWidth="166.0" text="Taille" GridPane.rowIndex="1">
+            <TextField editable="false" promptText="Name">
                <font>
-                  <Font size="20.0" />
+                  <Font size="18.0" />
                </font>
-            </Label>
+            </TextField>
+            <TextField editable="false" promptText="Size" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <TextField editable="false" layoutX="10.0" layoutY="48.0" promptText="Gender" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <TextField editable="false" layoutX="10.0" layoutY="9.0" promptText="Localisation" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <TextField editable="false" layoutX="10.0" layoutY="9.0" promptText="Age" GridPane.columnIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <TextField editable="false" layoutX="10.0" layoutY="9.0" promptText="Prefered Gender" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
          </children>
       </GridPane>
-      <Label fx:id="bio" alignment="CENTER" layoutX="14.0" layoutY="229.0" prefHeight="154.0" prefWidth="216.0" text="Bio" textAlignment="CENTER">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <ListView fx:id="hobbies" layoutX="259.0" layoutY="199.0" prefHeight="165.0" prefWidth="320.0" />
       <Text layoutX="266.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hobbies :" wrappingWidth="100.13671875">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
+      <Button fx:id="returned" onAction="#goback" layoutY="1.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-border-color: white;" text="&lt;- Return" textFill="#ff1919" />
+      <TextField editable="false" layoutX="34.0" layoutY="210.0" prefHeight="154.0" prefWidth="191.0" promptText="BIO">
+         <font>
+            <Font name="Gadugi Bold" size="64.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

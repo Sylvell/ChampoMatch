@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
@@ -37,10 +38,19 @@ public class menuController {
     private Button bp6;
 
     @FXML
-    public void menu(ActionEvent event){
-        // au click du bp1, on affiche le fichier fxml loadingScreen
-
+    public void profil(ActionEvent event){
+        //affiche SceneBuilder_profile.fxml dans la fenêtre quand on clique sur le bouton bp4
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("profile.fxml"));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
     }
+
 /*
     @FXML
     public void initialize() {
