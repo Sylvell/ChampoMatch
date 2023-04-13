@@ -63,9 +63,16 @@ public class LoginController {
             infoBox("Please enter correct Email and Password", null, "Failed");
         } else {
             try {
-                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("menu.fxml"))));
-                stage.centerOnScreen();
+                //fermer la fenetre de login pour afficher la fenetre menu.fxml
+                ((Node) (event.getSource())).getScene().getWindow().hide();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
+                Pane root = (Pane) loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Menu");
                 stage.show();
+                stage.centerOnScreen();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
