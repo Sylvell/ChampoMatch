@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.CacheHint;
 
+import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ public class ImageLoader {
     public ImageLoader(ImageView imageView, String url) {
         setImage(imageView,url);
     }
+
 
     public static Image loadImage(String url) {
         if (cache.containsKey(url)) {

@@ -33,7 +33,7 @@ public class Single {
     int age;
     int height;
     Gender gender;
-    Image pp = new Image("file:@ressources/images/defaultProfileImage.png");
+    String pp = "file:@ressources/images/defaultProfileImage.png";
     Gender preferedGender;
     String bio;
     String localisation;
@@ -56,11 +56,7 @@ public class Single {
         this.age = age;
         this.height = height;
         this.gender = gender;
-        try {
-            this.pp = new Image((new URL(pp)).toString());
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
+        this.pp = pp;
         this.preferedGender = preferedGender;
         // encoding bio to utf-8
         byte[] raw = bio.getBytes(StandardCharsets.UTF_8);
@@ -77,11 +73,7 @@ public class Single {
         this.age = age;
         this.height = height;
         this.gender = gender;
-        try {
-            this.pp = new Image((new URL(pp)).toString());
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
+        this.pp = pp;
         this.preferedGender = preferedGender;
         // encoding bio to utf-8
         byte[] raw = bio.getBytes(StandardCharsets.UTF_8);
@@ -146,16 +138,12 @@ public class Single {
         this.gender = gender;
     }
 
-    public Image getPp() {
+    public String getPp() {
         return pp;
     }
 
     public void setPp(String pp) {
-        try {
-            this.pp = new Image((new URL(pp)).toString());
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
+       this.pp = pp;
     }
 
     public Gender getPreferedGender() {
