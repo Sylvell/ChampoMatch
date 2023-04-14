@@ -1,6 +1,7 @@
 package com.example.champomatch;
 
 
+import javafx.scene.image.Image;
 import org.apache.commons.lang3.StringUtils;
 
 import java.sql.*;
@@ -207,7 +208,7 @@ public class JdbcDao {
         }
 
         // insert images
-        for (Images image: single.getImages()) {
+        for (Image image: single.getImages()) {
              sql = "INSERT INTO images  VALUES (Default,?, ?)";
              preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, single.getId());

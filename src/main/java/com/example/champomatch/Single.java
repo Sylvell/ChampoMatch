@@ -1,5 +1,9 @@
 package com.example.champomatch;
 
+import javafx.scene.image.Image;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,11 +33,11 @@ public class Single {
     int age;
     int height;
     Gender gender;
-    String pp;
+    Image pp = new Image("file:@ressources/images/defaultProfileImage.png");
     Gender preferedGender;
     String bio;
     String localisation;
-    ArrayList<Images> images = new ArrayList<Images>();
+    ArrayList<Image> images = new ArrayList<Image>();
     int distance;
     int minimunAge;
     int maximunAge;
@@ -52,7 +56,11 @@ public class Single {
         this.age = age;
         this.height = height;
         this.gender = gender;
-        this.pp = pp;
+        try {
+            this.pp = new Image((new URL(pp)).toString());
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
         this.preferedGender = preferedGender;
         // encoding bio to utf-8
         byte[] raw = bio.getBytes(StandardCharsets.UTF_8);
@@ -69,7 +77,11 @@ public class Single {
         this.age = age;
         this.height = height;
         this.gender = gender;
-        this.pp = pp;
+        try {
+            this.pp = new Image((new URL(pp)).toString());
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
         this.preferedGender = preferedGender;
         // encoding bio to utf-8
         byte[] raw = bio.getBytes(StandardCharsets.UTF_8);
@@ -134,12 +146,16 @@ public class Single {
         this.gender = gender;
     }
 
-    public String getPp() {
+    public Image getPp() {
         return pp;
     }
 
     public void setPp(String pp) {
-        this.pp = pp;
+        try {
+            this.pp = new Image((new URL(pp)).toString());
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Gender getPreferedGender() {
@@ -166,11 +182,11 @@ public class Single {
         this.localisation = localisation;
     }
 
-    public ArrayList<Images> getImages() {
+    public ArrayList<Image> getImages() {
         return images;
     }
 
-    public void setImages(ArrayList<Images> images) {
+    public void setImages(ArrayList<Image> images) {
         this.images = images;
     }
 
