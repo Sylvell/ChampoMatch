@@ -16,10 +16,8 @@
 
 <AnchorPane cache="true" fx:controller="com.example.champomatch.profileController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="154.0" fitWidth="155.0" layoutX="52.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/PP_fun.jpg" />
-         </image>
+      <ImageView fx:id="imageView" fitHeight="154.0" fitWidth="155.0" layoutX="52.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="369.0" layoutX="251.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="336.0" />
       <GridPane alignment="CENTER" layoutX="266.0" layoutY="26.0" prefHeight="115.0" prefWidth="313.0">
