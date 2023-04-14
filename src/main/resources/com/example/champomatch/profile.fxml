@@ -31,52 +31,32 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" prefHeight="30.0" prefWidth="158.0" text="Age" GridPane.columnIndex="1">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="preferedGender" alignment="CENTER" prefHeight="17.0" prefWidth="156.0" text="PreferedGender" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="gender" alignment="CENTER" prefHeight="30.0" prefWidth="157.0" text="Gender" GridPane.rowIndex="2">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="localisation" alignment="CENTER" prefHeight="30.0" prefWidth="155.0" text="Localisation" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <TextField editable="false" promptText="Name">
+            <TextField fx:id="name" editable="false" promptText="Name">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField editable="false" promptText="Size" GridPane.rowIndex="1">
+            <TextField fx:id="size" editable="false" promptText="Size" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField editable="false" layoutX="10.0" layoutY="48.0" promptText="Gender" GridPane.rowIndex="2">
+            <TextField fx:id="gender" editable="false" layoutX="10.0" layoutY="48.0" promptText="Gender" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField editable="false" layoutX="10.0" layoutY="9.0" promptText="Localisation" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="localisation" editable="false" layoutX="10.0" layoutY="9.0" promptText="Localisation" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField editable="false" layoutX="10.0" layoutY="9.0" promptText="Age" GridPane.columnIndex="1">
+            <TextField fx:id="age" editable="false" layoutX="10.0" layoutY="9.0" promptText="Age" GridPane.columnIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField editable="false" layoutX="10.0" layoutY="9.0" promptText="Prefered Gender" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="preffered_gender" editable="false" layoutX="10.0" layoutY="9.0" promptText="Prefered Gender" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
