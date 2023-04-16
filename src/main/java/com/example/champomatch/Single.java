@@ -33,7 +33,7 @@ public class Single {
     int age;
     int height;
     Gender gender;
-    String pp = "file:@ressources/images/defaultProfileImage.png";
+    String pp = "file:@images/defaultProfileImage.png";
     Gender preferedGender;
     String bio;
     String localisation;
@@ -56,7 +56,9 @@ public class Single {
         this.age = age;
         this.height = height;
         this.gender = gender;
-        this.pp = pp;
+        if (pp != null){
+            this.pp = pp;
+        }
         this.preferedGender = preferedGender;
         // encoding bio to utf-8
         byte[] raw = bio.getBytes(StandardCharsets.UTF_8);
@@ -73,7 +75,9 @@ public class Single {
         this.age = age;
         this.height = height;
         this.gender = gender;
-        this.pp = pp;
+        if (pp != null){
+            this.pp = pp;
+        }
         this.preferedGender = preferedGender;
         // encoding bio to utf-8
         byte[] raw = bio.getBytes(StandardCharsets.UTF_8);

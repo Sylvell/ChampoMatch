@@ -1,5 +1,6 @@
 package com.example.champomatch;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,8 +44,12 @@ public class profileController implements Initializable {
     private TextField age;
     @FXML
     private TextArea bio;
-    private Single single  = new Single("Martin", "Léa", 22, 165,Gender.Female,"http://champomatch.hdyx5526.odns.fr/ChampoMatch/images/001021.jpg" , Gender.Male, "Je suis une jeune étudiante passionnée par les réseaux sociaux et l'influence qu'ils ont sur la société.", "Paris", 10, 18, 30);
-    ;
+    private Single single ;
+
+    public void setSingle(Single single) {
+        this.single = single;
+    }
+
     @FXML
     public void goback(ActionEvent event){
         try {
@@ -61,9 +66,9 @@ public class profileController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        Platform.runLater(() -> {
             // set image
-            new ImageLoader(this.imageView,single.getPp());
+            new ImageLoader(this.imageView, single.getPp());
 
             //set Name
             this.name.setText(single.getFirstname() + " " + single.getName());
@@ -85,6 +90,7 @@ public class profileController implements Initializable {
 
             //set bio
             this.bio.setText(single.getBio());
+        });
     }
 
     public void changeState(Boolean state){
