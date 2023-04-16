@@ -25,3 +25,19 @@
 #edit:selected > .box > .mark{
     -fx-background-image: url("images/check.png");
 }
+
+#submitButton{
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-background-insets: 0;
+    -fx-border-color: red;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-text-fill: black;
+    -fx-text-alignment: center;
+}
+#submitButton:hover{
+    -fx-background-color: red;
+    -fx-text-fill: white;
+}

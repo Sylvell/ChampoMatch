@@ -2,8 +2,6 @@ package com.example.champomatch;
 
 import javafx.scene.image.Image;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.ArrayList;

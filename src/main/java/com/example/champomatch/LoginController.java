@@ -1,27 +1,22 @@
 package com.example.champomatch;
 
-import java.io.IOException;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.EventObject;
-import java.util.ResourceBundle;
-
-import javafx.animation.PauseTransition;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-import javafx.util.Duration;
-import org.controlsfx.control.action.Action;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
@@ -39,17 +34,11 @@ public class LoginController implements Initializable {
     @FXML
     private Label errorLabel;
 
-    @FXML
-    private VBox vbox;
-
-    @FXML
-    private Pane pane;
 
 
     @FXML
     public void login(ActionEvent event) throws SQLException {
 
-        Window owner = submitButton.getScene().getWindow();
 
         if (emailIdField.getText().isEmpty()) {
             infoBox(

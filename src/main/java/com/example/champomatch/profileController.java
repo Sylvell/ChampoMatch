@@ -8,15 +8,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import javafx.scene.image.ImageView;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class profileController implements Initializable {
@@ -122,17 +122,12 @@ public class profileController implements Initializable {
 
     public void editSingle(ActionEvent event){
         // checkbox not selected
-        if (! edit.isSelected()){
-            this.changeState(false);
-            /*try {
+        /*try {
                 single.ExportToDb();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }*/
-        }
         // checkbox selected
-        else{
-            this.changeState(true);
-        }
+        this.changeState(edit.isSelected());
     }
 }

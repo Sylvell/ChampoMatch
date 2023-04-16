@@ -1,10 +1,9 @@
 package com.example.champomatch;
 
+import javafx.scene.CacheHint;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.CacheHint;
 
-import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Map;
 

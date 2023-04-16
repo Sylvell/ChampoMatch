@@ -3,8 +3,6 @@ package com.example.champomatch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-import java.awt.*;
-
 public class MyController {
 
 

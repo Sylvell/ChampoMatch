@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.image.Image;
 
-import java.awt.*;
 
 
 public class Login extends Application {
