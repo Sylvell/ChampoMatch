@@ -1,26 +1,29 @@
 package com.example.champomatch;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.EventObject;
+import java.util.ResourceBundle;
 
 import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.Duration;
 import org.controlsfx.control.action.Action;
 
-public class LoginController {
+public class LoginController implements Initializable {
 
     public static Stage stage;
 
@@ -34,20 +37,27 @@ public class LoginController {
     private Button submitButton;
 
     @FXML
+    private Label errorLabel;
+
+    @FXML
+    private VBox vbox;
+
+    @FXML
+    private Pane pane;
+
+
+    @FXML
     public void login(ActionEvent event) throws SQLException {
 
         Window owner = submitButton.getScene().getWindow();
 
-        System.out.println(emailIdField.getText());
-        System.out.println(passwordField.getText());
-
         if (emailIdField.getText().isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+            infoBox(
                     "Please enter your email id");
             return;
         }
         if (passwordField.getText().isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+            infoBox(
                     "Please enter a password");
             return;
         }
@@ -60,7 +70,7 @@ public class LoginController {
 
         if (!flag) {
 
-            infoBox("Please enter correct Email and Password", null, "Failed");
+            infoBox("Please enter correct Email and Password");
         } else {
             try {
                 //fermer la fenetre de login pour afficher la fenetre menu.fxml
@@ -79,20 +89,16 @@ public class LoginController {
         }
     }
 
-    public static void infoBox(String infoMessage, String headerText, String title) {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setContentText(infoMessage);
-        alert.setTitle(title);
-        alert.setHeaderText(headerText);
-        alert.showAndWait();
+    public void infoBox(String infoMessage) {
+        this.errorLabel.setVisible(true);
+        this.errorLabel.setText(infoMessage);
     }
 
-    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.show();
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //resize the window to the size of the scene when the window size is changed
+
+        //vbox.prefWidthProperty().setValue(pane.getWidth());
+
     }
 }
