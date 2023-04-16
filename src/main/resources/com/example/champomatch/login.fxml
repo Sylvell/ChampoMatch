@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.champomatch.LoginController">   <children>
+<Pane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.champomatch.LoginController">   <children>
       <ImageView fitHeight="1080.0" fitWidth="1620.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/Champolove_connexion.jpg" />

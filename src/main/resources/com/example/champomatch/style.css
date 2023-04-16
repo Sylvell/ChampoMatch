@@ -1,0 +1,27 @@
+#edit > .box{
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+}
+
+#edit > .box > .mark {
+    -fx-shape: null;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("images/edit-button.png");
+    -fx-pref-width: 25px;
+    -fx-min-width: 25px;
+    -fx-max-width: 25px;
+    -fx-pref-height: 25px;
+    -fx-min-height: 25px;
+    -fx-max-height: 25px;
+    -fx-background-size: 25px 25px;
+
+
+}
+
+#edit:selected > .box > .mark{
+    -fx-background-image: url("images/check.png");
+}

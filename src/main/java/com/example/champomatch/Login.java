@@ -16,9 +16,10 @@ public class Login extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         System.out.println(getClass());
+        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         stage.setTitle("User Login");
         // Charger la première scène depuis un fichier FXML
-        Parent root = FXMLLoader.load(getClass().getResource("loadingScreen.fxml"));
+        root = FXMLLoader.load(getClass().getResource("loadingScreen.fxml"));
         Scene scene1 = new Scene(root, 582, 591);
         stage.centerOnScreen();
 
