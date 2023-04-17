@@ -59,29 +59,24 @@ public class downloadImage {
         }
     }
 
-    public String get(int maxAge ,int minAge , String sexe){
+    public String get(int age , String sexe){
         // Parse the JSON data
-        String jsonString = getJsonFromUrl("https://fakeface.rest/face/json?minimum_age=" + minAge + "&maximum_age=" + maxAge + "&gender=" + sexe);
+        String jsonString = getJsonFromUrl("http://champomatch.hdyx5526.odns.fr/ChampoMatch/index.php?gender=" + sexe + "&age=" + age);
         if (jsonString == null) {
             return null;
         }
         JSONObject json = new JSONObject(jsonString);
 
         // Extract data from the JSON object
-        String name = json.getString("filename");
-        int age = json.getInt("age");
-        String imaage_url= json.getString("image_url");
-        System.out.println("Name: " + name);
-        System.out.println("Age: " + age);
-        System.out.println("Image url: " + imaage_url);
-        return imaage_url;
+        String image_url= json.getString("image_path");
+        return image_url;
     }
 
 
     // main method
     public static void main(String[] args) {
        downloadImage image =  new downloadImage();
-       image.get(30,25  ,"male");
+       image.get(27  ,"Male");
     }
 
 }

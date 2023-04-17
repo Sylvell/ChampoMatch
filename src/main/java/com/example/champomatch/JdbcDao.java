@@ -114,7 +114,7 @@ public class JdbcDao {
                         resultSet.getInt("age"),
                         resultSet.getInt("height"),
                         string_to_gender(resultSet.getString("gender")),
-                        resultSet.getString("pp_id"),
+                        resultSet.getString("pp"),
                         string_to_gender(resultSet.getString("preferred_gender")),
                         resultSet.getString("bio"),
                         resultSet.getString("localisation"),
@@ -144,10 +144,11 @@ public class JdbcDao {
         preparedStatement.setString(2, single.getFirstname());
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next()) {
+
             // store the id of the select
             int id = resultSet.getInt("id");
             // update single in the db
-            sql = "UPDATE single set name=?,firstname=?,age=?,height=?,gender=?,preferred_gender=?,bio=?,localisation=?,status=?,distance=?,minimum_age=?,maximum_age=? WHERE id=?";
+            sql = "UPDATE single set name=?,firstname=?,age=?,height=?,gender=?,preferred_gender=?,bio=?,localisation=?,status=?,distance=?,minimum_age=?,maximum_age=?,pp=? WHERE id=?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, single.getName());
             preparedStatement.setString(2, single.getFirstname());
@@ -163,13 +164,14 @@ public class JdbcDao {
             preparedStatement.setInt(10, single.getDistance());
             preparedStatement.setInt(11, single.getMinimunAge());
             preparedStatement.setInt(12, single.getMaximunAge());
-            preparedStatement.setInt(13, id);
+            preparedStatement.setString(13, single.getPp());
+            preparedStatement.setInt(14, id);
             preparedStatement.executeUpdate();
             return;
         }
 
         // insert single
-         sql = "INSERT INTO single (name,firstname,age,height,gender,preferred_gender,bio,localisation,status,distance,minimum_age,maximum_age) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
+         sql = "INSERT INTO single (name,firstname,age,height,gender,preferred_gender,bio,localisation,status,distance,minimum_age,maximum_age,pp) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
          preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, single.getName());
         preparedStatement.setString(2, single.getFirstname());
@@ -185,6 +187,7 @@ public class JdbcDao {
         preparedStatement.setInt(10, single.getDistance());
         preparedStatement.setInt(11, single.getMinimunAge());
         preparedStatement.setInt(12, single.getMaximunAge());
+        preparedStatement.setString(13, single.getPp());
         //System.out.println(preparedStatement.toString());
         preparedStatement.executeUpdate();
 
