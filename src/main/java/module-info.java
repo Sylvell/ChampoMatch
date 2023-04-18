@@ -15,6 +15,8 @@ module com.example.champomatch {
     requires junit;
     requires com.fasterxml.jackson.databind;
     requires org.apache.commons.lang3;
+    requires javafaker;
     opens com.example.champomatch to javafx.fxml;
     exports com.example.champomatch;
+
 }
