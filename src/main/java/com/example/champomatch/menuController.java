@@ -74,7 +74,11 @@ public class menuController {
         Platform.runLater(() -> {
         // set userText
         this.userText.setText(this.userText.getText() + " " + this.user.getFullName());
-
+        if (this.user.getAdmin() ==1){
+            this.userText.setStyle("-fx-text-fill: white");
+        }else{
+            this.userText.setStyle("-fx-text-fill: green");
+        }
         // add all singles to the list
         JdbcDao jdbcDao = new JdbcDao();
         ObservableList<Single> data = FXCollections.observableArrayList(list_to_show);
