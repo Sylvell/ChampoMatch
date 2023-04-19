@@ -91,6 +91,9 @@ public class Single {
     public Single(int id){
         this.id = id;
     }
+    public Single(){
+
+    }
 
     public Integer getId() {
         return id;

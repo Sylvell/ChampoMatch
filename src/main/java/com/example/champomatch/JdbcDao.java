@@ -239,4 +239,50 @@ public class JdbcDao {
 
     }
 
+
+    //function to get all users from the database
+    public ArrayList<User> getUsers() throws SQLException {
+        Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        String sql = "Select * from registration";
+        ArrayList<User> users = new ArrayList<User>();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+            User user = null;
+            try {
+                user = new User(
+                resultSet.getInt("id"),
+                resultSet.getString("full_name"),
+               resultSet.getString("email_id"),
+                resultSet.getInt("admin")
+                );
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            users.add(user);
+        }
+        return users;
+    }
+
+    public User getUser(String emailId) {
+        try {
+            Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+            String sql = "Select * from registration where email_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, emailId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                User user = new User(
+                        resultSet.getInt("id"),
+                        resultSet.getString("full_name"),
+                        resultSet.getString("email_id"),
+                        resultSet.getInt("admin")
+                );
+                return user;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 }

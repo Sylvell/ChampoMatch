@@ -46,15 +46,22 @@ public class profileController implements Initializable {
     @FXML
     private TextArea bio;
     private Single single ;
+    private User user;
+
+    public boolean newSingle = false;
 
     public void setSingle(Single single) {
         this.single = single;
     }
 
+
     @FXML
     public void goback(ActionEvent event){
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
+            Parent root = (Parent) loader.load();
+            menuController controller = loader.getController();
+            controller.setUser(user);
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -68,29 +75,33 @@ public class profileController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
+            if(!this.newSingle){
+
+
             // set image
-            new ImageLoader(this.imageView, single.getPp());
+            new ImageLoader(this.imageView, this.single.getPp());
 
             //set Name
-            this.name.setText(single.getFirstname() + " " + single.getName());
+            this.name.setText(this.single.getFirstname() + " " + this.single.getName());
 
             //set Age
-            this.age.setText(Integer.toString(single.getAge()));
+            this.age.setText(Integer.toString(this.single.getAge()));
 
             //set Size
-            this.size.setText(Integer.toString(single.getHeight()));
+            this.size.setText(Integer.toString(this.single.getHeight()));
 
             //set Gender
-            this.gender.setText(single.getGender());
+            this.gender.setText(this.single.getGender());
 
             //set pref gender
-            this.preffered_gender.setText(single.getPreferredGender());
+            this.preffered_gender.setText(this.single.getPreferredGender());
 
             //set Localisation
-            this.localisation.setText(single.getLocalisation());
+            this.localisation.setText(this.single.getLocalisation());
 
             //set bio
-            this.bio.setText(single.getBio());
+            this.bio.setText(this.single.getBio());
+            }
         });
     }
 
@@ -138,4 +149,9 @@ public class profileController implements Initializable {
             }
         }
     }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 }

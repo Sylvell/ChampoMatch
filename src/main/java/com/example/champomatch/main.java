@@ -36,6 +36,16 @@ public class main {
         String city = faker.address().city();
         String bio = faker.lorem().sentence(10);
         System.out.println(lastName + " " + firstName + " " + city + " " + bio);
+
+        JdbcDao dao = new JdbcDao();
+        try {
+            for (User user: dao.getUsers())
+            {
+                System.out.println(user);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 
