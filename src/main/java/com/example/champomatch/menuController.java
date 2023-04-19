@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class menuController {
 
@@ -43,6 +44,8 @@ public class menuController {
     @FXML
     private TableView<Single> table;
 
+    private ArrayList<Single> list_to_show = JdbcDao.select_single();
+
     @FXML
     public void profil(ActionEvent event){
         //affiche SceneBuilder_profile.fxml dans la fenêtre quand on clique sur le bouton bp4
@@ -61,7 +64,7 @@ public class menuController {
     public void initialize() {
         // add all singles to the list
         JdbcDao jdbcDao = new JdbcDao();
-        ObservableList<Single> data = FXCollections.observableArrayList(jdbcDao.select_single());
+        ObservableList<Single> data = FXCollections.observableArrayList(list_to_show);
         // create a table view and add columns
         TableColumn<Single, String> nameCol = new TableColumn<>("Name");
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
