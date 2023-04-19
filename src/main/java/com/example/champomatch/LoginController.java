@@ -34,6 +34,8 @@ public class LoginController implements Initializable {
     @FXML
     private Label errorLabel;
 
+    private User user;
+
 
 
     @FXML
@@ -61,11 +63,15 @@ public class LoginController implements Initializable {
 
             infoBox("Please enter correct Email and Password");
         } else {
+            // Connected
+            user = jdbcDao.getUser(emailId);
             try {
                 //fermer la fenetre de login pour afficher la fenetre menu.fxml
                 ((Node) (event.getSource())).getScene().getWindow().hide();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
                 Pane root = (Pane) loader.load();
+                menuController menuController = loader.getController();
+                menuController.setUser(user);
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
                 stage.setScene(scene);
