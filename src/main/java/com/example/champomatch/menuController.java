@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class menuController {
 
@@ -43,6 +44,15 @@ public class menuController {
     @FXML
     private TableView<Single> table;
 
+    private ArrayList<Single> list_to_show = JdbcDao.select_single();
+
+    @FXML
+    private MenuButton age;
+    @FXML
+    private MenuButton height;
+    @FXML
+    private MenuButton gender;
+
     @FXML
     public void profil(ActionEvent event){
         //affiche SceneBuilder_profile.fxml dans la fenêtre quand on clique sur le bouton bp4
@@ -61,7 +71,7 @@ public class menuController {
     public void initialize() {
         // add all singles to the list
         JdbcDao jdbcDao = new JdbcDao();
-        ObservableList<Single> data = FXCollections.observableArrayList(jdbcDao.select_single());
+        ObservableList<Single> data = FXCollections.observableArrayList(list_to_show);
         // create a table view and add columns
         TableColumn<Single, String> nameCol = new TableColumn<>("Name");
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -109,6 +119,28 @@ public class menuController {
             }
         });
     }
+    /*
+    @FXML
+    public void ajoutClient(ActionEvent actionEvent) {
+        // go to profile page
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("profile.fxml"));
+            Parent root = (Parent) loader.load();
+            profileController controller = loader.getController();
+            controller.setSingle(selectedItem);
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }*/
 
+    @FXML
+    public void filter(ActionEvent actionEvent) {
+        // get selected values from the menu buttons
 
+    }
 }
+

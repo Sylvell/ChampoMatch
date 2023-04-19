@@ -12,7 +12,6 @@ public class Recherche_pertinence {
 
     public static HashMap<String, ArrayList<Integer>> dico_age = new HashMap<String, ArrayList<Integer>>();
 
-    // dico to store the id of singles with a height in the right range
     public static HashMap<String, ArrayList<Integer>> dico_height = new HashMap<String, ArrayList<Integer>>();
 
     public static ArrayList<Single> single_list = JdbcDao.select_single();
@@ -119,37 +118,80 @@ public class Recherche_pertinence {
     }
     public static Set<Integer> recherche_pert(Gender gender, String age_range, String height_range) {
 
+        fill_dico_hobbies();
+        fill_dico_genders();
+        fill_dico_age();
+        fill_dico_height();
         Set<Integer> result = new HashSet<Integer>();
 
-        /* ArrayList<Integer> hobby_ids = new ArrayList<Integer>();
-        for (Hobbies hobby : hobbies) {
-            if (dico_hobbies.containsKey(hobby)) {
-                hobby_ids.addAll(dico_hobbies.get(hobby));
-            }
-        } */
-
         Set<Integer> gender_ids = new HashSet<Integer>();
-        if (dico_genders.containsKey(gender)) {
-            gender_ids.addAll(dico_genders.get(gender));
+        if (gender != null) {
+            if (dico_genders.containsKey(gender)) {
+                gender_ids.addAll(dico_genders.get(gender));
+            }
+            else {
+                for (ArrayList<Integer> ids : dico_genders.values()) {
+                    gender_ids.addAll(ids);
+                }
+            }
+        } else {
+            for (ArrayList<Integer> ids : dico_genders.values()) {
+                gender_ids.addAll(ids);
+            }
         }
 
         Set<Integer> age_ids = new HashSet<Integer>();
-        if (dico_age.containsKey(age_range)) {
-            age_ids.addAll(dico_age.get(age_range));
+        if (age_range != null) {
+            if (dico_age.containsKey(age_range)) {
+                age_ids.addAll(dico_age.get(age_range));
+            }
+            else {
+                for (ArrayList<Integer> ids : dico_age.values()) {
+                    age_ids.addAll(ids);
+                }
+            }
+        } else {
+            for (ArrayList<Integer> ids : dico_age.values()) {
+                age_ids.addAll(ids);
+            }
         }
 
         Set<Integer> height_ids = new HashSet<Integer>();
-        if (dico_height.containsKey(height_range)) {
-            height_ids.addAll(dico_height.get(height_range));
+        if (height_range != null) {
+            if (dico_height.containsKey(height_range)) {
+                height_ids.addAll(dico_height.get(height_range));
+            }
+            else {
+                for (ArrayList<Integer> ids : dico_height.values()) {
+                    height_ids.addAll(ids);
+                }
+            }
+        } else {
+            for (ArrayList<Integer> ids : dico_height.values()) {
+                height_ids.addAll(ids);
+            }
         }
 
-        //result.addAll(hobby_ids);
+        if (gender == null && age_range == null && height_range == null) {
+            for (ArrayList<Integer> ids : dico_genders.values()) {
+                gender_ids.addAll(ids);
+            }
+            for (ArrayList<Integer> ids : dico_age.values()) {
+                age_ids.addAll(ids);
+            }
+            for (ArrayList<Integer> ids : dico_height.values()) {
+                height_ids.addAll(ids);
+            }
+        }
+
         result.addAll(gender_ids);
         result.retainAll(age_ids);
         result.retainAll(height_ids);
 
         return result;
     }
+
+
 
 
 
@@ -162,12 +204,11 @@ public class Recherche_pertinence {
         fill_dico_height();
         //ArrayList<Hobbies> hobbies = new ArrayList<Hobbies>();
         //hobbies.add(Hobbies.Cooking);
-        Gender gender = Gender.Female;
-        String age_range = "18-24";
+        Gender gender = Gender.Male;
+        String age_range = "42-50";
         String height_range = "160-170";
         Set<Integer> result = recherche_pert(gender, age_range, height_range);
         System.out.println(result);
-        //System.out.println(JdbcDao.select_single());
 
     }
 
