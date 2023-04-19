@@ -1,4 +1,4 @@
-#edit > .box{
+#edit > .box {
     -fx-background-insets: 0;
     -fx-background-radius: 0;
     -fx-background-color: transparent;
@@ -22,11 +22,11 @@
 
 }
 
-#edit:selected > .box > .mark{
+#edit:selected > .box > .mark {
     -fx-background-image: url("images/check.png");
 }
 
-#submitButton{
+#submitButton {
     -fx-background-color: white;
     -fx-background-radius: 10px;
     -fx-background-insets: 0;
@@ -37,11 +37,89 @@
     -fx-text-fill: black;
     -fx-text-alignment: center;
 }
-#submitButton:hover{
+
+#submitButton:hover {
     -fx-background-color: red;
     -fx-text-fill: white;
 }
-#anchor{
+
+#anchor {
     -fx-background-color: linear-gradient(#ff3333, #fda30e);
 
+}
+
+#bp1 {
+    -fx-background-color: linear-gradient(#f1e034, #e3733d);
+    -fx-background-radius: 10px;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-text-fill: black;
+    -fx-text-alignment: center;
+}
+
+#bp2 {
+    -fx-background-color: linear-gradient(#f1e034, #e3733d);
+    -fx-background-radius: 10px;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-text-fill: black;
+    -fx-text-alignment: center;
+}
+
+#bp3 {
+    -fx-background-color: linear-gradient(#f1e034, #e3733d);
+    -fx-background-radius: 10px;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-text-fill: black;
+    -fx-text-alignment: center;
+}
+
+#bp4 {
+    -fx-background-color: linear-gradient(#f1e034, #e3733d);
+    -fx-background-radius: 10px;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-text-fill: black;
+    -fx-text-alignment: center;
+}
+
+#bp5 {
+    -fx-background-color: linear-gradient(#f1e034, #e3733d);
+    -fx-background-radius: 10px;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-text-fill: black;
+    -fx-text-alignment: center;
+}
+
+#bp6 {
+    -fx-background-color: linear-gradient(#f1e034, #e3733d);
+    -fx-background-radius: 10px;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-text-fill: black;
+    -fx-text-alignment: center;
+}
+
+#Grid {
+    -fx-border-color: transparent;
 }

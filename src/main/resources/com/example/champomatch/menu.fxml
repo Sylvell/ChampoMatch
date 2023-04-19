@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(#ff3333, #fda30e);" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.champomatch.menuController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" stylesheets="@style.css" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(#e3733d, #f1e034);" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.champomatch.menuController">
    <children>
          <TextField layoutX="360.0" prefHeight="56.0" prefWidth="540.0" promptText="Type a name">
          <font>
@@ -105,7 +105,7 @@
             </MenuItem>
          </items>
       </MenuButton>
-      <GridPane gridLinesVisible="true" layoutY="66.0" prefHeight="200.0" prefWidth="360.0">
+      <GridPane fx:id="Grid" gridLinesVisible="true" layoutY="66.0" prefHeight="200.0" prefWidth="360.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
