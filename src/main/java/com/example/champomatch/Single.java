@@ -263,7 +263,7 @@ public String getStatus() {
 
     @Override
     public String toString() {
-        return "Single{" +
+        return
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", firstname='" + firstname + '\'' +
@@ -278,12 +278,7 @@ public String getStatus() {
                 ", distance=" + distance +
                 ", minimunAge=" + minimunAge +
                 ", maximunAge=" + maximunAge +
-                ", liked=" + liked +
-                ", unliked=" + unliked +
-                ", candidates=" + candidates +
-                ", hobbies=" + hobbies +
                 ", isAlone=" + isAlone +
-                ", status=" + status +
-                '}';
+                ", status=" + status ;
     }
 }
