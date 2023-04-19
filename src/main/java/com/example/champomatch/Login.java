@@ -15,7 +15,6 @@ public class Login extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        System.out.println(getClass());
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         stage.setTitle("User Login");
         stage.getIcons().add(new Image(getClass().getResource("images/logo.png").toExternalForm()));
