@@ -1,5 +1,6 @@
 package com.example.champomatch;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,10 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -54,6 +52,10 @@ public class menuController {
     private MenuButton gender;
 
     @FXML
+    private Label userText;
+    private User user;
+
+    @FXML
     public void profil(ActionEvent event){
         //affiche SceneBuilder_profile.fxml dans la fenêtre quand on clique sur le bouton bp4
             /*try {
@@ -69,6 +71,10 @@ public class menuController {
 
     @FXML
     public void initialize() {
+        Platform.runLater(() -> {
+        // set userText
+        this.userText.setText(this.userText.getText() + " " + this.user.getFullName());
+
         // add all singles to the list
         JdbcDao jdbcDao = new JdbcDao();
         ObservableList<Single> data = FXCollections.observableArrayList(list_to_show);
@@ -108,6 +114,7 @@ public class menuController {
                         Parent root = (Parent) loader.load();
                         profileController controller = loader.getController();
                         controller.setSingle(selectedItem);
+                        controller.setUser(this.user);
                         Scene scene = new Scene(root);
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setScene(scene);
@@ -118,23 +125,25 @@ public class menuController {
                 }
             }
         });
+    });
     }
 
     @FXML
     public void ajoutClient(ActionEvent actionEvent) {
-      /*  // go to profile page
+       // go to profile page
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("profile.fxml"));
             Parent root = (Parent) loader.load();
             profileController controller = loader.getController();
-            controller.setSingle(selectedItem);
+            controller.setSingle(new Single());
+            controller.newSingle=true;
             Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
             ex.printStackTrace();
-        }*/
+        }
     }
 
     @FXML
@@ -144,5 +153,9 @@ public class menuController {
     }
 
 
+    public void setUser(User user) {
+        // set the user
+        this.user = user;
+    }
 }
 
