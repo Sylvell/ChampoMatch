@@ -93,11 +93,11 @@ public class userProfileController  implements Initializable {
         // checkbox selected
         this.changeState(edit.isSelected());
         if (! edit.isSelected()){
-            /*try {
-                single.ExportToDb();
+            try {
+                user.ExportToDb();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
-            }*/
+            }
         }
     }
 }

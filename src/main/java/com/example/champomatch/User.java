@@ -94,6 +94,6 @@ public class User {
 
     public void ExportToDb() throws SQLException {
         JdbcDao dao = new JdbcDao();
-        dao.ExportSingle(this);
+        dao.ExportUser(this);
     }
 }
