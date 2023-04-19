@@ -41,3 +41,7 @@
     -fx-background-color: red;
     -fx-text-fill: white;
 }
+#anchor{
+    -fx-background-color: linear-gradient(#ff3333, #fda30e);
+
+}
