@@ -103,7 +103,7 @@ public class JdbcDao {
         try {
             Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM single");
-            ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM single");
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             ArrayList<Single> singles_list = new ArrayList<Single>();
             while (resultSet.next()) {
@@ -307,5 +307,9 @@ public class JdbcDao {
             preparedStatement.setInt(3, user.getAdmin());
             preparedStatement.executeUpdate();
         }
+    }
+    // get sql connection
+    public Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
     }
 }

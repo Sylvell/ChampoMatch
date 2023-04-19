@@ -1,6 +1,5 @@
 package com.example.champomatch;
 
-import com.github.javafaker.Bool;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,12 +13,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class usersListController  implements Initializable {
@@ -28,6 +33,9 @@ public class usersListController  implements Initializable {
     private Button returned;
     @FXML
     private TableView<User> table;
+    @FXML
+    private TextField text;
+    private ObservableList<User> data;
     @FXML
     public void goback(ActionEvent event){
         try {
@@ -50,7 +58,7 @@ public class usersListController  implements Initializable {
             // fill the table with the list of users
             JdbcDao jdbcDao = new JdbcDao();
             try {
-                ObservableList<User> data = FXCollections.observableArrayList(jdbcDao.getUsers());
+               this.data = FXCollections.observableArrayList(jdbcDao.getUsers());
             TableColumn<User, String> idCol = new TableColumn<>("ID");
             TableColumn<User, String> nameCol = new TableColumn<>("fullName");
             TableColumn<User, String> emailCol = new TableColumn<>("email");
@@ -59,14 +67,14 @@ public class usersListController  implements Initializable {
             nameCol.setCellValueFactory(new PropertyValueFactory<>("fullName"));
             emailCol.setCellValueFactory(new PropertyValueFactory<>("email_id"));
             adminCol.setCellValueFactory(new PropertyValueFactory<>("admin"));
-            table.getColumns().addAll(idCol,nameCol, emailCol, adminCol);
-            table.setItems(data);
+            this.table.getColumns().addAll(idCol,nameCol, emailCol, adminCol);
+            this.table.setItems(data);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            table.setOnMouseClicked(event -> {
+            this.table.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2) { // check if it's a single click
-                    User selectedItem = table.getSelectionModel().getSelectedItem();
+                    User selectedItem = this.table.getSelectionModel().getSelectedItem();
                     if (selectedItem != null) {
                         // go to profile page
                         try {
@@ -109,4 +117,47 @@ public class usersListController  implements Initializable {
             }
         }
 
+    public void filter(KeyEvent actionEvent) {
+        // fill the table with users that match the filter
+        JdbcDao jdbcDao = new JdbcDao();
+        Connection connection = null;
+        String name = "";
+        String firstName = "";
+        String sql = "";
+        if (this.text.getText() == "" || this.text.getText() == null) {
+             name = "";
+             firstName = "";
+             sql = "SELECT * FROM registration";
+        }
+        if (this.text.getText().split(" ").length == 1) {
+            name = text.getText().split(" ")[0];
+             sql = "SELECT * FROM registration WHERE full_name LIKE '%"+name+"%' || email_id LIKE '%"+name+"%'";
+        } else if (this.text.getText().split(" ").length == 2) {
+            name = text.getText().split(" ")[0];
+            firstName = text.getText().split(" ")[1];
+             sql = "SELECT * FROM registration WHERE full_name LIKE '%"+name+"%"+firstName+"%'";
+        }
+
+        try {
+            connection=jdbcDao.getConnection();
+            if (connection != null) {
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                ArrayList<User> users = new ArrayList<>();
+                while (resultSet.next()) {
+                    User user = new User(
+                   resultSet.getInt("id"),
+                    resultSet.getString("full_name"),
+                    resultSet.getString("email_id"),
+                    resultSet.getInt("admin"));
+                    users.add(user);
+                }
+                this.data = FXCollections.observableArrayList(users);
+                this.table.setItems(data);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }
