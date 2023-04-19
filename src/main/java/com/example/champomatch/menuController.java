@@ -119,10 +119,10 @@ public class menuController {
             }
         });
     }
-    /*
+
     @FXML
     public void ajoutClient(ActionEvent actionEvent) {
-        // go to profile page
+      /*  // go to profile page
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("profile.fxml"));
             Parent root = (Parent) loader.load();
@@ -134,13 +134,15 @@ public class menuController {
             stage.show();
         } catch (IOException ex) {
             ex.printStackTrace();
-        }
-    }*/
+        }*/
+    }
 
     @FXML
     public void filter(ActionEvent actionEvent) {
         // get selected values from the menu buttons
 
     }
+
+
 }
 
