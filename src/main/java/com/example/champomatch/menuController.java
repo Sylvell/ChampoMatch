@@ -105,7 +105,7 @@ public class menuController {
         table.setItems(data);
 
         table.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 1) { // check if it's a single click
+            if (event.getClickCount() == 2) { // check if it's a double click
                 Single selectedItem = table.getSelectionModel().getSelectedItem();
                 if (selectedItem != null) {
                     // go to profile page
@@ -137,6 +137,22 @@ public class menuController {
             profileController controller = loader.getController();
             controller.setSingle(new Single());
             controller.newSingle=true;
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void users(ActionEvent actionEvent){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("usersList.fxml"));
+            Parent root = (Parent) loader.load();
+            usersListController controller = loader.getController();
+            controller.setUser(this.user);
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(scene);

@@ -1,5 +1,7 @@
 package com.example.champomatch;
 
+import java.sql.SQLException;
+
 public class User {
     private Integer id;
 
@@ -88,5 +90,10 @@ public class User {
                 ", email_id='" + email_id + '\'' +
                 ", admin=" + admin +
                 '}';
+    }
+
+    public void ExportToDb() throws SQLException {
+        JdbcDao dao = new JdbcDao();
+        dao.ExportSingle(this);
     }
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane stylesheets="@style.css" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.champomatch.userProfileController">
+   <children>
+      <Button fx:id="returned" alignment="TOP_LEFT" layoutY="1.0" mnemonicParsing="false" onAction="#goback" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="&lt;- Return" />
+      <CheckBox fx:id="edit" layoutX="352.0" layoutY="12.0" mnemonicParsing="false" onAction="#editUser" prefHeight="18.0" prefWidth="94.0" styleClass="edit" text="Edit Profile" textFill="WHITE" />
+
+      <TextField fx:id="name" editable="false" focusTraversable="false" layoutX="56.0" layoutY="100.0" mouseTransparent="true" promptText="Name" style="-fx-background-color: transparent; -fx-text-color: white;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="email" editable="false" focusTraversable="false" layoutX="56.0" layoutY="200.0" mouseTransparent="true" promptText="Name" style="-fx-background-color: transparent; -fx-text-color: white;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="admin" editable="false" focusTraversable="false" layoutX="56.0" layoutY="300.0" mouseTransparent="true" promptText="Name" style="-fx-background-color: transparent; -fx-text-color: white;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>

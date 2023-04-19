@@ -13,6 +13,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -102,6 +103,27 @@ public class profileController implements Initializable {
             //set bio
             this.bio.setText(this.single.getBio());
             }
+
+            // add action listener to image
+            this.imageView.setOnMouseClicked(event -> {
+
+                   // create new window
+                StackPane secondaryLayout = new StackPane();
+                Scene secondScene = new Scene(secondaryLayout, 900, 900);
+                    Stage newWindow = new Stage();
+                newWindow.setScene(secondScene);
+
+                    //add image to new window
+                       ImageView imageView = new ImageView();
+                       new ImageLoader(imageView, this.single.getPp());
+                          imageView.setFitHeight(900);
+                            imageView.setFitWidth(900);
+                            imageView.setPreserveRatio(true);
+                            secondaryLayout.getChildren().add(imageView);
+                    newWindow.setX(event.getSceneX()+300);
+                    newWindow.setY(0);
+                    newWindow.show();
+            });
         });
     }
 

@@ -285,4 +285,27 @@ public class JdbcDao {
         }
         return null;
     }
+
+    public void ExportUser(User user) throws SQLException {
+        Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        // check if the user already exist
+        if (user.getId() != null){
+            // update user in the db
+            String sql = "UPDATE registration set full_name=?,email_id=?,admin=? WHERE id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, user.getFullName());
+            preparedStatement.setString(2, user.getEmail_id());
+            preparedStatement.setInt(3, user.getAdmin());
+            preparedStatement.setInt(4, user.getId());
+            preparedStatement.executeUpdate();
+        }else {
+            // insert user in the db
+            String sql = "INSERT INTO registration (full_name,email_id,admin) VALUES (?,?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, user.getFullName());
+            preparedStatement.setString(2, user.getEmail_id());
+            preparedStatement.setInt(3, user.getAdmin());
+            preparedStatement.executeUpdate();
+        }
+    }
 }
