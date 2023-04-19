@@ -26,9 +26,6 @@ public class JdbcDao {
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_QUERY)) {
             preparedStatement.setString(1, emailId);
             preparedStatement.setString(2, password);
-
-            System.out.println(preparedStatement);
-
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return true;
