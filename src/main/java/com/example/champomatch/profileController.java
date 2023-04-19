@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class profileController implements Initializable {
@@ -129,5 +130,12 @@ public class profileController implements Initializable {
             }*/
         // checkbox selected
         this.changeState(edit.isSelected());
+        if (! edit.isSelected()){
+            try {
+                single.ExportToDb();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }
