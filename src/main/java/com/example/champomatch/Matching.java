@@ -52,6 +52,7 @@ public class Matching {
                 hobbiesScore += 1.0 / Single1.hobbies.size();
             }
         }
+        
 
         double distanceScore = 0.0;
 

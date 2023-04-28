@@ -14,6 +14,18 @@ public class JdbcDao {
     private static final String DATABASE_USERNAME = "hdyx5526_ChampoMatch";
     private static final String DATABASE_PASSWORD = "ChampoMatch";
     private static final String SELECT_QUERY = "SELECT * FROM registration WHERE email_id = ? and password = ?";
+    static Connection connection;
+
+    {
+        try {
+            if (connection == null){
+                connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public boolean validate(String emailId, String password) throws SQLException {
 
@@ -76,7 +88,6 @@ public class JdbcDao {
     // function to get Hobbies with sql select
     public static void  select_hobbies() {
         try {
-            Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM hobbies");
             ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM hobbies");
 
@@ -98,7 +109,6 @@ public class JdbcDao {
 
     public static ArrayList<Single> select_single() {
         try {
-            Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM single");
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -133,7 +143,6 @@ public class JdbcDao {
     // create a new single in the database
 
     public  void ExportSingle(Single single) throws SQLException {
-        Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
         // check if the single already exist
         String sql = "SELECT * FROM single WHERE name=? and firstname=?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -239,7 +248,6 @@ public class JdbcDao {
 
     //function to get all users from the database
     public ArrayList<User> getUsers() throws SQLException {
-        Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
         String sql = "Select * from registration";
         ArrayList<User> users = new ArrayList<User>();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -263,7 +271,6 @@ public class JdbcDao {
 
     public User getUser(String emailId) {
         try {
-            Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
             String sql = "Select * from registration where email_id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, emailId);
@@ -284,7 +291,6 @@ public class JdbcDao {
     }
 
     public void ExportUser(User user) throws SQLException {
-        Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
         // check if the user already exist
         if (user.getId() != null){
             // update user in the db
