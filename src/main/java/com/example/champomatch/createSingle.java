@@ -32,9 +32,16 @@ public class createSingle {
             Gender[] values=Gender.values();
             Gender gender = values[random.nextInt(values.length)];
             Gender prefferedGender = values[random.nextInt(values.length)];
+            String imagelink = null;
+
+            if (gender != Gender.Other){
+                imagelink = image.get(age, String.valueOf(gender));
+            }else{
+                imagelink = "file:@images/OtherGender.png";
+            }
 
             // create single
-            Single s = new Single(lastName,firstName,age,height,gender,image.get(age, String.valueOf(gender)),prefferedGender,bio,city,distance,minAge,maxAge);
+            Single s = new Single(lastName,firstName,age,height,gender,imagelink,prefferedGender,bio,city,distance,minAge,maxAge);
             System.out.println(s);
             try {
                 s.ExportToDb();
