@@ -11,7 +11,7 @@
          <font>
             <Font name="System Bold" size="16.0" />
          </font></TextField>
-      <MenuButton fx:id="gender" layoutX="360.0" layoutY="55.0" mnemonicParsing="false" onAction="#filter" text="Sexe">
+      <MenuButton fx:id="gender" layoutX="360.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#filter" text="Sexe">
          <items>
             <MenuItem mnemonicParsing="false" text="Homme">
                <graphic>
@@ -104,10 +104,10 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="bp1" onAction="#users" mnemonicParsing="false" prefHeight="76.0" prefWidth="182.0" text="Employé" />
+            <Button fx:id="bp1" mnemonicParsing="false" onAction="#users" prefHeight="76.0" prefWidth="182.0" text="Employé" />
             <Button fx:id="bp2" mnemonicParsing="false" prefHeight="76.0" prefWidth="183.0" text="Mails" GridPane.columnIndex="1" />
             <Button fx:id="bp3" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Clients" GridPane.rowIndex="1" />
-            <Button fx:id="bp4" mnemonicParsing="false" onAction="#profil" prefHeight="75.0" prefWidth="181.0" text="Profil" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="bp4" mnemonicParsing="false" onAction="#disconnect" prefHeight="75.0" prefWidth="181.0" text="Disconnect" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Button fx:id="bp5" mnemonicParsing="false" onAction="#ajoutClient" prefHeight="79.0" prefWidth="182.0" text="Ajout client" GridPane.rowIndex="2" />
             <Button fx:id="bp6" mnemonicParsing="false" prefHeight="75.0" prefWidth="202.0" text="Rendez-vous" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>

@@ -164,6 +164,16 @@ public class profileController implements Initializable {
         // checkbox selected
         this.changeState(edit.isSelected());
         if (! edit.isSelected()){
+            // set new values to single
+            single.setAge(Integer.parseInt(this.age.getText()));
+            single.setBio(this.bio.getText());
+            single.setLocalisation(this.localisation.getText());
+            single.setHeight(Integer.parseInt(this.size.getText()));
+            single.setGender(Gender.valueOf(this.gender.getText()));
+            single.setPreferedGender(Gender.valueOf(this.preffered_gender.getText()));
+            single.setName(this.name.getText().split(" ")[1]);
+            single.setFirstname(this.name.getText().split(" ")[0]);
+
             try {
                 single.ExportToDb();
             } catch (SQLException e) {

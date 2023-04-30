@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -11,10 +12,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Set;
 
 public class menuController {
 
@@ -54,6 +58,12 @@ public class menuController {
     @FXML
     private Label userText;
     private User user;
+
+    private Set<Gender> selectedGenders;
+
+    private Set<String> selectedHeights;
+
+    private Set<String> selectedAges;
 
     @FXML
     public void profil(ActionEvent event){
@@ -129,6 +139,16 @@ public class menuController {
                 }
             }
         });
+
+        // action listener for menu buttons
+            /*gender.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    // if item is selected, add it to the list, else remove them
+
+                    System.out.println( gender.getItems());
+                }
+            });*/
     });
     }
 
@@ -140,6 +160,7 @@ public class menuController {
             Parent root = (Parent) loader.load();
             profileController controller = loader.getController();
             controller.setSingle(new Single());
+            controller.setUser(this.user);
             controller.newSingle=true;
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -166,16 +187,46 @@ public class menuController {
         }
     }
 
-    @FXML
-    public void filter(ActionEvent actionEvent) {
-        // get selected values from the menu buttons
 
-    }
+
 
 
     public void setUser(User user) {
         // set the user
         this.user = user;
+    }
+
+    public void disconnect(ActionEvent actionEvent) {
+        // go to login page
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+            Parent root = (Parent) loader.load();
+            LoginController controller = loader.getController();
+            Scene scene = new Scene(root,1550,850);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void update(MouseEvent mouseEvent) {
+        // update the list
+        Recherche_pertinence tri = new Recherche_pertinence();
+      //  gender.get
+        //tri.recherche_pert();
+        list_to_show = JdbcDao.select_single();
+        ObservableList<Single> data = FXCollections.observableArrayList(list_to_show);
+        table.setItems(data);
+
+    }
+
+
+    public void filter(MouseEvent mouseEvent) {
+        System.out.println("clicked");
+        System.out.println( Arrays.toString(this.gender.getItems().toArray()));
     }
 }
 

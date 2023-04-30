@@ -143,42 +143,25 @@ public class JdbcDao {
     // create a new single in the database
 
     public  void ExportSingle(Single single) throws SQLException {
-        // check if the single already exist
-        String sql = "SELECT * FROM single WHERE name=? and firstname=?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, single.getName());
-        preparedStatement.setString(2, single.getFirstname());
-        ResultSet resultSet = preparedStatement.executeQuery();
-        if (resultSet.next()) {
-
-            // store the id of the select
-            int id = resultSet.getInt("id");
-            // update single in the db
-            sql = "UPDATE single set name=?,firstname=?,age=?,height=?,gender=?,preferred_gender=?,bio=?,localisation=?,status=?,distance=?,minimum_age=?,maximum_age=?,pp=? WHERE id=?";
+        // check if the single already exist by checking if the name and firstname are already in the db or if the id is already in the db
+        PreparedStatement preparedStatement = null;
+        String sql = "";
+        int id = 0;
+        ResultSet resultSet;
+        if (single.getId() != 0) {
+            id = single.getId();
+        } else {
+            sql = "SELECT * FROM single WHERE name=? and firstname=?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, single.getName());
             preparedStatement.setString(2, single.getFirstname());
-            preparedStatement.setInt(3, single.getAge());
-            preparedStatement.setInt(4, single.getHeight());
-            preparedStatement.setString(5, single.getGender());
-            preparedStatement.setString(6, single.getPreferredGender());
-            // escape single quote
-            String bio = single.getBio().replaceAll("'", " ");
-            preparedStatement.setString(7, bio);
-            preparedStatement.setString(8, single.getLocalisation());
-            preparedStatement.setString(9, single.getStatus());
-            preparedStatement.setInt(10, single.getDistance());
-            preparedStatement.setInt(11, single.getMinimunAge());
-            preparedStatement.setInt(12, single.getMaximunAge());
-            preparedStatement.setString(13, single.getPp());
-            preparedStatement.setInt(14, id);
-            preparedStatement.executeUpdate();
-            return;
+            resultSet = preparedStatement.executeQuery();
+            id = resultSet.getInt("id");
         }
 
-        // insert single
-         sql = "INSERT INTO single (name,firstname,age,height,gender,preferred_gender,bio,localisation,status,distance,minimum_age,maximum_age,pp) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
-         preparedStatement = connection.prepareStatement(sql);
+        // update single in the db
+        sql = "UPDATE single set name=?,firstname=?,age=?,height=?,gender=?,preferred_gender=?,bio=?,localisation=?,status=?,distance=?,minimum_age=?,maximum_age=?,pp=? WHERE id=?";
+        preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, single.getName());
         preparedStatement.setString(2, single.getFirstname());
         preparedStatement.setInt(3, single.getAge());
@@ -194,6 +177,30 @@ public class JdbcDao {
         preparedStatement.setInt(11, single.getMinimunAge());
         preparedStatement.setInt(12, single.getMaximunAge());
         preparedStatement.setString(13, single.getPp());
+        preparedStatement.setInt(14, id);
+        preparedStatement.executeUpdate();
+        System.out.println("single updated" + "\n" + preparedStatement.toString());
+
+
+
+        // insert single
+        sql = "INSERT INTO single (name,firstname,age,height,gender,preferred_gender,bio,localisation,status,distance,minimum_age,maximum_age,pp) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, single.getName());
+        preparedStatement.setString(2, single.getFirstname());
+        preparedStatement.setInt(3, single.getAge());
+        preparedStatement.setInt(4, single.getHeight());
+        preparedStatement.setString(5, single.getGender());
+        preparedStatement.setString(6, single.getPreferredGender());
+        // escape single quote
+        bio = single.getBio().replaceAll("'", " ");
+        preparedStatement.setString(7, bio);
+        preparedStatement.setString(8, single.getLocalisation());
+        preparedStatement.setString(9, single.getStatus());
+        preparedStatement.setInt(10, single.getDistance());
+        preparedStatement.setInt(11, single.getMinimunAge());
+        preparedStatement.setInt(12, single.getMaximunAge());
+        preparedStatement.setString(13, single.getPp());
         //System.out.println(preparedStatement.toString());
         preparedStatement.executeUpdate();
 
@@ -202,42 +209,42 @@ public class JdbcDao {
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, single.getName());
         preparedStatement.setString(2, single.getFirstname());
-         resultSet = preparedStatement.executeQuery();
+        resultSet = preparedStatement.executeQuery();
         resultSet.next();
         single.setId(resultSet.getInt("id"));
 
 
         // insert hobbies
-        for (Hobbies hobby: single.getHobbies()) {
-             sql = "INSERT INTO hobbies  VALUES (Default,?, ?)";
-             preparedStatement = connection.prepareStatement(sql);
+        for (Hobbies hobby : single.getHobbies()) {
+            sql = "INSERT INTO hobbies  VALUES (Default,?, ?)";
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, single.getId());
             preparedStatement.setString(2, hobby.toString());
             preparedStatement.executeUpdate();
         }
 
         // insert images
-        for (Image image: single.getImages()) {
-             sql = "INSERT INTO images  VALUES (Default,?, ?)";
-             preparedStatement = connection.prepareStatement(sql);
+        for (Image image : single.getImages()) {
+            sql = "INSERT INTO images  VALUES (Default,?, ?)";
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, single.getId());
             preparedStatement.setString(2, image.getUrl());
             preparedStatement.executeUpdate();
         }
 
         // insert unliked
-        for (Single unlike: single.getUnliked()) {
-             sql = "INSERT INTO unlike  VALUES (Default,?, ?)";
-             preparedStatement = connection.prepareStatement(sql);
+        for (Single unlike : single.getUnliked()) {
+            sql = "INSERT INTO unlike  VALUES (Default,?, ?)";
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, single.getId());
             preparedStatement.setInt(2, unlike.getId());
             preparedStatement.executeUpdate();
         }
 
         // insert liked
-        for (Single like: single.getLiked()) {
-             sql = "INSERT INTO like VALUES (Default,?, ?)";
-             preparedStatement = connection.prepareStatement(sql);
+        for (Single like : single.getLiked()) {
+            sql = "INSERT INTO like VALUES (Default,?, ?)";
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, single.getId());
             preparedStatement.setInt(2, like.getId());
             preparedStatement.executeUpdate();

@@ -88,6 +88,9 @@ public class Single {
         this.isAlone=isAlone;
     }
 
+    // constructor for the database
+
+
     public Single(int id){
         this.id = id;
     }
