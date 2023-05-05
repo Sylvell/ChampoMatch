@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -92,6 +93,8 @@ public class menuController {
         // add all singles to the list
         JdbcDao jdbcDao = new JdbcDao();
         ObservableList<Single> data = FXCollections.observableArrayList(list_to_show);
+        // if a filter is applied, only show the filtered singles
+
         // create a table view and add columns
         TableColumn<Single, String> nameCol = new TableColumn<>("Name");
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -228,5 +231,31 @@ public class menuController {
         System.out.println("clicked");
         System.out.println( Arrays.toString(this.gender.getItems().toArray()));
     }
+
+
+    // when there are letters in the text field, only show the singles that match the letters
+    /*public void filter(KeyEvent keyEvent) {
+        // get the text from the text field
+        String text = this.search.getText();
+        // if the text is empty, show all singles
+        if (text.equals("")){
+            ObservableList<Single> data = FXCollections.observableArrayList(list_to_show);
+            table.setItems(data);
+        }
+        else
+        {
+            // else, show only the singles that match the text
+            ArrayList<Single> list = new ArrayList<>();
+            for (Single single : list_to_show){
+                if (single.getName().toLowerCase().contains(text.toLowerCase()) || single.getFirstname().toLowerCase().contains(text.toLowerCase())){
+                    list.add(single);
+                }
+            }
+            ObservableList<Single> data = FXCollections.observableArrayList(list);
+            table.setItems(data);
+        }
+    }
+   */
+
 }
 
