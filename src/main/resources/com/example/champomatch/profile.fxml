@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -7,7 +8,7 @@
 
 <AnchorPane fx:id="anchor" cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.champomatch.profileController">
    <children>
-      <GridPane alignment="CENTER" focusTraversable="true" layoutX="493.0" layoutY="28.0" prefHeight="245.0" prefWidth="386.0" style="-fx-background-color: transparent;">
+      <GridPane alignment="CENTER" focusTraversable="true" layoutX="446.0" layoutY="42.0" prefHeight="236.0" prefWidth="386.0" style="-fx-background-color: transparent;">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -18,32 +19,35 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="name" editable="false" focusTraversable="false" mouseTransparent="true" promptText="Name">
+            <TextField fx:id="name" editable="false" focusTraversable="false" mouseTransparent="true" promptText="Name" styleClass="profileTextField">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets right="50.0" />
+               </opaqueInsets>
+            </TextField>
+            <TextField fx:id="size" editable="false" focusTraversable="false" mouseTransparent="true" promptText="Size" styleClass="profileTextField" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="size" editable="false" focusTraversable="false" mouseTransparent="true" promptText="Size" GridPane.rowIndex="1">
+            <TextField fx:id="gender" editable="false" focusTraversable="false" layoutX="10.0" layoutY="48.0" mouseTransparent="true" promptText="Gender" styleClass="profileTextField" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="gender" editable="false" focusTraversable="false" layoutX="10.0" layoutY="48.0" mouseTransparent="true" promptText="Gender" GridPane.rowIndex="2">
+            <TextField fx:id="localisation" editable="false" focusTraversable="false" layoutX="10.0" layoutY="9.0" mouseTransparent="true" prefWidth="206.0" promptText="Localisation" styleClass="profileTextField" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="localisation" editable="false" focusTraversable="false" layoutX="10.0" layoutY="9.0" mouseTransparent="true" promptText="Localisation" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="age" editable="false" focusTraversable="false" layoutX="10.0" layoutY="9.0" mouseTransparent="true" promptText="Age" styleClass="profileTextField" GridPane.columnIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="age" editable="false" focusTraversable="false" layoutX="10.0" layoutY="9.0" mouseTransparent="true" promptText="Age" GridPane.columnIndex="1">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="preffered_gender" editable="false" focusTraversable="false" layoutX="10.0" layoutY="9.0" mouseTransparent="true" promptText="Prefered Gender" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="preffered_gender" editable="false" focusTraversable="false" layoutX="10.0" layoutY="9.0" mouseTransparent="true" promptText="Prefered Gender" styleClass="profileTextField" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
@@ -53,7 +57,6 @@
       <ImageView fx:id="imageView" fitHeight="208.0" fitWidth="221.0" layoutX="107.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
 
       </ImageView>
-      <ListView fx:id="hobbies" layoutX="493.0" layoutY="347.0" prefHeight="214.0" prefWidth="364.0" style="-fx-background-color: transparent;" />
       <Text fill="WHITE" layoutX="464.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hobbies :" wrappingWidth="100.13671875">
          <font>
             <Font size="20.0" />
@@ -65,5 +68,6 @@
             <Font size="20.0" />
          </font></TextArea>
       <CheckBox fx:id="edit" layoutX="352.0" layoutY="12.0" mnemonicParsing="false" onAction="#editSingle" prefHeight="18.0" prefWidth="94.0" styleClass="edit" text="Edit Profile" textFill="WHITE" />
+      <FlowPane fx:id="hobbies" layoutX="464.0" layoutY="337.0" prefHeight="223.0" prefWidth="403.0" style="-fx-background-color: transparent;" styleClass="flow" />
    </children>
 </AnchorPane>

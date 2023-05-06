@@ -8,17 +8,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class profileController implements Initializable {
@@ -46,8 +45,11 @@ public class profileController implements Initializable {
     private TextField age;
     @FXML
     private TextArea bio;
+    @FXML
+    private FlowPane hobbies;
     private Single single ;
     private User user;
+
 
     public boolean newSingle = false;
 
@@ -102,6 +104,26 @@ public class profileController implements Initializable {
 
             //set bio
             this.bio.setText(this.single.getBio());
+            }
+            ArrayList<Hobbies> test = new ArrayList<Hobbies>();
+             test.add(Hobbies.Plage);
+            test.add(Hobbies.Cinema);
+            test.add(Hobbies.Cooking);
+            test.add(Hobbies.Gaming);
+            test.add(Hobbies.Music);
+            test.add(Hobbies.Sport);
+            test.add(Hobbies.Sleep);
+            test.add(Hobbies.Shopping);
+            test.add(Hobbies.Reading);
+            test.add(Hobbies.Dance);
+            test.add(Hobbies.Travel);
+
+
+
+            this.single.setHobbies(test);
+            //set hobbies
+            for (Hobbies hobby : this.single.getHobbies()) {
+                this.hobbies.getChildren().add(new Label(hobby.name()));
             }
 
             // add action listener to image

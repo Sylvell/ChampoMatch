@@ -57,7 +57,7 @@ public class Matching {
         double distanceScore = 0.0;
 
         // Calculate the distance between the two users using API Coordinates
-        API api = new API();
+        /*API api = new API();
         double distance = API.distance( api.getCityCoordinates(Single1.getLocalisation()), api.getCityCoordinates(Single2.getLocalisation()));
         if (distance <= Single1.distance*10 && distance <= Single2.distance*10) {
             distanceScore = 1.0;
@@ -66,15 +66,14 @@ public class Matching {
             double distanceRange = 1000 - Single1.distance*10;
             distanceScore = Math.max(0, (distanceRange - distanceDiff) / distanceRange);
         }
-
+*/
         // Add up the weighted scores for each criterion based on user's importance weighting
-        System.out.println(Single2.getName() + " ageScore : " + ageScore + "distanceScore : " + distanceScore);
         score = ageScore * 9 + hobbiesScore * 4 + distanceScore * 7;
 
         return score;
     }
 
-    public void findMatch(Single user, ArrayList<Single> candidates) {
+    public Single findMatch(Single user, ArrayList<Single> candidates) {
         // Initialize the best match and the maximum score
         HashMap<Integer, Single> evaluatedCandidates = new HashMap<>();
         double maxScore = 0.0;
@@ -115,6 +114,7 @@ public class Matching {
             user.candidates.add(bestMatch);
             System.out.println(maxScore);
         }
+        return bestMatch;
     }
 
     // main to test the class
@@ -122,11 +122,9 @@ public class Matching {
         Matching matching = new Matching();
         JdbcDao jdbcDao = new JdbcDao();
         ArrayList<Single> singles = JdbcDao.select_single();
-        matching.findMatch(singles.get(4), singles);
-        System.out.println("Candidates for " + singles.get(4).toString() + " :");
-        for (Single single : singles.get(4).candidates) {
-            System.out.println(single.toString());
-        }
+        System.out.println(singles.get(4).toString());
+        System.out.println(matching.findMatch(singles.get(4), singles));
+
     }
 
 }
