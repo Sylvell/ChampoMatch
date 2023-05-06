@@ -65,6 +65,8 @@ public class menuController {
     private Set<String> selectedHeights;
 
     private Set<String> selectedAges;
+    @FXML
+    private TextField search;
 
     @FXML
     public void profil(ActionEvent event){
@@ -226,28 +228,38 @@ public class menuController {
 
     }
 
-
+    /*
     public void filter(MouseEvent mouseEvent) {
         System.out.println("clicked");
         System.out.println( Arrays.toString(this.gender.getItems().toArray()));
-    }
+    }*/
 
 
     // when there are letters in the text field, only show the singles that match the letters
-    /*public void filter(KeyEvent keyEvent) {
+    public void filter(KeyEvent keyEvent) {
+        System.out.println("key pressed");
         // get the text from the text field
         String text = this.search.getText();
         // if the text is empty, show all singles
-        if (text.equals("")){
+        if (text.equals("") || text == null){
             ObservableList<Single> data = FXCollections.observableArrayList(list_to_show);
             table.setItems(data);
+            System.out.println("empty");
         }
         else
         {
             // else, show only the singles that match the text
+            System.out.println("not empty");
             ArrayList<Single> list = new ArrayList<>();
             for (Single single : list_to_show){
-                if (single.getName().toLowerCase().contains(text.toLowerCase()) || single.getFirstname().toLowerCase().contains(text.toLowerCase())){
+                // if the text contains the name and the first name, add it to the list
+                if (text.split(" ").length == 2){
+                    if (single.getName().toLowerCase().contains(text.split(" ")[0].toLowerCase()) && single.getFirstname().toLowerCase().contains(text.split(" ")[1].toLowerCase())){
+                        list.add(single);
+                    }
+                }
+                // if the name or the first name contains the text, add it to the list
+                else if (single.getName().toLowerCase().contains(text.toLowerCase()) || single.getFirstname().toLowerCase().contains(text.toLowerCase())){
                     list.add(single);
                 }
             }
@@ -255,7 +267,7 @@ public class menuController {
             table.setItems(data);
         }
     }
-   */
+
 
 }
 
