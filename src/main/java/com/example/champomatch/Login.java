@@ -27,7 +27,7 @@ public class Login extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
         Parent root2 = loader.load();
         LoginController controller = loader.getController();
-        controller.stage = stage;
+        LoginController.stage = stage;
         Scene scene2 = new Scene(root2, 1550, 850);
 
         // Afficher la première scène

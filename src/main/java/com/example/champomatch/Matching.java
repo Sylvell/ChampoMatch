@@ -58,7 +58,7 @@ public class Matching {
 
         // Calculate the distance between the two users using API Coordinates
         API api = new API();
-        double distance = api.distance( api.getCityCoordinates(Single1.getLocalisation()), api.getCityCoordinates(Single2.getLocalisation()));
+        double distance = API.distance( api.getCityCoordinates(Single1.getLocalisation()), api.getCityCoordinates(Single2.getLocalisation()));
         if (distance <= Single1.distance*10 && distance <= Single2.distance*10) {
             distanceScore = 1.0;
         } else {
@@ -121,7 +121,7 @@ public class Matching {
     public static void main(String[] args) {
         Matching matching = new Matching();
         JdbcDao jdbcDao = new JdbcDao();
-        ArrayList<Single> singles = jdbcDao.select_single();
+        ArrayList<Single> singles = JdbcDao.select_single();
         matching.findMatch(singles.get(4), singles);
         System.out.println("Candidates for " + singles.get(4).toString() + " :");
         for (Single single : singles.get(4).candidates) {

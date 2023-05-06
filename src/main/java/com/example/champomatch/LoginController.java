@@ -69,7 +69,7 @@ public class LoginController implements Initializable {
                 //fermer la fenetre de login pour afficher la fenetre menu.fxml
                 ((Node) (event.getSource())).getScene().getWindow().hide();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
-                Pane root = (Pane) loader.load();
+                Pane root = loader.load();
                 menuController menuController = loader.getController();
                 menuController.setUser(user);
                 Scene scene = new Scene(root);

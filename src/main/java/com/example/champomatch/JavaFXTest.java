@@ -39,7 +39,7 @@ public class JavaFXTest extends Application {
         VIOLET(Color.VIOLET),
         WHITE(Color.WHITE);
 
-        private Color color;
+        private final Color color;
 
         Colors(Color color) {
             this.color = color;

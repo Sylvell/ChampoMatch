@@ -40,7 +40,7 @@ public class usersListController  implements Initializable {
     public void goback(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
-            Parent root = (Parent) loader.load();
+            Parent root = loader.load();
             menuController controller = loader.getController();
             controller.setUser(user);
             Scene scene = new Scene(root);
@@ -79,7 +79,7 @@ public class usersListController  implements Initializable {
                         // go to profile page
                         try {
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("userProfile.fxml"));
-                            Parent root = (Parent) loader.load();
+                            Parent root = loader.load();
                             userProfileController controller = loader.getController();
                             controller.setUser(selectedItem);
                             controller.setConnectedUser(this.user);
@@ -104,7 +104,7 @@ public class usersListController  implements Initializable {
             // go to profile page
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("userProfile.fxml"));
-                Parent root = (Parent) loader.load();
+                Parent root = loader.load();
                 userProfileController controller = loader.getController();
                 controller.setUser(null);
                 controller.setConnectedUser(this.user);

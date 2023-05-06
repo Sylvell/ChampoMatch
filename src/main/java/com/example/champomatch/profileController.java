@@ -60,7 +60,7 @@ public class profileController implements Initializable {
     public void goback(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
-            Parent root = (Parent) loader.load();
+            Parent root = loader.load();
             menuController controller = loader.getController();
             controller.setUser(user);
             Scene scene = new Scene(root);

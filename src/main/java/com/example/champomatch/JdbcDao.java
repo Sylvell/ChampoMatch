@@ -179,7 +179,7 @@ public class JdbcDao {
         preparedStatement.setString(13, single.getPp());
         preparedStatement.setInt(14, id);
         preparedStatement.executeUpdate();
-        System.out.println("single updated" + "\n" + preparedStatement.toString());
+        System.out.println("single updated" + "\n" + preparedStatement);
 
 
 

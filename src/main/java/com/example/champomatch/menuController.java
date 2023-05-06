@@ -4,7 +4,6 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -18,7 +17,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Set;
 
 public class menuController {
@@ -130,7 +128,7 @@ public class menuController {
                     // go to profile page
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("profile.fxml"));
-                        Parent root = (Parent) loader.load();
+                        Parent root = loader.load();
                         profileController controller = loader.getController();
                         controller.setSingle(selectedItem);
                         controller.setUser(this.user);
@@ -162,7 +160,7 @@ public class menuController {
        // go to profile page
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("profile.fxml"));
-            Parent root = (Parent) loader.load();
+            Parent root = loader.load();
             profileController controller = loader.getController();
             controller.setSingle(new Single());
             controller.setUser(this.user);
@@ -180,7 +178,7 @@ public class menuController {
     public void users(ActionEvent actionEvent){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("usersList.fxml"));
-            Parent root = (Parent) loader.load();
+            Parent root = loader.load();
             usersListController controller = loader.getController();
             controller.setUser(this.user);
             Scene scene = new Scene(root);
@@ -205,7 +203,7 @@ public class menuController {
         // go to login page
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
-            Parent root = (Parent) loader.load();
+            Parent root = loader.load();
             LoginController controller = loader.getController();
             Scene scene = new Scene(root,1550,850);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -237,19 +235,16 @@ public class menuController {
 
     // when there are letters in the text field, only show the singles that match the letters
     public void filter(KeyEvent keyEvent) {
-        System.out.println("key pressed");
         // get the text from the text field
         String text = this.search.getText();
         // if the text is empty, show all singles
-        if (text.equals("") || text == null){
+        if (text.equals("")){
             ObservableList<Single> data = FXCollections.observableArrayList(list_to_show);
             table.setItems(data);
-            System.out.println("empty");
         }
         else
         {
             // else, show only the singles that match the text
-            System.out.println("not empty");
             ArrayList<Single> list = new ArrayList<>();
             for (Single single : list_to_show){
                 // if the text contains the name and the first name, add it to the list

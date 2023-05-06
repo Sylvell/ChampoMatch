@@ -54,7 +54,7 @@ public class userProfileController  implements Initializable {
     public void goback(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("usersList.fxml"));
-            Parent root = (Parent) loader.load();
+            Parent root = loader.load();
             usersListController controller = loader.getController();
             controller.setUser(user);
             Scene scene = new Scene(root);
