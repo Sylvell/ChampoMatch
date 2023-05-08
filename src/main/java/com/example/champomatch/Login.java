@@ -31,6 +31,7 @@ public class Login extends Application {
         Scene scene2 = new Scene(root2, 1550, 850);
 
         // Afficher la première scène
+
         stage.setScene(scene1);
         stage.show();
 

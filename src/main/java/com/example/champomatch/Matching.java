@@ -56,13 +56,12 @@ public class Matching {
 
         //Hobbies
         double hobbiesScore = 0.0;
-        ArrayList<Hobbies> communHobbies = Single1.getHobbies();
+        ArrayList<Hobbies> communHobbies = new ArrayList<Hobbies>(Single1.getHobbies());
         communHobbies.retainAll(Single2.getHobbies());
-        hobbiesScore = communHobbies.size();
-        /*hobbiesScore = communHobbies.size()/Single1.getHobbies().size();
-        if (hobbiesScore <= 0.25){
+        hobbiesScore = (double) communHobbies.size()/ (double) Single1.getHobbies().size();
+        if (hobbiesScore <= 0.01){
             return 0;
-        }*/
+        }
 
         // Calculate the distance between the two users using API Coordinates
         /*API api = new API();
