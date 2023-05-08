@@ -16,17 +16,17 @@ public class JdbcDao {
     private static final String SELECT_QUERY = "SELECT * FROM registration WHERE email_id = ? and password = ?";
     static Connection connection;
 
-    private static ArrayList<Single> SinglesCache;
-
-    {
-        try {
-            if (connection == null){
+    public JdbcDao(){
+        if (connection == null){
+            try {
                 connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
     }
+
+    private static ArrayList<Single> SinglesCache;
 
 
     public boolean validate(String emailId, String password) throws SQLException {
@@ -114,7 +114,7 @@ public class JdbcDao {
             return SinglesCache;
         }
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM single");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM single LIMIT 30");
             ResultSet resultSet = preparedStatement.executeQuery();
 
             ArrayList<Single> singles_list = new ArrayList<Single>();
