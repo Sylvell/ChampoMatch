@@ -148,9 +148,20 @@ public class menuController {
                 findAMatchItem.setOnAction(event1 -> {
                     Single selectedItem = table.getSelectionModel().getSelectedItem();
                     if (selectedItem != null) {
-                        Matching matching = new Matching();
-                        ArrayList<Single> singles = JdbcDao.select_single();
-                        matching.findMatch(selectedItem, singles);
+                        // go to match page
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("match.fxml"));
+                            Parent root = loader.load();
+                            matchController controller = loader.getController();
+                            controller.setSingle(selectedItem);
+                            controller.setUserConnected(this.user);
+                            Scene scene = new Scene(root);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene);
+                            stage.show();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
                     }
                 });
                 contextMenu.getItems().add(findAMatchItem);

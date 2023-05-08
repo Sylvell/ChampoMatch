@@ -58,7 +58,7 @@ public class Matching {
         double hobbiesScore = 0.0;
         ArrayList<Hobbies> communHobbies = Single1.getHobbies();
         communHobbies.retainAll(Single2.getHobbies());
-        hobbiesScore = communHobbies.size() / Single1.getHobbies().size();
+        hobbiesScore = communHobbies.size() / 3;
         if (hobbiesScore < 0.25){
             return 0;
         }
@@ -80,7 +80,7 @@ public class Matching {
         return score;
     }
 
-    public Single findMatch(Single user, ArrayList<Single> candidates) {
+    public  Tuple findMatch(Single user, ArrayList<Single> candidates) {
         // Initialize the best match and the maximum score
         HashMap<Integer, Single> evaluatedCandidates = new HashMap<>();
         double maxScore = 0.0;
@@ -120,7 +120,9 @@ public class Matching {
         if (bestMatch != null ) {
             user.candidates.add(bestMatch);
         }
-        return bestMatch;
+
+
+        return new Tuple( maxScore, bestMatch);
     }
 
     // main to test the class
