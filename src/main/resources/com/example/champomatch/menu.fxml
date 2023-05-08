@@ -68,27 +68,27 @@
          <items>
             <MenuItem mnemonicParsing="false" text="moins de 1m50">
                <graphic>
-                  <CheckBox fx:id="taille1" mnemonicParsing="false" />
+                  <CheckBox fx:id="height1" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
             <MenuItem mnemonicParsing="false" text="1m50 - 1m60">
                <graphic>
-                  <CheckBox fx:id="taille2" mnemonicParsing="false" />
+                  <CheckBox fx:id="height2" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
             <MenuItem mnemonicParsing="false" text="1m60 - 1m70">
                <graphic>
-                  <CheckBox fx:id="taille3" mnemonicParsing="false" />
+                  <CheckBox fx:id="height3" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
             <MenuItem mnemonicParsing="false" text="1m70 - 1m80">
                <graphic>
-                  <CheckBox fx:id="taille4" mnemonicParsing="false" />
+                  <CheckBox fx:id="height4" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
             <MenuItem mnemonicParsing="false" text="plus de 1m80">
                <graphic>
-                  <CheckBox fx:id="taille5" mnemonicParsing="false" />
+                  <CheckBox fx:id="height5" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
          </items>
