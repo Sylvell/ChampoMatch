@@ -58,12 +58,36 @@ public class menuController {
     @FXML
     private Label userText;
     private User user;
+    @FXML
+    private CheckBox malecheck;
+    @FXML
+    private CheckBox femalecheck;
+    @FXML
+    private CheckBox othercheck;
+    @FXML
+    private CheckBox age1;
+    @FXML
+    private CheckBox age2;
+    @FXML
+    private CheckBox age3;
+    @FXML
+    private CheckBox age4;
+    @FXML
+    private CheckBox age5;
+    @FXML
+    private CheckBox height1;
+    @FXML
+    private CheckBox height2;
+    @FXML
+    private CheckBox height3;
+    @FXML
+    private CheckBox height4;
+    @FXML
+    private CheckBox height5;
 
-    private Set<Gender> selectedGenders;
 
-    private Set<String> selectedHeights;
 
-    private Set<String> selectedAges;
+
     @FXML
     private TextField search;
 
@@ -245,7 +269,6 @@ public class menuController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("unready.fxml"));
             Parent root = loader.load();
-            LoginController controller = loader.getController();
             Scene scene = new Scene(root,900,600);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -302,7 +325,16 @@ public class menuController {
             ObservableList<Single> data = FXCollections.observableArrayList(list);
             table.setItems(data);
         }
+
+
+
+
+
     }
+
+
+
+
 
 
 }
