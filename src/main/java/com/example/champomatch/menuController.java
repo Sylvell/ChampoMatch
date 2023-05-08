@@ -245,7 +245,6 @@ public class menuController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("unready.fxml"));
             Parent root = loader.load();
-            LoginController controller = loader.getController();
             Scene scene = new Scene(root,900,600);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(scene);

@@ -29,7 +29,7 @@
             <Font name="Constantia Bold" size="43.0" />
          </font>
       </Label>
-      <Button fx:id="returns" layoutX="342.0" layoutY="460.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="176.0" style="-fx-background-color: White;" text="Return to the menu" textFill="#ff0101">
+      <Button fx:id="returns" layoutX="342.0" layoutY="460.0" onAction="#goback" mnemonicParsing="false" prefHeight="52.0" prefWidth="176.0" style="-fx-background-color: White;" text="Return to the menu" textFill="#ff0101">
          <font>
             <Font size="15.0" />
          </font>
