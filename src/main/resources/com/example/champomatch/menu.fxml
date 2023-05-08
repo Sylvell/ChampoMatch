@@ -7,7 +7,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(#e3733d, #f1e034);" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.champomatch.menuController">
    <children>
-         <TextField layoutX="360.0" fx:id="search" prefHeight="56.0" prefWidth="540.0" promptText="Type a name"  onKeyReleased="#filter">
+         <TextField fx:id="search" layoutX="360.0" onKeyReleased="#filter" prefHeight="56.0" prefWidth="540.0" promptText="Type a name">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></TextField>
@@ -109,7 +109,7 @@
             <Button fx:id="bp3" mnemonicParsing="false" prefHeight="82.0" prefWidth="180.0" text="Clients" GridPane.rowIndex="1" />
             <Button fx:id="bp4" mnemonicParsing="false" onAction="#disconnect" prefHeight="75.0" prefWidth="181.0" text="Disconnect" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Button fx:id="bp5" mnemonicParsing="false" onAction="#ajoutClient" prefHeight="79.0" prefWidth="182.0" text="Ajout client" GridPane.rowIndex="2" />
-            <Button fx:id="bp6" mnemonicParsing="false" prefHeight="75.0" prefWidth="202.0" text="Rendez-vous" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="bp6" mnemonicParsing="false" onAction="#unready" prefHeight="75.0" prefWidth="202.0" text="Rendez-vous" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <HBox prefHeight="56.0" prefWidth="360.0">
@@ -127,6 +127,6 @@
          </children>
       </HBox>
       <ListView editable="true" layoutY="265.0" prefHeight="335.0" prefWidth="360.0" style="-fx-background-color: transparent;" />
-      <TableView fx:id="table" layoutX="360.0" layoutY="81.0" prefHeight="519.0" prefWidth="540.0" style="-fx-background-color: transparent;" />
+      <TableView fx:id="table" layoutX="360.0" layoutY="81.0" prefHeight="525.0" prefWidth="540.0" style="-fx-background-color: transparent;" />
    </children>
 </Pane>

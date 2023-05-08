@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(#f1e034, #e3733d);;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(#f1e034, #e3733d);;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button layoutX="244.0" layoutY="432.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="134.0" style="-fx-background-color: linear-gradient(#a6ff49, #d5fa4f);" text="Accept" textFill="#10650a">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Button>
-      <Button layoutX="425.0" layoutY="432.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="134.0" style="-fx-background-color: linear-gradient(#f8133e, #e36d58);" text="Refuse" textFill="#790303">
+      <Button layoutX="526.0" layoutY="432.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="134.0" style="-fx-background-color: linear-gradient(#f8133e, #e36d58);" text="Refuse" textFill="#790303">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
@@ -25,13 +25,13 @@
             <Image url="@images/PP_fun.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="202.0" fitWidth="218.0" layoutX="492.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="202.0" fitWidth="218.0" layoutX="593.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/PP_fun.jpg" />
          </image>
       </ImageView>
-      <Separator layoutX="386.0" layoutY="-6.0" orientation="VERTICAL" prefHeight="607.0" prefWidth="28.0" />
-      <ImageView fitHeight="196.0" fitWidth="140.0" layoutX="330.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+      <Separator layoutX="442.0" layoutY="-14.0" orientation="VERTICAL" prefHeight="611.0" prefWidth="28.0" />
+      <ImageView fitHeight="196.0" fitWidth="140.0" layoutX="386.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/Coeur.gif" />
          </image>
@@ -41,12 +41,12 @@
             <Font size="21.0" />
          </font>
       </Label>
-      <Label fx:id="nom2" layoutX="492.0" layoutY="301.0" prefHeight="82.0" prefWidth="202.0" text="Label" textAlignment="CENTER">
+      <Label fx:id="nom2" layoutX="593.0" layoutY="301.0" prefHeight="82.0" prefWidth="202.0" text="Label" textAlignment="CENTER">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
-      <Label fx:id="pourcent" layoutX="362.0" layoutY="159.0" prefHeight="82.0" prefWidth="77.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="pourcent" layoutX="432.0" layoutY="149.0" prefHeight="82.0" prefWidth="77.0" text="Label" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
