@@ -192,8 +192,6 @@ public class menuController {
 
 
 
-
-
     public void setUser(User user) {
         // set the user
         this.user = user;
@@ -206,6 +204,21 @@ public class menuController {
             Parent root = loader.load();
             LoginController controller = loader.getController();
             Scene scene = new Scene(root,1550,850);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void unready(ActionEvent actionEvent) {
+        // go to unready page
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("unready.fxml"));
+            Parent root = loader.load();
+            LoginController controller = loader.getController();
+            Scene scene = new Scene(root,900,600);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.centerOnScreen();
