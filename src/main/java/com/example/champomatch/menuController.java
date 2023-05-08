@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -122,7 +123,7 @@ public class menuController {
         table.setItems(data);
 
         table.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) { // check if it's a double click
+            if (event.getClickCount() == 2 && event.getButton() == MouseButton.PRIMARY) { // check if it's a double click and left click
                 Single selectedItem = table.getSelectionModel().getSelectedItem();
                 if (selectedItem != null) {
                     // go to profile page
@@ -140,7 +141,23 @@ public class menuController {
                         ex.printStackTrace();
                     }
                 }
+            } else if (event.getButton() == MouseButton.SECONDARY) { // check if it's a right click
+                // show context menu
+                ContextMenu contextMenu = new ContextMenu();
+                MenuItem findAMatchItem = new MenuItem("Find a match");
+                findAMatchItem.setOnAction(event1 -> {
+                    Single selectedItem = table.getSelectionModel().getSelectedItem();
+                    if (selectedItem != null) {
+                        Matching matching = new Matching();
+                        ArrayList<Single> singles = JdbcDao.select_single();
+                        matching.findMatch(selectedItem, singles);
+                    }
+                });
+                contextMenu.getItems().add(findAMatchItem);
+                table.setContextMenu(contextMenu);
             }
+
+
         });
 
         // action listener for menu buttons

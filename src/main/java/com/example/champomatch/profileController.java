@@ -120,7 +120,7 @@ public class profileController implements Initializable {
 
 
 
-            this.single.setHobbies(test);
+            //this.single.setHobbies(test);
             //set hobbies
             for (Hobbies hobby : this.single.getHobbies()) {
                 this.hobbies.getChildren().add(new Label(hobby.name()));

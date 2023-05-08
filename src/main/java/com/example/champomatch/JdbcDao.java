@@ -16,6 +16,8 @@ public class JdbcDao {
     private static final String SELECT_QUERY = "SELECT * FROM registration WHERE email_id = ? and password = ?";
     static Connection connection;
 
+    private static ArrayList<Single> SinglesCache;
+
     {
         try {
             if (connection == null){
@@ -108,6 +110,9 @@ public class JdbcDao {
         // function to execute an sql select and return fetch result in an array
 
     public static ArrayList<Single> select_single() {
+        if (SinglesCache != null){
+            return SinglesCache;
+        }
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM single");
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -129,11 +134,17 @@ public class JdbcDao {
                         resultSet.getInt("minimum_age"),
                         resultSet.getInt("maximum_age"),
                         resultSet.getBoolean("is_alone"));
-
+                // add hobbies to the single from the hobbies table
+                preparedStatement = connection.prepareStatement("SELECT * FROM hobbies WHERE single_id=?");
+                preparedStatement.setInt(1, person.getId());
+                ResultSet hobbies_resultSet = preparedStatement.executeQuery();
+                while (hobbies_resultSet.next()) {
+                    person.addHobby(Hobbies.valueOf(hobbies_resultSet.getString("name")));
+                }
 
                 singles_list.add(person);
             }
-
+            SinglesCache = singles_list;
             return singles_list;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -216,10 +227,10 @@ public class JdbcDao {
 
         // insert hobbies
         for (Hobbies hobby : single.getHobbies()) {
-            sql = "INSERT INTO hobbies  VALUES (Default,?, ?)";
+            sql = "INSERT INTO hobbies  VALUES (Default,?, ?,'None')";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, single.getId());
-            preparedStatement.setString(2, hobby.toString());
+            preparedStatement.setString(2, hobby.name());
             preparedStatement.executeUpdate();
         }
 
