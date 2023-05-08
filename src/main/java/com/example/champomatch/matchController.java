@@ -40,11 +40,19 @@ public class matchController {
             Matching matching = new Matching();
             JdbcDao jdbcDao = new JdbcDao();
             ArrayList<Single> singles = JdbcDao.select_single();
-            Tuple match = matching.findMatch(singles.get(4), singles);
-            this.nom2.setText(match.getSingle().getFirstname() + " " + match.getSingle().getName());
-            this.percent.setText(match.getScore() + "%");
+            Tuple match = matching.findMatch(this.single, singles);
+            if (match.getSingle() == null) {
+                this.nom2.setText("No match found");
+                this.percent.setText("0%");
+                return;
+            }else{
+                this.nom2.setText(match.getSingle().getFirstname() + " " + match.getSingle().getName());
+                this.percent.setText(match.getScore() + "%");
+                new ImageLoader(this.pp2, match.getSingle().getPp());
+
+            }
+
             new ImageLoader(this.pp1, this.single.getPp());
-            new ImageLoader(this.pp2, match.getSingle().getPp());
         });
     }
 }
