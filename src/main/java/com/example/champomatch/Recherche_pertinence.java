@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Recherche_pertinence {
+    public static JdbcDao jdbcDao = new JdbcDao();
 
     public static HashMap<Hobbies, ArrayList<Integer>> dico_hobbies = new HashMap<Hobbies, ArrayList<Integer>>();
     public static HashMap<Gender, ArrayList<Integer>> dico_genders = new HashMap<Gender, ArrayList<Integer>>();
@@ -14,7 +15,7 @@ public class Recherche_pertinence {
 
     public static HashMap<String, ArrayList<Integer>> dico_height = new HashMap<String, ArrayList<Integer>>();
 
-    public static ArrayList<Single> single_list = JdbcDao.select_single();
+    public static ArrayList<Single> single_list = jdbcDao.select_single();
 
 
     public static void fill_dico_hobbies() {

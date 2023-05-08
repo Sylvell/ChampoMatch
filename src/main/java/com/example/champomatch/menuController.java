@@ -160,8 +160,8 @@ public class menuController {
         table.setItems(data);
 
         table.setOnMouseClicked(event -> {
+            Single selectedItem = table.getSelectionModel().getSelectedItem();
             if (event.getClickCount() == 2 && event.getButton() == MouseButton.PRIMARY) { // check if it's a double click and left click
-                Single selectedItem = table.getSelectionModel().getSelectedItem();
                 if (selectedItem != null) {
                     // go to profile page
                     try {
@@ -183,7 +183,6 @@ public class menuController {
                 ContextMenu contextMenu = new ContextMenu();
                 MenuItem findAMatchItem = new MenuItem("Find a match");
                 findAMatchItem.setOnAction(event1 -> {
-                    Single selectedItem = table.getSelectionModel().getSelectedItem();
                     if (selectedItem != null) {
                         // go to match page
                         try {
@@ -192,8 +191,9 @@ public class menuController {
                             matchController controller = loader.getController();
                             controller.setSingle(selectedItem);
                             controller.setUserConnected(this.user);
-                            Scene scene = new Scene(root);
+                            Scene scene = new Scene(root,900,600);
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.centerOnScreen();
                             stage.setScene(scene);
                             stage.show();
                         } catch (IOException ex) {
@@ -282,7 +282,6 @@ public class menuController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("unready.fxml"));
             Parent root = loader.load();
-            LoginController controller = loader.getController();
             Scene scene = new Scene(root,900,600);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(scene);

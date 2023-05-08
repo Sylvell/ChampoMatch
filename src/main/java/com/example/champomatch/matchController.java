@@ -3,6 +3,7 @@ package com.example.champomatch;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,25 +18,33 @@ public class matchController {
     @FXML
     private Label percent;
 
+    @FXML
+    private ImageView pp1;
+
+    @FXML
+    private ImageView pp2;
+
     private User userConnected;
     public void setUserConnected(User userConnected) {
         this.userConnected = userConnected;
     }
 
     private Single single;
-    public void setSingle(Single user) {
+    public void setSingle(Single single) {
         this.single = single;
     }
     @FXML
     public void initialize() {
         Platform.runLater(() -> {
-            nom1.setText(single.getFirstname() + " " + single.getName());
+            this.nom1.setText(single.getFirstname() + " " + single.getName());
             Matching matching = new Matching();
             JdbcDao jdbcDao = new JdbcDao();
             ArrayList<Single> singles = JdbcDao.select_single();
             Tuple match = matching.findMatch(singles.get(4), singles);
-            nom2.setText(match.getSingle().getFirstname() + " " + match.getSingle().getName());
-            percent.setText(match.getScore() + "%");
+            this.nom2.setText(match.getSingle().getFirstname() + " " + match.getSingle().getName());
+            this.percent.setText(match.getScore() + "%");
+            new ImageLoader(this.pp1, this.single.getPp());
+            new ImageLoader(this.pp2, match.getSingle().getPp());
         });
-        }
+    }
 }

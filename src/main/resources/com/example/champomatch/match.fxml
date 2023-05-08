@@ -20,15 +20,9 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Button>
-      <ImageView fitHeight="202.0" fitWidth="218.0" layoutX="109.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/PP_fun.jpg" />
-         </image>
+      <ImageView fx:id="pp1" fitHeight="202.0" fitWidth="218.0" layoutX="109.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
       </ImageView>
-      <ImageView fitHeight="202.0" fitWidth="218.0" layoutX="593.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/PP_fun.jpg" />
-         </image>
+      <ImageView fx:id="pp2" fitHeight="202.0" fitWidth="218.0" layoutX="593.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
       </ImageView>
       <Separator layoutX="442.0" layoutY="-14.0" orientation="VERTICAL" prefHeight="611.0" prefWidth="28.0" />
       <ImageView fitHeight="196.0" fitWidth="140.0" layoutX="386.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
@@ -46,7 +40,7 @@
             <Font size="21.0" />
          </font>
       </Label>
-      <Label fx:id="pourcent" layoutX="432.0" layoutY="149.0" prefHeight="82.0" prefWidth="77.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="percent" layoutX="432.0" layoutY="149.0" prefHeight="82.0" prefWidth="77.0" text="Label" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
