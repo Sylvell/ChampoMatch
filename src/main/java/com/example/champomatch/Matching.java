@@ -46,15 +46,22 @@ public class Matching {
             ageScore = Math.max(0, (ageRange - ageDiff) / ageRange);
         }*/
 
-        double hobbiesScore = 0.0;
-        for (Hobbies hobby : Single1.hobbies) {
-            if (Single2.hobbies.contains(hobby)) {
-                hobbiesScore += 1.0 / Single1.hobbies.size();
-            }
-        }
+
+        // Calculate the score for each criterion based on user's height
+        double heightScore = 0.0;
+        heightScore = 1.0 - Math.abs(Single1.getHeight() - Single2.getHeight()) / 100.0;
         
 
         double distanceScore = 0.0;
+
+        //Hobbies
+        double hobbiesScore = 0.0;
+        ArrayList<Hobbies> communHobbies = Single1.getHobbies();
+        communHobbies.retainAll(Single2.getHobbies());
+        hobbiesScore = communHobbies.size() / Single1.getHobbies().size();
+        if (hobbiesScore < 0.25){
+            return 0;
+        }
 
         // Calculate the distance between the two users using API Coordinates
         /*API api = new API();
@@ -68,7 +75,7 @@ public class Matching {
         }
 */
         // Add up the weighted scores for each criterion based on user's importance weighting
-        score = ageScore * 9 + hobbiesScore * 4 + distanceScore * 7;
+        score = ageScore * 9 + hobbiesScore * 7 + distanceScore * 2 + heightScore * 3;
 
         return score;
     }
@@ -112,7 +119,6 @@ public class Matching {
         // Add the best match to the user's candidate list
         if (bestMatch != null ) {
             user.candidates.add(bestMatch);
-            System.out.println(maxScore);
         }
         return bestMatch;
     }

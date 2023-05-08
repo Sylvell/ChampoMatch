@@ -42,6 +42,15 @@ public class createSingle {
 
             // create single
             Single s = new Single(lastName,firstName,age,height,gender,imagelink,prefferedGender,bio,city,distance,minAge,maxAge);
+            // add hobbies
+            int nbreHobbies = (int) (Math.random() * 5) + 1;
+            for ( i = 0; i < nbreHobbies; i++) {
+                // get random Hobby
+                Hobbies[] valuesHob = Hobbies.values();
+                Hobbies hobby = valuesHob[(int) (Math.random() * values.length)];
+                s.addHobby(hobby);
+
+            }
             System.out.println(s);
             try {
                 s.ExportToDb();
