@@ -114,6 +114,7 @@ public class Matching {
 
             // Add the candidate to the evaluated candidates list
             evaluatedCandidates.put(candidate.id, candidate);
+            System.out.println("Candidate " + candidate.id + " evaluated" + " score: " + score);
         }
 
         // Add the best match to the user's candidate list
@@ -130,7 +131,8 @@ public class Matching {
         Matching matching = new Matching();
         JdbcDao jdbcDao = new JdbcDao();
         ArrayList<Single> singles = JdbcDao.select_single();
-        System.out.println(singles.get(4).toString());
+        System.out.println(singles.get(10).toString());
+        System.out.println(singles.get(2).toString());
         System.out.println(matching.findMatch(singles.get(4), singles));
 
     }
