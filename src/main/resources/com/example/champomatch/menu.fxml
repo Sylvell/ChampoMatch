@@ -15,22 +15,22 @@
          <items>
             <MenuItem mnemonicParsing="false" text="Homme">
                <graphic>
-                  <CheckBox mnemonicParsing="false" />
+                  <CheckBox fx:id="malecheck" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
             <MenuItem mnemonicParsing="false" text="Femme">
                <graphic>
-                  <CheckBox mnemonicParsing="false" />
+                  <CheckBox fx:id="femalecheck" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
             <MenuItem mnemonicParsing="false" text="Non binaire">
                <graphic>
-                  <CheckBox mnemonicParsing="false" />
+                  <CheckBox fx:id="nbcheck" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
             <MenuItem mnemonicParsing="false" text="Autres">
                <graphic>
-                  <CheckBox mnemonicParsing="false" />
+                  <CheckBox fx:id="othercheck" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
          </items>
@@ -39,27 +39,27 @@
          <items>
             <MenuItem mnemonicParsing="false" text="18 - 24 ans">
                <graphic>
-                  <CheckBox mnemonicParsing="false" />
+                  <CheckBox fx:id="age1" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
             <MenuItem mnemonicParsing="false" text="25 - 32 ans">
                <graphic>
-                  <CheckBox mnemonicParsing="false" />
+                  <CheckBox fx:id="age2" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
             <MenuItem mnemonicParsing="false" text="33 - 42 ans">
                <graphic>
-                  <CheckBox mnemonicParsing="false" />
+                  <CheckBox fx:id="age3" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
             <MenuItem mnemonicParsing="false" text="42 - 50 ans">
                <graphic>
-                  <CheckBox mnemonicParsing="false" />
+                  <CheckBox fx:id="age4" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
             <MenuItem mnemonicParsing="false" text="+ 50 ans">
                <graphic>
-                  <CheckBox mnemonicParsing="false" />
+                  <CheckBox fx:id="age5" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
          </items>
@@ -68,27 +68,27 @@
          <items>
             <MenuItem mnemonicParsing="false" text="moins de 1m50">
                <graphic>
-                  <CheckBox mnemonicParsing="false" />
+                  <CheckBox fx:id="taille1" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
             <MenuItem mnemonicParsing="false" text="1m50 - 1m60">
                <graphic>
-                  <CheckBox mnemonicParsing="false" />
+                  <CheckBox fx:id="taille2" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
             <MenuItem mnemonicParsing="false" text="1m60 - 1m70">
                <graphic>
-                  <CheckBox mnemonicParsing="false" />
+                  <CheckBox fx:id="taille3" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
             <MenuItem mnemonicParsing="false" text="1m70 - 1m80">
                <graphic>
-                  <CheckBox mnemonicParsing="false" />
+                  <CheckBox fx:id="taille4" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
             <MenuItem mnemonicParsing="false" text="plus de 1m80">
                <graphic>
-                  <CheckBox mnemonicParsing="false" />
+                  <CheckBox fx:id="taille5" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
          </items>
