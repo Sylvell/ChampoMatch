@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -146,7 +147,7 @@ public class menuController {
         table.setItems(data);
 
         table.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) { // check if it's a double click
+            if (event.getClickCount() == 2 && event.getButton() == MouseButton.PRIMARY) { // check if it's a double click and left click
                 Single selectedItem = table.getSelectionModel().getSelectedItem();
                 if (selectedItem != null) {
                     // go to profile page
@@ -164,7 +165,34 @@ public class menuController {
                         ex.printStackTrace();
                     }
                 }
+            } else if (event.getButton() == MouseButton.SECONDARY) { // check if it's a right click
+                // show context menu
+                ContextMenu contextMenu = new ContextMenu();
+                MenuItem findAMatchItem = new MenuItem("Find a match");
+                findAMatchItem.setOnAction(event1 -> {
+                    Single selectedItem = table.getSelectionModel().getSelectedItem();
+                    if (selectedItem != null) {
+                        // go to match page
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("match.fxml"));
+                            Parent root = loader.load();
+                            matchController controller = loader.getController();
+                            controller.setSingle(selectedItem);
+                            controller.setUserConnected(this.user);
+                            Scene scene = new Scene(root);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene);
+                            stage.show();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+                contextMenu.getItems().add(findAMatchItem);
+                table.setContextMenu(contextMenu);
             }
+
+
         });
 
         // action listener for menu buttons
@@ -216,8 +244,6 @@ public class menuController {
 
 
 
-
-
     public void setUser(User user) {
         // set the user
         this.user = user;
@@ -230,6 +256,21 @@ public class menuController {
             Parent root = loader.load();
             LoginController controller = loader.getController();
             Scene scene = new Scene(root,1550,850);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void unready(ActionEvent actionEvent) {
+        // go to unready page
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("unready.fxml"));
+            Parent root = loader.load();
+            LoginController controller = loader.getController();
+            Scene scene = new Scene(root,900,600);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.centerOnScreen();
