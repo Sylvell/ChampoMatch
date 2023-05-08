@@ -30,20 +30,25 @@
             <Image url="@images/PP_fun.jpg" />
          </image>
       </ImageView>
-      <Separator layoutX="386.0" layoutY="-6.0" orientation="VERTICAL" prefHeight="613.0" prefWidth="28.0" />
+      <Separator layoutX="386.0" layoutY="-6.0" orientation="VERTICAL" prefHeight="607.0" prefWidth="28.0" />
       <ImageView fitHeight="196.0" fitWidth="140.0" layoutX="330.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/Coeur.gif" />
          </image>
       </ImageView>
-      <Label layoutX="109.0" layoutY="301.0" prefHeight="82.0" prefWidth="202.0" text="Label" textAlignment="CENTER">
+      <Label fx:id="nom1" layoutX="109.0" layoutY="301.0" prefHeight="82.0" prefWidth="202.0" text="Label" textAlignment="CENTER">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
-      <Label layoutX="492.0" layoutY="301.0" prefHeight="82.0" prefWidth="202.0" text="Label" textAlignment="CENTER">
+      <Label fx:id="nom2" layoutX="492.0" layoutY="301.0" prefHeight="82.0" prefWidth="202.0" text="Label" textAlignment="CENTER">
          <font>
             <Font size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="pourcent" layoutX="362.0" layoutY="159.0" prefHeight="82.0" prefWidth="77.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="21.0" />
          </font>
       </Label>
    </children>
