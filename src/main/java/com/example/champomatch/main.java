@@ -14,7 +14,6 @@ public class main {
                     Hobbies[] values = Hobbies.values();
                     Hobbies hobby = values[(int) (Math.random() * values.length)];
                     s.addHobby(hobby);
-
                 }
                 try {
                     s.ExportToDb();

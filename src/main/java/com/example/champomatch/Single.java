@@ -321,6 +321,6 @@ public String getStatus() {
                 ", minimunAge=" + minimunAge +
                 ", maximunAge=" + maximunAge +
                 ", isAlone=" + isAlone +
-                ", status=" + status ;
+                ", status=" + status;
     }
 }

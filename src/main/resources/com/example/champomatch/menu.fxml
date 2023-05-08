@@ -13,22 +13,22 @@
          </font></TextField>
       <MenuButton fx:id="gender" layoutX="360.0" layoutY="55.0" mnemonicParsing="false" text="Sexe">
          <items>
-            <MenuItem mnemonicParsing="false" text="Homme">
+            <MenuItem mnemonicParsing="false" text="Male">
                <graphic>
                   <CheckBox fx:id="malecheck" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
-            <MenuItem mnemonicParsing="false" text="Femme">
+            <MenuItem mnemonicParsing="false" text="Female">
                <graphic>
                   <CheckBox fx:id="femalecheck" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
-            <MenuItem mnemonicParsing="false" text="Non binaire">
+            <MenuItem mnemonicParsing="false" text="Non binary">
                <graphic>
                   <CheckBox fx:id="nbcheck" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
-            <MenuItem mnemonicParsing="false" text="Autres">
+            <MenuItem mnemonicParsing="false" text="Other">
                <graphic>
                   <CheckBox fx:id="othercheck" mnemonicParsing="false" />
                </graphic>

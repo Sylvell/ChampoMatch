@@ -225,14 +225,30 @@ public class JdbcDao {
         single.setId(resultSet.getInt("id"));
 
 
-        // insert hobbies
+        // insert hobbies if they are not already in the db and delete the ones that are not in the single object
         for (Hobbies hobby : single.getHobbies()) {
-            sql = "INSERT INTO hobbies  VALUES (Default,?, ?,'None')";
+            sql = "SELECT * FROM hobbies WHERE single_id=? AND name=?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, single.getId());
-            preparedStatement.setString(2, hobby.name());
-            preparedStatement.executeUpdate();
+            preparedStatement.setString(2, hobby.toString());
+            resultSet = preparedStatement.executeQuery();
+            if (!resultSet.next()) {
+                sql = "INSERT INTO hobbies VALUES (Default,?, ?,'')";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setInt(1, single.getId());
+                preparedStatement.setString(2, hobby.toString());
+                preparedStatement.executeUpdate();
+            } else if (hobby.name() != resultSet.getString("name")) {
+                sql = "DELETE FROM hobbies WHERE single_id=? AND name=?";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setInt(1, single.getId());
+                preparedStatement.setString(2, hobby.toString());
+                preparedStatement.executeUpdate();
+            }
         }
+
+
+
 
         // insert images
         for (Image image : single.getImages()) {

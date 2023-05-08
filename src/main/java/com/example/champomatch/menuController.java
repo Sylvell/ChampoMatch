@@ -106,21 +106,22 @@ public class menuController {
 
     @FXML
     public void initialize() {
-        // add all checkboxes to the list
-        cblist.add(malecheck);
-        cblist.add(femalecheck);
-        cblist.add(othercheck);
-        cblist.add(age1);
-        cblist.add(age2);
-        cblist.add(age3);
-        cblist.add(age4);
-        cblist.add(age5);
-        cblist.add(height1);
-        cblist.add(height2);
-        cblist.add(height3);
-        cblist.add(height4);
-        cblist.add(height5);
+
         Platform.runLater(() -> {
+            // add all checkboxes to the list
+            this.cblist.add(malecheck);
+            this.cblist.add(femalecheck);
+            this.cblist.add(othercheck);
+            this.cblist.add(age1);
+            this.cblist.add(age2);
+            this.cblist.add(age3);
+            this.cblist.add(age4);
+            this.cblist.add(age5);
+            this.cblist.add(height1);
+            this.cblist.add(height2);
+            this.cblist.add(height3);
+            this.cblist.add(height4);
+            this.cblist.add(height5);
         // set userText
         this.userText.setText(this.userText.getText() + " " + this.user.getFullName());
         if (this.user.getAdmin() ==1){
@@ -207,6 +208,10 @@ public class menuController {
 
 
         });
+        // for all checkboxes in cblist, add an action listener
+            for (  CheckBox cb : this.cblist) {
+                cb.setOnAction(event -> this.checkboxfilters());
+            }
 
         // action listener for menu buttons
             /*gender.setOnAction(new EventHandler<ActionEvent>() {
@@ -345,33 +350,21 @@ public class menuController {
 
     }
 
-    /*public void checkboxfilters(){
+    public void checkboxfilters(){
         // for each checkbox, if it's selected, update list_to_show with singles that match the checkbox
         for (CheckBox checkBox : this.cblist){
-            if (checkBox.isSelected()){
-                ArrayList<Single> list = new ArrayList<>();
-                for (Single single : list_to_show){
-                    if (single.getGender().equals(checkBox.getText())){
-                        list.add(single);
-                    }
-                    if ((checkBox.getText()).contains(Single.getAge())){
-                        list.add(single);
-                    }
-                    if ((checkBox.getText()).contains(Single.getHeight())){
-                        list.add(single);
-                    }
 
-                }
-                list_to_show = list;
+            if (checkBox.isSelected()){
+                // filter checkboxes by name
+
+                // update the table
+                ObservableList<Single> data = FXCollections.observableArrayList(list_to_show);
+                table.setItems(data);
+
             }
         }
 
-    }*/
-
-
-
-
-
+    }
 
 }
 
