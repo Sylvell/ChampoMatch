@@ -195,12 +195,7 @@ public class Recherche_pertinence {
         String age_range = "42-50";
         String height_range = "160-170";
         Set<Integer> result = recherche_pert(null, new HashSet<String>(Arrays.asList("18-24")), new HashSet<String>(Arrays.asList("160-170")));
-        System.out.println(result);
 
-
-        for (Integer id : result) {
-            System.out.println(single_list_id.get(id).toString());
-        }
     }
 
 }
