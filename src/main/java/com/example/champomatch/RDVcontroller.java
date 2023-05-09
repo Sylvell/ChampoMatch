@@ -1,5 +1,6 @@
 package com.example.champomatch;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -63,23 +64,21 @@ public class RDVcontroller {
         return randomDate;
     }
 
+    @FXML
+    public void initialize() {
+        Platform.runLater(() -> {
+            for (int i = 0; i < 5; i++) {
+                Single s1 = Recherche_pertinence.single_list.get((int) (Math.random() * Recherche_pertinence.single_list.size()));
+                Single s2 = Recherche_pertinence.single_list.get((int) (Math.random() * Recherche_pertinence.single_list.size()));
+                RendezVous rdv = new RendezVous(s1, s2, datealea() ,s1.getLocalisation());
+                rdv_list.add(rdv);
+            }
 
-
-    public static void main(String[] args) {
-        // create 5 rdv with random singles from single_list
-        for (int i = 0; i < 5; i++) {
-            Single s1 = Recherche_pertinence.single_list.get((int) (Math.random() * Recherche_pertinence.single_list.size()));
-            Single s2 = Recherche_pertinence.single_list.get((int) (Math.random() * Recherche_pertinence.single_list.size()));
-            RendezVous rdv = new RendezVous(s1, s2, datealea() ,s1.getLocalisation());
-            rdv_list.add(rdv);
-        }
-
-        // display all rendez-vous from rdv_list
-        for (RendezVous rdv : rdv_list) {
-            System.out.println(rdv.celib1.getFirstname()+ " " + rdv.celib1.getName() + "/" + rdv.celib2.getFirstname() + " " + rdv.celib2.getName() + " " + rdv.date + " " + rdv.lieu + " " + rdv.state);
-        }
-
+            // display all rendez-vous from rdv_list
+            for (RendezVous rdv : rdv_list) {
+                System.out.println(rdv.celib1.getFirstname()+ " " + rdv.celib1.getName() + "/" + rdv.celib2.getFirstname() + " " + rdv.celib2.getName() + " " + rdv.date + " " + rdv.lieu + " " + rdv.state);
+            }
+        });
     }
-
 
 }
