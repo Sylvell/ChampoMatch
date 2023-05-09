@@ -19,13 +19,11 @@ public class RendezVous {
     public State state = State.en_attente;
 
 
-    public RendezVous(Single s1, Single s2, Date date, String lieu){
+    public RendezVous(Single s1, Single s2, Date date){
         this.celib1= s1;
         this.celib2= s2;
         this.date= date;
-        this.lieu= lieu;
-
-
+        this.lieu= this.celib1.getLocalisation();
 
     }
 

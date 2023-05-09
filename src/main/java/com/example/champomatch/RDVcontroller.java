@@ -28,6 +28,7 @@ public class RDVcontroller {
 
     private User userConnected;
 
+
     public void setUserConnected(User userConnected) {
         this.userConnected = userConnected;
     }
@@ -75,7 +76,7 @@ public class RDVcontroller {
             for (int i = 0; i < 5; i++) {
                 Single s1 = Recherche_pertinence.single_list.get((int) (Math.random() * Recherche_pertinence.single_list.size()));
                 Single s2 = Recherche_pertinence.single_list.get((int) (Math.random() * Recherche_pertinence.single_list.size()));
-                RendezVous rdv = new RendezVous(s1, s2, datealea() ,s1.getLocalisation());
+                RendezVous rdv = new RendezVous(s1, s2, datealea());
                 rdv_list.add(rdv);
             }
 
