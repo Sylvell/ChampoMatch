@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
@@ -33,6 +34,12 @@ public class matchController {
 
     @FXML
     private ImageView pp2;
+
+    @FXML
+    private Button accept;
+
+    @FXML
+    private Button decline;
 
     private User userConnected;
     public void setUserConnected(User userConnected) {
@@ -97,5 +104,33 @@ public class matchController {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    @FXML
+    public void tordv(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("rdv.fxml"));
+            Parent root = loader.load();
+            RDVcontroller controller = loader.getController();
+            controller.setUser(this.userConnected);
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.setTitle("Menu");
+            stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    // when decline button is pressed use goback function
+    @FXML
+    public void decline(ActionEvent event){
+        goback(event);
+    }
+
+    public void accept(ActionEvent event){
+
     }
 }

@@ -32,6 +32,11 @@ public class RDVcontroller {
         this.userConnected = userConnected;
     }
 
+    public void setUser(User user) {
+        // set the user
+        this.user = user;
+    }
+
     @FXML
     public void goback(ActionEvent event){
         try {
