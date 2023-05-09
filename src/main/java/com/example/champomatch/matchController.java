@@ -117,7 +117,7 @@ public class matchController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.centerOnScreen();
-            stage.setTitle("Menu");
+            stage.setTitle("RDV");
             stage.show();
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -131,6 +131,9 @@ public class matchController {
     }
 
     public void accept(ActionEvent event){
+        RendezVous lerdv = new RendezVous(nom1.getText(), nom2.getText(), RDVcontroller.datealea(), null);
+
+
 
     }
 }
