@@ -114,6 +114,8 @@ public class JdbcDao {
             return SinglesCache;
         }
         try {
+            // SELECT single.*,GROUP_CONCAT(hobbies.name SEPARATOR ',') as hobbies FROM `hobbies` LEFT JOIN `single` ON single_id = single.id GROUP BY single.id;
+            //Arrays.asList(string.split(" , "))
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM single LIMIT 30");
             ResultSet resultSet = preparedStatement.executeQuery();
 
