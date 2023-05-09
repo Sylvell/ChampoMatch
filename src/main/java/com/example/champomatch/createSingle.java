@@ -10,7 +10,7 @@ import static java.lang.System.exit;
 
 public class createSingle {
     public static void main(String[] args) {
-        int nbresingles =1000;
+        int nbresingles =100;
         JdbcDao dao = new JdbcDao();
         Faker faker = new Faker(new Locale("fr"));
         downloadImage image =  new downloadImage();

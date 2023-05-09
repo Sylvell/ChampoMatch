@@ -290,6 +290,8 @@ public class menuController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("unready.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root,900,600);
+            UnreadyController controller = loader.getController();
+            controller.setUserConnected(this.user);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.centerOnScreen();

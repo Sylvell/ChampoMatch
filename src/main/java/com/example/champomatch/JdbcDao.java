@@ -116,7 +116,7 @@ public class JdbcDao {
         try {
             // SELECT single.*,GROUP_CONCAT(hobbies.name SEPARATOR ',') as hobbies FROM `hobbies` LEFT JOIN `single` ON single_id = single.id GROUP BY single.id;
             //Arrays.asList(string.split(" , "))
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM single LIMIT 30");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT single.*,GROUP_CONCAT(hobbies.name SEPARATOR ',') as hobbies FROM `hobbies` LEFT JOIN `single` ON single_id = single.id GROUP BY single.id");
             ResultSet resultSet = preparedStatement.executeQuery();
 
             ArrayList<Single> singles_list = new ArrayList<Single>();
@@ -136,14 +136,19 @@ public class JdbcDao {
                         resultSet.getInt("minimum_age"),
                         resultSet.getInt("maximum_age"),
                         resultSet.getBoolean("is_alone"));
+                for (String hobby : resultSet.getString("hobbies").split(",")) {
+                    if (StringUtils.isNotBlank(hobby)) {
+                        person.addHobby(Hobbies.valueOf(hobby));
+                    }
+                }
                 // add hobbies to the single from the hobbies table
-                preparedStatement = connection.prepareStatement("SELECT * FROM hobbies WHERE single_id=?");
+               /* preparedStatement = connection.prepareStatement("SELECT * FROM hobbies WHERE single_id=?");
                 preparedStatement.setInt(1, person.getId());
                 ResultSet hobbies_resultSet = preparedStatement.executeQuery();
                 while (hobbies_resultSet.next()) {
                     person.addHobby(Hobbies.valueOf(hobbies_resultSet.getString("name")));
                 }
-
+                */
                 singles_list.add(person);
             }
             SinglesCache = singles_list;
@@ -161,7 +166,8 @@ public class JdbcDao {
         String sql = "";
         int id = 0;
         ResultSet resultSet;
-        if (single.getId() != 0) {
+        String bio;
+        if (single.getId() != null && single.getId() != 0) {
             id = single.getId();
         } else {
             sql = "SELECT * FROM single WHERE name=? and firstname=?";
@@ -169,31 +175,33 @@ public class JdbcDao {
             preparedStatement.setString(1, single.getName());
             preparedStatement.setString(2, single.getFirstname());
             resultSet = preparedStatement.executeQuery();
-            id = resultSet.getInt("id");
+            if (resultSet.next()) {
+                id = resultSet.getInt("id");
+
+
+                // update single in the db
+                sql = "UPDATE single set name=?,firstname=?,age=?,height=?,gender=?,preferred_gender=?,bio=?,localisation=?,status=?,distance=?,minimum_age=?,maximum_age=?,pp=? WHERE id=?";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, single.getName());
+                preparedStatement.setString(2, single.getFirstname());
+                preparedStatement.setInt(3, single.getAge());
+                preparedStatement.setInt(4, single.getHeight());
+                preparedStatement.setString(5, single.getGender());
+                preparedStatement.setString(6, single.getPreferredGender());
+                // escape single quote
+                bio = single.getBio().replaceAll("'", " ");
+                preparedStatement.setString(7, bio);
+                preparedStatement.setString(8, single.getLocalisation());
+                preparedStatement.setString(9, single.getStatus());
+                preparedStatement.setInt(10, single.getDistance());
+                preparedStatement.setInt(11, single.getMinimunAge());
+                preparedStatement.setInt(12, single.getMaximunAge());
+                preparedStatement.setString(13, single.getPp());
+                preparedStatement.setInt(14, id);
+                preparedStatement.executeUpdate();
+                System.out.println("single updated" + "\n" + preparedStatement);
+            }
         }
-
-        // update single in the db
-        sql = "UPDATE single set name=?,firstname=?,age=?,height=?,gender=?,preferred_gender=?,bio=?,localisation=?,status=?,distance=?,minimum_age=?,maximum_age=?,pp=? WHERE id=?";
-        preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, single.getName());
-        preparedStatement.setString(2, single.getFirstname());
-        preparedStatement.setInt(3, single.getAge());
-        preparedStatement.setInt(4, single.getHeight());
-        preparedStatement.setString(5, single.getGender());
-        preparedStatement.setString(6, single.getPreferredGender());
-        // escape single quote
-        String bio = single.getBio().replaceAll("'", " ");
-        preparedStatement.setString(7, bio);
-        preparedStatement.setString(8, single.getLocalisation());
-        preparedStatement.setString(9, single.getStatus());
-        preparedStatement.setInt(10, single.getDistance());
-        preparedStatement.setInt(11, single.getMinimunAge());
-        preparedStatement.setInt(12, single.getMaximunAge());
-        preparedStatement.setString(13, single.getPp());
-        preparedStatement.setInt(14, id);
-        preparedStatement.executeUpdate();
-        System.out.println("single updated" + "\n" + preparedStatement);
-
 
 
         // insert single
@@ -248,8 +256,6 @@ public class JdbcDao {
                 preparedStatement.executeUpdate();
             }
         }
-
-
 
 
         // insert images
