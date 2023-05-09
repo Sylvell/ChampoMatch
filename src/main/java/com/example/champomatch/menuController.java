@@ -372,6 +372,7 @@ public class menuController {
             }
             ObservableList<Single> data = FXCollections.observableArrayList(list);
             table.setItems(data);
+
         }
 
 
@@ -410,6 +411,8 @@ public class menuController {
         // update list_to_show
         List<Single> list = new ArrayList<>();
         Set<Integer> result = recherche_pert(genders,age, height);
+        System.out.println(Arrays.toString(result.toArray()));
+        Recherche_pertinence tri = new Recherche_pertinence();
         for(Integer id : result){
             list.add(single_list_id.get(id));
         }
