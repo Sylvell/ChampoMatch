@@ -109,7 +109,7 @@
             <Button fx:id="bp3" mnemonicParsing="false" onAction="#unready" prefHeight="82.0" prefWidth="180.0" text="Clients" GridPane.rowIndex="1" />
             <Button fx:id="bp4" mnemonicParsing="false" onAction="#disconnect" prefHeight="75.0" prefWidth="181.0" text="Disconnect" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Button fx:id="bp5" mnemonicParsing="false" onAction="#ajoutClient" prefHeight="79.0" prefWidth="182.0" text="Ajout client" GridPane.rowIndex="2" />
-            <Button fx:id="bp6" mnemonicParsing="false" onAction="#unready" prefHeight="75.0" prefWidth="202.0" text="Rendez-vous" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="bp6" mnemonicParsing="false" onAction="#rdv" prefHeight="75.0" prefWidth="202.0" text="Rendez-vous" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <HBox prefHeight="56.0" prefWidth="360.0">
