@@ -1,9 +1,6 @@
 package com.example.champomatch;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Recherche_pertinence {
     public static JdbcDao jdbcDao = new JdbcDao();
@@ -17,7 +14,15 @@ public class Recherche_pertinence {
 
     public static ArrayList<Single> single_list = jdbcDao.select_single();
 
+    public static HashMap<Integer,Single> single_list_id ;
 
+    public Recherche_pertinence(){
+        // fill single_list_id to keep track of the id of each single
+        this.single_list_id = new HashMap<Integer, Single>();
+        for (Single single : this.single_list) {
+            this.single_list_id.put(single.getId(),single);
+        }
+    }
     public static void fill_dico_hobbies() {
         for (Single single : single_list) {
             for (Hobbies hobby : single.getHobbies()) {
@@ -117,7 +122,7 @@ public class Recherche_pertinence {
             }
         }
     }
-    public static Set<Integer> recherche_pert(Gender gender, String age_range, String height_range) {
+    public static Set<Integer> recherche_pert(Set<Gender> gender, Set<String> age_range, Set<String> height_range) {
 
         fill_dico_hobbies();
         fill_dico_genders();
@@ -125,69 +130,52 @@ public class Recherche_pertinence {
         fill_dico_height();
         Set<Integer> result = new HashSet<Integer>();
 
-        Set<Integer> gender_ids = new HashSet<Integer>();
-        if (gender != null) {
-            if (dico_genders.containsKey(gender)) {
-                gender_ids.addAll(dico_genders.get(gender));
-            }
-            else {
-                for (ArrayList<Integer> ids : dico_genders.values()) {
-                    gender_ids.addAll(ids);
-                }
-            }
-        } else {
-            for (ArrayList<Integer> ids : dico_genders.values()) {
-                gender_ids.addAll(ids);
+        if (gender != null && gender.size() > 0) {
+            Set<Gender> nonSelectedGenderValues = new HashSet<>(Arrays.asList(Gender.values()));
+            nonSelectedGenderValues.removeAll(gender);
+            for (Gender g : nonSelectedGenderValues){
+                dico_genders.remove(g);
             }
         }
 
-        Set<Integer> age_ids = new HashSet<Integer>();
-        if (age_range != null) {
-            if (dico_age.containsKey(age_range)) {
-                age_ids.addAll(dico_age.get(age_range));
-            }
-            else {
-                for (ArrayList<Integer> ids : dico_age.values()) {
-                    age_ids.addAll(ids);
-                }
-            }
-        } else {
-            for (ArrayList<Integer> ids : dico_age.values()) {
-                age_ids.addAll(ids);
+
+        if (age_range != null && age_range.size() > 0) {
+            Set<String> nonSelectedAgeValues = new HashSet<>(Arrays.asList("18-24", "25-32", "33-42", "43-50", "50+"));
+            nonSelectedAgeValues.removeAll(age_range);
+            for (String age : nonSelectedAgeValues){
+                dico_age.remove(age);
             }
         }
 
-        Set<Integer> height_ids = new HashSet<Integer>();
-        if (height_range != null) {
-            if (dico_height.containsKey(height_range)) {
-                height_ids.addAll(dico_height.get(height_range));
-            }
-            else {
-                for (ArrayList<Integer> ids : dico_height.values()) {
-                    height_ids.addAll(ids);
-                }
-            }
-        } else {
-            for (ArrayList<Integer> ids : dico_height.values()) {
-                height_ids.addAll(ids);
+        if (height_range != null && height_range.size() > 0) {
+            Set<String> nonSelectedHeightValues = new HashSet<>(Arrays.asList("150-", "150-160", "160-170", "170-180", "180+"));
+            nonSelectedHeightValues.removeAll(height_range);
+            for (String height : nonSelectedHeightValues){
+                dico_height.remove(height);
             }
         }
 
-        if (gender == null && age_range == null && height_range == null) {
-            for (ArrayList<Integer> ids : dico_genders.values()) {
-                gender_ids.addAll(ids);
-            }
-            for (ArrayList<Integer> ids : dico_age.values()) {
-                age_ids.addAll(ids);
-            }
-            for (ArrayList<Integer> ids : dico_height.values()) {
-                height_ids.addAll(ids);
-            }
+
+       // convert each dico to a set of id
+        Set<Integer> genders = new HashSet<Integer>();
+        for (ArrayList<Integer> list : dico_genders.values()) {
+            list.forEach(id-> genders.add(id));
         }
 
-        result.addAll(gender_ids);
-        result.retainAll(age_ids);
-        result.retainAll(height_ids);
+        Set<Integer> ages = new HashSet<Integer>();
+        for (ArrayList<Integer> list : dico_age.values()) {
+            list.forEach(id-> ages.add(id));
+        }
+
+        Set<Integer> heights = new HashSet<Integer>();
+        for (ArrayList<Integer> list : dico_height.values()) {
+            list.forEach(id-> heights.add(id));
+        }
+
+        result.addAll(genders);
+        result.retainAll(ages);
+        result.retainAll(heights);
+
 
         return result;
     }
@@ -198,7 +186,7 @@ public class Recherche_pertinence {
 
 
     public static void main(String[] args) {
-
+        Recherche_pertinence recherche_pertinence = new Recherche_pertinence();
         fill_dico_hobbies();
         fill_dico_genders();
         fill_dico_age();
@@ -206,12 +194,13 @@ public class Recherche_pertinence {
         Gender gender = Gender.Male;
         String age_range = "42-50";
         String height_range = "160-170";
-        Set<Integer> result = recherche_pert(gender, age_range, height_range);
+        Set<Integer> result = recherche_pert(null, new HashSet<String>(Arrays.asList("18-24")), new HashSet<String>(Arrays.asList("160-170")));
         System.out.println(result);
 
 
-
+        for (Integer id : result) {
+            System.out.println(single_list_id.get(id).toString());
+        }
     }
-
 
 }
