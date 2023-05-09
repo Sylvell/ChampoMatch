@@ -203,13 +203,13 @@ public class Recherche_pertinence {
         fill_dico_genders();
         fill_dico_age();
         fill_dico_height();
-        //ArrayList<Hobbies> hobbies = new ArrayList<Hobbies>();
-        //hobbies.add(Hobbies.Cooking);
         Gender gender = Gender.Male;
         String age_range = "42-50";
         String height_range = "160-170";
         Set<Integer> result = recherche_pert(gender, age_range, height_range);
         System.out.println(result);
+
+
 
     }
 
