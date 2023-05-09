@@ -18,7 +18,7 @@ import java.util.Random;
 
 public class RDVcontroller {
 
-    private ArrayList<RendezVous> rdv_list = new ArrayList<RendezVous>();
+    public static ArrayList<RendezVous> rdv_list = new ArrayList<RendezVous>();
 
     @FXML
     private Button Retu;
