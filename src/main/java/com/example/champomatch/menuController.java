@@ -300,6 +300,20 @@ public class menuController {
             ex.printStackTrace();
         }
     }
+    public void rdv(ActionEvent actionEvent) {
+        // go to unready page
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("rdv.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root,900,600);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     public void update(MouseEvent mouseEvent) {
         // update the list

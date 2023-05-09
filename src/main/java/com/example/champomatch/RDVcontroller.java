@@ -1,7 +1,15 @@
 package com.example.champomatch;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
@@ -10,17 +18,43 @@ public class RDVcontroller {
 
     private static ArrayList<RendezVous> rdv_list = new ArrayList<RendezVous>();
 
+    @FXML
+    private Button Retu;
+
+    private User userConnected;
+
+    public void setUserConnected(User userConnected) {
+        this.userConnected = userConnected;
+    }
+
+    @FXML
+    public void goback(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
+            Parent root = loader.load();
+            menuController controller = loader.getController();
+            controller.setUser(this.userConnected);
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.setTitle("Menu");
+            stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     public static Date datealea() {
         Random random = new Random();
 
         // Date de début et date de fin
-        LocalDate startDate = LocalDate.of(2023, 1, 1);
-        LocalDate endDate = LocalDate.of(2023, 5, 9);
+        Date startDate = new Date(2023, 1, 1);
+        Date endDate = new Date(2023, 5, 9);
 
         // Calcul de la plage de dates
-        long startMillis = startDate.toEpochDay() * 24 * 60 * 60 * 1000;
-        long endMillis = endDate.toEpochDay() * 24 * 60 * 60 * 1000;
+        long startMillis = startDate.getTime();
+        long endMillis = endDate.getTime();
         long randomMillis = (long) (startMillis + (endMillis - startMillis) * random.nextDouble());
 
         // Création de la date aléatoire
@@ -28,8 +62,6 @@ public class RDVcontroller {
 
         return randomDate;
     }
-
-
 
 
 
