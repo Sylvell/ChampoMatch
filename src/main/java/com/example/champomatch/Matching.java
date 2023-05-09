@@ -56,10 +56,10 @@ public class Matching {
 
         //Hobbies
         double hobbiesScore = 0.0;
-        ArrayList<Hobbies> communHobbies = Single1.getHobbies();
+        ArrayList<Hobbies> communHobbies = new ArrayList<Hobbies>(Single1.getHobbies());
         communHobbies.retainAll(Single2.getHobbies());
-        hobbiesScore = communHobbies.size() / 3;
-        if (hobbiesScore < 0.25){
+        hobbiesScore = (double) communHobbies.size()/ (double) Single1.getHobbies().size();
+        if (hobbiesScore <= 0.01){
             return 0;
         }
 
@@ -75,9 +75,10 @@ public class Matching {
         }
 */
         // Add up the weighted scores for each criterion based on user's importance weighting
-        score = ageScore * 9 + hobbiesScore * 7 + distanceScore * 2 + heightScore * 3;
+        score = ageScore * 9 + hobbiesScore * 6 + distanceScore * 2 + heightScore * 3;
+        System.out.println("Age score: " + ageScore * 9 + " Hobbies score: " + hobbiesScore *7+ " Distance score: " + distanceScore*2 + " Height score: " + heightScore*3);
 
-        return score;
+        return score/20*100;
     }
 
     public  Tuple findMatch(Single user, ArrayList<Single> candidates) {
@@ -94,12 +95,12 @@ public class Matching {
             }
 
             // Skip candidates that the user has already liked or unliked
-            if (user.liked.contains(candidate) || user.unliked.contains(candidate)) {
+             if (user.liked.contains(candidate) || user.unliked.contains(candidate)) {
                 continue;
             }
 
             // Check if the candidate has already been evaluated
-            if (evaluatedCandidates.containsKey(candidate.id)) {
+             if (evaluatedCandidates.containsKey(candidate.id)) {
                 continue;
             }
 

@@ -16,12 +16,21 @@ public class UnreadyController {
     @FXML
     private Button returns;
 
+    private User userConnected;
+
+    public void setUserConnected(User userConnected) {
+        this.userConnected = userConnected;
+    }
+
+
+
     @FXML
     public void goback(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
             Parent root = loader.load();
             menuController controller = loader.getController();
+            controller.setUser(userConnected);
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);

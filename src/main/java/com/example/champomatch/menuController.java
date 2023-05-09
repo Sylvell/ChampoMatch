@@ -174,6 +174,7 @@ public class menuController {
                         Scene scene = new Scene(root);
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setScene(scene);
+                        stage.setTitle("Profile of " + selectedItem.getFirstname() + " " + selectedItem.getName());
                         stage.show();
                     } catch (IOException ex) {
                         ex.printStackTrace();
@@ -195,6 +196,7 @@ public class menuController {
                             Scene scene = new Scene(root,900,600);
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.centerOnScreen();
+                            stage.setTitle("Match");
                             stage.setScene(scene);
                             stage.show();
                         } catch (IOException ex) {
@@ -288,6 +290,8 @@ public class menuController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("unready.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root,900,600);
+            UnreadyController controller = loader.getController();
+            controller.setUserConnected(this.user);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.centerOnScreen();

@@ -1,10 +1,20 @@
 package com.example.champomatch;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -40,11 +50,52 @@ public class matchController {
             Matching matching = new Matching();
             JdbcDao jdbcDao = new JdbcDao();
             ArrayList<Single> singles = JdbcDao.select_single();
-            Tuple match = matching.findMatch(singles.get(4), singles);
-            this.nom2.setText(match.getSingle().getFirstname() + " " + match.getSingle().getName());
-            this.percent.setText(match.getScore() + "%");
+            Tuple match = matching.findMatch(this.single, singles);
+            if (match.getSingle() == null) {
+                this.nom2.setText("No match found");
+                this.percent.setText("0%");
+                // Create a Media object from a file path
+               /* Media sound = new Media(getClass().getResource("/emptyMatch.mp3").toString());
+
+                // Create a MediaPlayer object from the Media object
+                MediaPlayer mediaPlayer = new MediaPlayer(sound);
+
+                // Play the sound
+                mediaPlayer.play();*/
+                return;
+            }else{
+                this.nom2.setText(match.getSingle().getFirstname() + " " + match.getSingle().getName());
+                this.percent.setText(match.getScore() + "%");
+                new ImageLoader(this.pp2, match.getSingle().getPp());
+                // Create a Media object from a file path
+                /*Media sound = new Media(getClass().getResource("/emptyMatch.mp3").toString());
+
+                // Create a MediaPlayer object from the Media object
+                MediaPlayer mediaPlayer = new MediaPlayer(sound);
+
+                // Play the sound
+                mediaPlayer.play();*/
+            }
+
             new ImageLoader(this.pp1, this.single.getPp());
-            new ImageLoader(this.pp2, match.getSingle().getPp());
         });
+    }
+
+    @FXML
+    public void goback(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
+            Parent root = loader.load();
+            menuController controller = loader.getController();
+            controller.setUser(this.userConnected);
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.setTitle("Menu");
+            stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }
