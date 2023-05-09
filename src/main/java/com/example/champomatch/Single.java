@@ -13,6 +13,7 @@ enum Gender {
 }
 
 enum Hobbies {
+    Default,
     Sport,
     Sleep,
     Gaming,

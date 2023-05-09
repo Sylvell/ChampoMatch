@@ -196,9 +196,12 @@ public class profileController implements Initializable {
             single.setPreferedGender(Gender.valueOf(this.preffered_gender.getText()));
             single.setName(this.name.getText().split(" ")[1]);
             single.setFirstname(this.name.getText().split(" ")[0]);
-
+            if(this.newSingle == true){
+                this.single.addHobby(Hobbies.Default);
+            }
             try {
                 single.ExportToDb();
+
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
