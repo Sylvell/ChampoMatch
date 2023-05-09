@@ -90,7 +90,7 @@ public class Single {
         this.age = age;
         this.height = height;
         this.gender = gender;
-        if (pp != null){
+        if (pp != null && ! pp.equals("http://champomatch.hdyx5526.odns.fr/ChampoMatch/images/")){
             this.pp = pp;
         }
         this.preferedGender = preferedGender;
@@ -109,7 +109,7 @@ public class Single {
         this.age = age;
         this.height = height;
         this.gender = gender;
-        if (pp != null){
+        if (pp != null && ! pp.equals("http://champomatch.hdyx5526.odns.fr/ChampoMatch/images/")){
             this.pp = pp;
         }
         this.preferedGender = preferedGender;
