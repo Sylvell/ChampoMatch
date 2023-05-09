@@ -42,11 +42,15 @@ public class matchController {
     private Button decline;
 
     private User userConnected;
+
+    private Single single;
+
+    private Single single2;
+
     public void setUserConnected(User userConnected) {
         this.userConnected = userConnected;
     }
 
-    private Single single;
     public void setSingle(Single single) {
         this.single = single;
     }
@@ -71,6 +75,7 @@ public class matchController {
                 mediaPlayer.play();*/
                 return;
             }else{
+                this.single2 = match.getSingle();
                 this.nom2.setText(match.getSingle().getFirstname() + " " + match.getSingle().getName());
                 this.percent.setText(match.getScore() + "%");
                 new ImageLoader(this.pp2, match.getSingle().getPp());
@@ -127,13 +132,17 @@ public class matchController {
     // when decline button is pressed use goback function
     @FXML
     public void decline(ActionEvent event){
+        if (this.single2 == null) {
+            return;
+        }
         goback(event);
     }
 
+    @FXML
     public void accept(ActionEvent event){
-        RendezVous lerdv = new RendezVous(nom1.getText(), nom2.getText(), RDVcontroller.datealea(), null);
-
-
-
+        if (this.single2 == null) {
+            return;
+        }
+        RendezVous lerdv = new RendezVous(this.single, this.single2, RDVcontroller.datealea());
     }
 }
