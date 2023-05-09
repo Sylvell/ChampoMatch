@@ -112,7 +112,7 @@ public class matchController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("rdv.fxml"));
             Parent root = loader.load();
             RDVcontroller controller = loader.getController();
-            controller.setUser(this.userConnected);
+            controller.setUserConnected(this.userConnected);
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
