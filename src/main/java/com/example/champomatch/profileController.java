@@ -82,7 +82,6 @@ public class profileController implements Initializable {
         Platform.runLater(() -> {
             if(!this.newSingle){
 
-
             // set image
             new ImageLoader(this.imageView, this.single.getPp());
 
