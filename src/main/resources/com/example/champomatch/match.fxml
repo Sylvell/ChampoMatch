@@ -10,6 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(#f1e034, #e3733d);;" xmlns="http://javafx.com/javafx/19"  fx:controller="com.example.champomatch.matchController" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <Button fx:id="returned" alignment="TOP_LEFT" layoutY="1.0" mnemonicParsing="false" onAction="#goback" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="&lt;- Return" textFill="white" />
       <Button layoutX="244.0" layoutY="432.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="134.0" style="-fx-background-color: linear-gradient(#a6ff49, #d5fa4f);" text="Accept" textFill="#10650a">
          <font>
             <Font name="System Bold" size="21.0" />
