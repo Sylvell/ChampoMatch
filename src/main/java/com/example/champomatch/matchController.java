@@ -144,5 +144,7 @@ public class matchController {
             return;
         }
         RendezVous lerdv = new RendezVous(this.single, this.single2, RDVcontroller.datealea());
+        RDVcontroller.rdv_list.add(lerdv);
+        tordv(event);
     }
 }
