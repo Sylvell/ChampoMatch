@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,10 +18,13 @@ import java.util.Random;
 
 public class RDVcontroller {
 
-    private static ArrayList<RendezVous> rdv_list = new ArrayList<RendezVous>();
+    private ArrayList<RendezVous> rdv_list = new ArrayList<RendezVous>();
 
     @FXML
     private Button Retu;
+
+    @FXML
+    private ListView listrdv;
 
     private User userConnected;
 
@@ -74,9 +78,9 @@ public class RDVcontroller {
                 rdv_list.add(rdv);
             }
 
-            // display all rendez-vous from rdv_list
+            // Affichage des rendez-vous
             for (RendezVous rdv : rdv_list) {
-                System.out.println(rdv.celib1.getFirstname()+ " " + rdv.celib1.getName() + "/" + rdv.celib2.getFirstname() + " " + rdv.celib2.getName() + " " + rdv.date + " " + rdv.lieu + " " + rdv.state);
+                listrdv.getItems().add(rdv.celib1.getFirstname() + " " + rdv.celib1.getName() + " et " + rdv.celib2.getFirstname() + " " + rdv.celib2.getName() + " le " + rdv.date.toString() + " à " + rdv.lieu);
             }
         });
     }

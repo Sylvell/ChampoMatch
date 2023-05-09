@@ -13,7 +13,7 @@
             <Font name="Candara Light Italic" size="21.0" />
          </font>
       </Label>
-      <ListView layoutX="14.0" layoutY="82.0" prefHeight="505.0" prefWidth="873.0" style="-fx-background-color: invisible;" />
+      <ListView fx:id ="listrdv" layoutX="14.0" layoutY="82.0" prefHeight="505.0" prefWidth="873.0" style="-fx-background-color: invisible;" />
       <Button fx:id="Retu" mnemonicParsing="false" onAction="#goback" style="-fx-background-color: invisible;" text="&lt;-- Return" textFill="WHITE" />
    </children>
 </AnchorPane>
