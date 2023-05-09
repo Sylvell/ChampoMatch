@@ -4,6 +4,7 @@ package com.example.champomatch;
 import javafx.scene.image.Image;
 import org.apache.commons.lang3.StringUtils;
 
+import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -90,6 +91,14 @@ public class JdbcDao {
     // function to get Hobbies with sql select
     public static void  select_hobbies() {
         try {
+            if (!connection.isValid(5)) { // Check if connection is valid for 5 seconds
+                // Reconnect to the database
+                connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM hobbies");
             ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM hobbies");
 
@@ -110,6 +119,14 @@ public class JdbcDao {
         // function to execute an sql select and return fetch result in an array
 
     public static ArrayList<Single> select_single() {
+        try {
+            if (!connection.isValid(5)) { // Check if connection is valid for 5 seconds
+                // Reconnect to the database
+                connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         if (SinglesCache != null){
             return SinglesCache;
         }
@@ -161,6 +178,10 @@ public class JdbcDao {
     // create a new single in the database
 
     public  void ExportSingle(Single single) throws SQLException {
+        if (!connection.isValid(5)) { // Check if connection is valid for 5 seconds
+            // Reconnect to the database
+            connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        }
         // check if the single already exist by checking if the name and firstname are already in the db or if the id is already in the db
         PreparedStatement preparedStatement = null;
         String sql = "";
@@ -290,6 +311,10 @@ public class JdbcDao {
 
     //function to get all users from the database
     public ArrayList<User> getUsers() throws SQLException {
+        if (!connection.isValid(5)) { // Check if connection is valid for 5 seconds
+            // Reconnect to the database
+            connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        }
         String sql = "Select * from registration";
         ArrayList<User> users = new ArrayList<User>();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -313,6 +338,14 @@ public class JdbcDao {
 
     public User getUser(String emailId) {
         try {
+            if (!connection.isValid(5)) { // Check if connection is valid for 5 seconds
+                // Reconnect to the database
+                connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
             String sql = "Select * from registration where email_id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, emailId);
@@ -333,6 +366,10 @@ public class JdbcDao {
     }
 
     public void ExportUser(User user) throws SQLException {
+        if (!connection.isValid(5)) { // Check if connection is valid for 5 seconds
+            // Reconnect to the database
+            connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        }
         // check if the user already exist
         if (user.getId() != null){
             // update user in the db
@@ -355,6 +392,10 @@ public class JdbcDao {
     }
     // get sql connection
     public Connection getConnection() throws SQLException {
+        if (!connection.isValid(5)) { // Check if connection is valid for 5 seconds
+            // Reconnect to the database
+            connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        }
         return DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
     }
 }
