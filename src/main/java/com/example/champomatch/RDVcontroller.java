@@ -1,5 +1,7 @@
 package com.example.champomatch;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
@@ -13,12 +15,12 @@ public class RDVcontroller {
         Random random = new Random();
 
         // Date de début et date de fin
-        Date startDate = new Date(2023, 1, 1);
-        Date endDate = new Date(2023, 5, 9);
+        LocalDate startDate = LocalDate.of(2023, 1, 1);
+        LocalDate endDate = LocalDate.of(2023, 5, 9);
 
         // Calcul de la plage de dates
-        long startMillis = startDate.getTime();
-        long endMillis = endDate.getTime();
+        long startMillis = startDate.toEpochDay() * 24 * 60 * 60 * 1000;
+        long endMillis = endDate.toEpochDay() * 24 * 60 * 60 * 1000;
         long randomMillis = (long) (startMillis + (endMillis - startMillis) * random.nextDouble());
 
         // Création de la date aléatoire
@@ -26,6 +28,8 @@ public class RDVcontroller {
 
         return randomDate;
     }
+
+
 
 
 
