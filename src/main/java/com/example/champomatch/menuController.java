@@ -385,7 +385,7 @@ public class menuController {
         HashSet<Gender> genders = new HashSet<>();
         HashSet<String> age = new HashSet<>();
         HashSet<String> height = new HashSet<>();
-
+        /*
         for (CheckBox checkBox : this.cblistGender){
             if (checkBox.isSelected()){
                 // filter checkboxes by name
@@ -418,7 +418,7 @@ public class menuController {
         }
 
         ObservableList<Single> data = FXCollections.observableArrayList(list);
-        table.setItems(data);
+        table.setItems(data);*/
     }
 
 }
