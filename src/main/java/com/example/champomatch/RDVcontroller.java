@@ -26,12 +26,15 @@ public class RDVcontroller {
     @FXML
     private ListView listrdv;
 
+
     private User userConnected;
 
 
     public void setUserConnected(User userConnected) {
         this.userConnected = userConnected;
     }
+
+
 
 
     @FXML
@@ -72,13 +75,8 @@ public class RDVcontroller {
 
     @FXML
     public void initialize() {
+
         Platform.runLater(() -> {
-            for (int i = 0; i < 5; i++) {
-                Single s1 = Recherche_pertinence.single_list.get((int) (Math.random() * Recherche_pertinence.single_list.size()));
-                Single s2 = Recherche_pertinence.single_list.get((int) (Math.random() * Recherche_pertinence.single_list.size()));
-                RendezVous rdv = new RendezVous(s1, s2, datealea());
-                rdv_list.add(rdv);
-            }
 
             // Affichage des rendez-vous
             for (RendezVous rdv : rdv_list) {
