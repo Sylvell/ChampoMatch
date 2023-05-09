@@ -385,14 +385,11 @@ public class menuController {
         HashSet<Gender> genders = new HashSet<>();
         HashSet<String> age = new HashSet<>();
         HashSet<String> height = new HashSet<>();
-        /*
+
         for (CheckBox checkBox : this.cblistGender){
             if (checkBox.isSelected()){
                 // filter checkboxes by name
-                Node parent = checkBox.getParent();
-                MenuItem menuItem = (MenuItem) parent.getUserData();
-                System.out.println(menuItem.getText());
-                genders.add(Gender.valueOf(menuItem.getText()));
+                genders.add(Gender.valueOf(checkBox.getText()));
 
             }
         }
@@ -417,8 +414,10 @@ public class menuController {
             list.add(single_list_id.get(id));
         }
 
+        System.out.println(Arrays.toString(list.toArray()));
+
         ObservableList<Single> data = FXCollections.observableArrayList(list);
-        table.setItems(data);*/
+        table.setItems(data);
     }
 
 }
