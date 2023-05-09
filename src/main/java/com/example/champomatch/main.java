@@ -8,6 +8,7 @@ public class main {
     public static void main(String[] args) {
         JdbcDao dao = new JdbcDao();
         for (Single s : dao.select_single()) {
+            if (s.getHobbies().isEmpty()){
                 // randomize Hobbies number between 1 and 5
                 Random rand = new Random();
                 int nbreHobbies = rand.nextInt(5) + 1;
@@ -22,6 +23,7 @@ public class main {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
+        }
         }
     }
 }
