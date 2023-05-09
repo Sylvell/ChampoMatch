@@ -17,8 +17,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Set;
+import java.util.*;
+
+import static com.example.champomatch.Recherche_pertinence.recherche_pert;
+import static com.example.champomatch.Recherche_pertinence.single_list_id;
 
 public class menuController {
 
@@ -87,7 +89,9 @@ public class menuController {
     @FXML
     private TextField search;
 
-    private ArrayList<CheckBox> cblist = new ArrayList<CheckBox>();
+    private ArrayList<CheckBox> cblistAge = new ArrayList<CheckBox>();
+    private ArrayList<CheckBox> cblistGender = new ArrayList<CheckBox>();
+    private ArrayList<CheckBox> cblistHeight = new ArrayList<CheckBox>();
 
 
     @FXML
@@ -109,19 +113,19 @@ public class menuController {
 
         Platform.runLater(() -> {
             // add all checkboxes to the list
-            this.cblist.add(malecheck);
-            this.cblist.add(femalecheck);
-            this.cblist.add(othercheck);
-            this.cblist.add(age1);
-            this.cblist.add(age2);
-            this.cblist.add(age3);
-            this.cblist.add(age4);
-            this.cblist.add(age5);
-            this.cblist.add(height1);
-            this.cblist.add(height2);
-            this.cblist.add(height3);
-            this.cblist.add(height4);
-            this.cblist.add(height5);
+            this.cblistGender.add(malecheck);
+            this.cblistGender.add(femalecheck);
+            this.cblistGender.add(othercheck);
+            this.cblistAge.add(age1);
+            this.cblistAge.add(age2);
+            this.cblistAge.add(age3);
+            this.cblistAge.add(age4);
+            this.cblistAge.add(age5);
+            this.cblistHeight.add(height1);
+            this.cblistHeight.add(height2);
+            this.cblistHeight.add(height3);
+            this.cblistHeight.add(height4);
+            this.cblistHeight.add(height5);
         // set userText
         this.userText.setText(this.userText.getText() + " " + this.user.getFullName());
         if (this.user.getAdmin() ==1){
@@ -211,7 +215,13 @@ public class menuController {
 
         });
         // for all checkboxes in cblist, add an action listener
-            for (  CheckBox cb : this.cblist) {
+            for (  CheckBox cb : this.cblistGender) {
+                cb.setOnAction(event -> this.checkboxfilters());
+            }
+            for (  CheckBox cb : this.cblistAge) {
+                cb.setOnAction(event -> this.checkboxfilters());
+            }
+            for (  CheckBox cb : this.cblistHeight) {
                 cb.setOnAction(event -> this.checkboxfilters());
             }
 
@@ -305,6 +315,8 @@ public class menuController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("rdv.fxml"));
             Parent root = loader.load();
+            RDVcontroller controller = loader.getController();
+            controller.setUserConnected(this.user);
             Scene scene = new Scene(root,900,600);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -370,18 +382,43 @@ public class menuController {
 
     public void checkboxfilters(){
         // for each checkbox, if it's selected, update list_to_show with singles that match the checkbox
-        for (CheckBox checkBox : this.cblist){
+        HashSet<Gender> genders = new HashSet<>();
+        HashSet<String> age = new HashSet<>();
+        HashSet<String> height = new HashSet<>();
 
+        for (CheckBox checkBox : this.cblistGender){
             if (checkBox.isSelected()){
                 // filter checkboxes by name
-
-                // update the table
-                ObservableList<Single> data = FXCollections.observableArrayList(list_to_show);
-                table.setItems(data);
+                Node parent = checkBox.getParent();
+                MenuItem menuItem = (MenuItem) parent.getUserData();
+                System.out.println(menuItem.getText());
+                genders.add(Gender.valueOf(menuItem.getText()));
 
             }
         }
+        for (CheckBox checkBox : this.cblistAge){
+            if (checkBox.isSelected()){
+                // filter checkboxes by age
+                age.add(checkBox.getText());
+            }
+        }
 
+        for (CheckBox checkBox : this.cblistHeight){
+            if (checkBox.isSelected()){
+                // filter checkboxes by height
+                height.add(checkBox.getText());
+            }
+        }
+
+        // update list_to_show
+        List<Single> list = new ArrayList<>();
+        Set<Integer> result = recherche_pert(genders,age, height);
+        for(Integer id : result){
+            list.add(single_list_id.get(id));
+        }
+
+        ObservableList<Single> data = FXCollections.observableArrayList(list);
+        table.setItems(data);
     }
 
 }
