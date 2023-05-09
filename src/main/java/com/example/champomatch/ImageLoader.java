@@ -20,7 +20,9 @@ public class ImageLoader {
         if (cache.containsKey(url)) {
             return cache.get(url);
         }
-
+        if (url =="http://champomatch.hdyx5526.odns.fr/ChampoMatch/images/"){
+            url = "file:@images/defaultProfileImage.png";
+        }
         Image image = new Image(url, true);
         cache.put(url, image);
 
