@@ -36,7 +36,7 @@ public class Login extends Application {
         stage.show();
 
         // Mettre en pause pendant 3 secondes
-        PauseTransition pause = new PauseTransition(Duration.seconds(0.2));
+        PauseTransition pause = new PauseTransition(Duration.seconds(3));
         pause.setOnFinished(event -> {
             // Afficher la seconde scène
             stage.setScene(scene2);
